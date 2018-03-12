@@ -1,0 +1,104 @@
+html,
+body,
+form,
+fieldset,
+legend,
+p,
+label,
+input,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(195, 199, 230);
+    overflow: hidden;
+}
+
+#canvas {
+    position: absolute;
+    z-index: -1
+}
+
+.container {
+    position: relative;
+}
+
+form {
+    border-radius: 16px;
+    box-shadow: 0 0 5px rgb(194, 196, 219);
+    background: rgba(174, 176, 201, 0.39);
+    padding: 0 20px 20px 20px;
+    margin-top: 11rem;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+
+/* fieldset {
+    border: 0;
+}
+
+fieldset>div {
+    margin: 16px 0;
+}
+
+legend {
+    border-radius: 16px 16px 0 0;
+    font-size: 32px;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    color: seashell;
+    background: rosybrown;
+}
+
+p {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    display: inline-block;
+    width: 30%;
+    height: 32px;
+    text-align: right;
+    font-size: 20px;
+}
+
+input {
+    font-size: 16px;
+    width: 50%;
+    line-height: 32px;
+}
+
+p:nth-child(3) {
+    text-align: left;
+}
+
+#sub {
+    background: rosybrown;
+    font-size: 20px;
+    color: seashell;
+    border: none;
+    position: absolute;
+    right: 20px;
+    padding: 5px 10px;
+} */
