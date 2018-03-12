@@ -1,4 +1,4 @@
-package com.attendance.project;
+package com.attendance;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
