@@ -1,6 +1,6 @@
 var canvas = document.querySelector("#canvas");
-var WIDTH = document.body.clientWidth,
-    HEIGHT = document.documentElement.clientHeight || document.body.clientHeight;
+var WIDTH = document.body.scrollWidth,
+    HEIGHT = document.documentElement.scrollHeight || document.body.scrollHeight;
 canvas.setAttribute("width", WIDTH);
 canvas.setAttribute("height", HEIGHT);
 canvas.width = WIDTH;
@@ -102,8 +102,8 @@ function draw() {
 }
 //浏览器改变大小时
 window.onresize = function() {
-    var WIDTH = document.body.clientWidth,
-        HEIGHT = document.documentElement.clientHeight || document.body.clientHeight;
+    var WIDTH = document.body.scrollWidth,
+        HEIGHT = document.documentElement.scrollHeight || document.body.scrollHeight;
     canvas.setAttribute("width", WIDTH);
     canvas.setAttribute("height", HEIGHT);
     canvas.width = WIDTH;
@@ -112,27 +112,6 @@ window.onresize = function() {
     context.lineWidth = 0.3;
     context.strokeStyle = "white";
 };
-//设置cookie
-function setCookie(name, value, day) {
-    var date = new Date();
-    date.setDate(date.getDate() + day);
-    document.cookie = name + '=' + value + ';expires' + date;
-}
-//获取cookie
-function getCookie(name) {
-    var arr = document.cookie.split(';');
-    for (var i = 0; i < arr.length; i++) {
-        var arr2 = arr[i].split('=');
-        if (arr2[0] == name) {
-            return arr2[1];
-        }
-    }
-    return '';
-}
-//删除cookie
-function delCookie(name) {
-    setCookie(name, null, -1);
-}
 //页面加载完成后，加载canvas
 window.onload = function() {
     init();
@@ -141,31 +120,5 @@ window.onload = function() {
             neighborCircle();
         }, 16)
         // alert(document.cookie);
-    var rememberMe = document.querySelector(".remember-me");
-    var oForm = this.document.querySelector("form");
-    var oUser = document.querySelector('#username');
-    var oPassword = this.document.querySelector('#password');
-    oForm.onsubmit = function() {
-        if (rememberMe.checked) {
-            setCookie('user', oUser.value, 7);
-            setCookie('password', oPassword.value, 7)
-        }
-    }
-    rememberMe.onchange = function() {
-        if (!this.checked) {
-            delCookie('user');
-            delCookie('password')
-        }
-    }
-    if (getCookie('user') && getCookie('password')) {
-        oUser.value = getCookie('user');
-        oPassword.value = getCookie('password');
-        rememberMe.checked = true;
-    }
-    rememberMe.onchange = function() {
-        if (!this.checked) {
-            delCookie('user');
-            delCookie('password');
-        }
-    }
+
 }

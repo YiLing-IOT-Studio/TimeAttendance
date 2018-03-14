@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>员工考勤管理系统</title>
+    <link rel="shortcut icon" href="../static/img/icon.png" />
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="container">
+        <h1 class="text-center">考勤管理系统</h1>
+    </div>
+    <div class="container signTable">
+        <div>
+            <form action="">
+                <label for="staffId">编号：</label>
+                <input type="text" id="staffId" name="staffId">
+                <label for="staffName">姓名：</label>
+                <input type="text" id="staffName" name="staffName">
+                <button class="btn btn-danger">添加</button>
+            </form>
+        </div>
+        <div class="timeTable">
+            <div class="search pull-left">
+                <input type="text">
+                <a href="javascript:;"><img src="../static/img/search.ico" alt="search"></a>
+            </div>
+            <div class="pull-right">
+                <div class="pull-left yearAndMonth">
+                    <button class="btn btn-primary year">2018年</button>
+                    <button class="btn btn-primary month">3月</button>
+                    <button class="btn btn-primary month">14号</button>
+                    <!-- <button class="btn btn-primary">12:30:10</button> -->
+                </div>
+                <div class="pull-right time">
+                    <img src="../static/img/time.png" alt="0">
+                    <img src="../static/img/time.png" alt="0">
+                    <span>:</span>
+                    <img src="../static/img/time.png" alt="0">
+                    <img src="../static/img/time.png" alt="0">
+                    <span>:</span>
+                    <img src="../static/img/time.png" alt="0">
+                    <img src="../static/img/time.png" alt="0">
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>签到情况</th>
+                <th>签退情况</th>
+                <th>编辑</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>mark</td>
+                    <td><button class="btn btn-primary">签到</button></td>
+                    <td><button class="btn btn-danger">签退</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="../static/js/canvas.js"></script>
+
+</html>

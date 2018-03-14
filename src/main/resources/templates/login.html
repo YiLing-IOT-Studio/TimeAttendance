@@ -35,6 +35,55 @@
         </div>
     </div>
 </body>
-<script src="../static/js/login.js"></script>
+<script src="../static/js/canvas.js"></script>
+<script>
+    function setCookie(name, value, day) {
+        var date = new Date();
+        date.setDate(date.getDate() + day);
+        document.cookie = name + '=' + value + ';expires' + date;
+    }
+    //获取cookie
+    function getCookie(name) {
+        var arr = document.cookie.split(';');
+        for (var i = 0; i < arr.length; i++) {
+            var arr2 = arr[i].split('=');
+            if (arr2[0] == name) {
+                return arr2[1];
+            }
+        }
+        return '';
+    }
+    //删除cookie
+    function delCookie(name) {
+        setCookie(name, null, -1);
+    }
+    var rememberMe = document.querySelector(".remember-me");
+    var oForm = this.document.querySelector("form");
+    var oUser = document.querySelector('#username');
+    var oPassword = this.document.querySelector('#password');
+    oForm.onsubmit = function() {
+        if (rememberMe.checked) {
+            setCookie('user', oUser.value, 7);
+            setCookie('password', oPassword.value, 7)
+        }
+    }
+    rememberMe.onchange = function() {
+        if (!this.checked) {
+            delCookie('user');
+            delCookie('password')
+        }
+    }
+    if (getCookie('user') && getCookie('password')) {
+        oUser.value = getCookie('user');
+        oPassword.value = getCookie('password');
+        rememberMe.checked = true;
+    }
+    rememberMe.onchange = function() {
+        if (!this.checked) {
+            delCookie('user');
+            delCookie('password');
+        }
+    }
+</script>
 
 </html>
