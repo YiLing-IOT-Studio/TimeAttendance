@@ -32,18 +32,20 @@ h1 {
 }
 
 .timeTable {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: row;
 }
 
-input {
+
+/* input {
     border-radius: 10px;
     height: 30px;
     outline: none;
     padding: 2px;
     caret-color: rgb(0, 60, 255);
-}
+} */
 
 .search {
     padding: 2px 0 2px 5px;
@@ -57,24 +59,85 @@ input {
 }
 
 .search input {
+    color: black;
+    height: 30px;
     width: 60%;
     border-radius: 0;
 }
 
-.time {
-    margin-left: 20px;
-    height: 40px;
-    overflow: hidden;
+.pull-right {
+    position: relative;
+    left: 50px;
 }
 
-.time img {
-    /* width: 30px; */
+.time {
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: top;
 }
 
 .time span {
     font-size: 20px;
     color: rgb(43, 120, 221);
     font-weight: bold;
+    position: relative;
+    top: 5px;
+    margin: 0 2px;
+}
+
+.week {
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.num {
+    /* width: 40px;
+    height: 40px; */
+    object-fit: none;
+    object-position: 0 0;
+    -webkit-transition: object-position .25s;
+    transition: object-position .25s;
+}
+
+.num0 {}
+
+.num1 {
+    object-position: 0 -41px;
+}
+
+.num2 {
+    object-position: 0 -80px;
+}
+
+.num3 {
+    object-position: 0 -120px;
+}
+
+.num4 {
+    object-position: 0 -160px;
+}
+
+.num5 {
+    object-position: 0 -200px;
+}
+
+.num6 {
+    object-position: 0 -240px;
+}
+
+.num7 {
+    object-position: 0 -280px;
+}
+
+.num8 {
+    object-position: 0 -320px;
+}
+
+.num9 {
+    object-position: 0 -360px;
 }
 
 table {

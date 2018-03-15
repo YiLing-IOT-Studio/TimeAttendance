@@ -19,7 +19,7 @@
         <h1 class="text-center">考勤管理系统</h1>
     </div>
     <div class="container signTable">
-        <div>
+        <!-- <div>
             <form action="">
                 <label for="staffId">编号：</label>
                 <input type="text" id="staffId" name="staffId">
@@ -27,28 +27,36 @@
                 <input type="text" id="staffName" name="staffName">
                 <button class="btn btn-danger">添加</button>
             </form>
-        </div>
+        </div> -->
         <div class="timeTable">
             <div class="search pull-left">
-                <input type="text">
-                <a href="javascript:;"><img src="../static/img/search.ico" alt="search"></a>
+                <label for="searchName">姓名：</label>
+                <input type="text" id="searchName" name="searchName">
+                <a class="searchBtn" href="javascript:;"><img src="../static/img/search.ico" alt="search"></a>
             </div>
             <div class="pull-right">
                 <div class="pull-left yearAndMonth">
-                    <button class="btn btn-primary year">2018年</button>
-                    <button class="btn btn-primary month">3月</button>
-                    <button class="btn btn-primary month">14号</button>
+                    <input type="button" class="btn btn-primary year" value="">
+                    <input type="button" class="btn btn-primary month" value="">
+                    <input type="button" class="btn btn-primary day" value="">
+                    <span class="week text-primary"></span>
                     <!-- <button class="btn btn-primary">12:30:10</button> -->
                 </div>
                 <div class="pull-right time">
-                    <img src="../static/img/time.png" alt="0">
-                    <img src="../static/img/time.png" alt="0">
+                    <div>
+                        <img class="num num0" src="../static/img/time.png" alt="0">
+                        <img class="num num0" src="../static/img/time.png" alt="0">
+                    </div>
                     <span>:</span>
-                    <img src="../static/img/time.png" alt="0">
-                    <img src="../static/img/time.png" alt="0">
+                    <div>
+                        <img class="num num0" src="../static/img/time.png" alt="0">
+                        <img class="num num0" src="../static/img/time.png" alt="0">
+                    </div>
                     <span>:</span>
-                    <img src="../static/img/time.png" alt="0">
-                    <img src="../static/img/time.png" alt="0">
+                    <div>
+                        <img class="num num0" src="../static/img/time.png" alt="0">
+                        <img class="num num0" src="../static/img/time.png" alt="0">
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +66,6 @@
                 <th>姓名</th>
                 <th>签到情况</th>
                 <th>签退情况</th>
-                <th>编辑</th>
             </thead>
             <tbody>
                 <tr>
@@ -125,7 +132,7 @@
                     <td>1</td>
                     <td>mark</td>
                     <td><button class="btn btn-primary">签到</button></td>
-                    <td><button class="btn btn-danger">签退</button></td>
+                    <td><button class="btn btn-danger hidden">签退</button></td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -138,5 +145,7 @@
     </div>
 </body>
 <script src="../static/js/canvas.js"></script>
+<script src="../static/js/main.js"></script>
+<script src="../static/js/addStaff.js"></script>
 
 </html>
