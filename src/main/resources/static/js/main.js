@@ -48,17 +48,17 @@
         var handler = function() {
             var arr = oSearchText.value.toLowerCase().split(' ');
             var oTab = document.querySelector('table');
-            if (oSearchText.value != '') {
-                for (var i = 0; i < oTab.tBodies[0].rows.length; i++) {
-                    for (var t = 0; t < arr.length; t++) {
-                        if (oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase().search(arr[t]) != -1) {
-                            oTab.tBodies[0].rows[i].style.background = 'white';
-                        } else {
-                            oTab.tBodies[0].rows[i].style.background = '';
-                        }
+            // if (oSearchText.value != '') {
+            for (var i = 0; i < oTab.tBodies[0].rows.length; i++) {
+                for (var t = 0; t < arr.length; t++) {
+                    if (oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase().search(arr[t]) != -1 && oSearchText.value != '') {
+                        oTab.tBodies[0].rows[i].style.background = 'white';
+                    } else {
+                        oTab.tBodies[0].rows[i].style.background = '';
                     }
                 }
             }
+            // }
         }
         addHandler(oSearchBtn, 'click', handler);
 
