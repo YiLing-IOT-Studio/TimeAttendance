@@ -8,8 +8,8 @@ div {
 
 body {
     background: rgb(195, 199, 230);
-    overflow-x: hidden;
     background-attachment: fixed;
+    min-width: 1350px;
 }
 
 #canvas {

@@ -1,0 +1,46 @@
+.main {
+    width: 100%;
+}
+
+.topBar {
+    width: 100%;
+    background: rgba(236, 237, 240, 0.445);
+    padding-top: 30px;
+    color: rgb(119, 113, 113);
+    box-shadow: 0 0 20px rgb(190, 189, 189);
+}
+
+h1 img {
+    width: 50px;
+    margin-left: 20px;
+}
+
+.pull-right {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 20px;
+    position: relative;
+    top: 20px;
+}
+
+.pull-right .email {
+    margin-right: 10px;
+}
+
+.pull-right .emailMark {
+    color: white;
+    position: relative;
+    left: -14px;
+    top: -6px;
+}
+
+.asideBar {
+    width: 20%;
+}
+
+table {
+    border: 1px solid rgba(192, 189, 189, 0.514);
+    background: rgba(236, 237, 240, 0.445);
+    width: 100%;
+}
