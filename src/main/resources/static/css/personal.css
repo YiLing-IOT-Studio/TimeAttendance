@@ -37,10 +37,36 @@ h1 img {
 
 .asideBar {
     width: 20%;
+    font-size: 14px;
+    border-right: 1px solid rgb(224, 215, 215);
 }
 
-table {
-    border: 1px solid rgba(192, 189, 189, 0.514);
-    background: rgba(236, 237, 240, 0.445);
-    width: 100%;
+.personalMsg {
+    margin-bottom: 20px;
+}
+
+.personalMsg img {
+    /* border: 1px solid rgb(168, 162, 162); */
+    width: 80%;
+    margin: 15px auto;
+}
+
+.asideBar ul {
+    padding: 0;
+    border-top: 1px solid rgb(224, 215, 215);
+    height: 500px;
+}
+
+.asideBar li {
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    list-style: none;
+    border-bottom: 1px solid rgb(224, 215, 215);
+    padding-left: 30%;
+}
+
+.asideBar li span {
+    color: silver;
+    margin-right: 5px;
 }
