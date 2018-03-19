@@ -37,10 +37,31 @@ h1 img {
 
 .asideBar {
     width: 20%;
+    border-right: 1px solid rgb(236, 232, 232);
 }
 
-table {
-    border: 1px solid rgba(192, 189, 189, 0.514);
-    background: rgba(236, 237, 240, 0.445);
-    width: 100%;
+.asideBar .personalMsg {
+    margin: 20px auto;
+}
+
+.personalMsg img {
+    margin-bottom: 10px;
+}
+
+.asideBar ul {
+    border-top: 1px solid rgb(236, 232, 232);
+    padding: 0;
+}
+
+.asideBar li {
+    list-style: none;
+    border-bottom: 1px solid rgb(236, 232, 232);
+    height: 30px;
+    line-height: 30px;
+    padding-left: 30%;
+}
+
+.asideBar li span {
+    margin-right: 10px;
+    color: rgb(166, 173, 179);
 }
