@@ -67,9 +67,14 @@ h1 img {
     padding-left: 30%;
 }
 
-.asideBar li span {
+.asideBar li span.glyphicon {
     margin-right: 10px;
     color: rgb(143, 148, 153);
+}
+
+.badge {
+    margin-left: 3px;
+    background: rgb(59, 115, 219);
 }
 
 .mainMsg {
@@ -101,3 +106,16 @@ table {
 
 
 /* 请假申请 */
+
+textarea {
+    resize: none;
+}
+
+.applyForm {
+    margin-top: 40px;
+}
+
+.list-group h4 {
+    margin: 0;
+    font-size: 12px;
+}
