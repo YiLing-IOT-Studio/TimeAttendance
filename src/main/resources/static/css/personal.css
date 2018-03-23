@@ -169,6 +169,15 @@ textarea {
 
 .email {
     margin-top: -10px;
+    background: rgba(245, 245, 245, 0.822);
+}
+
+
+/* .isRead {
+    background: white;
+} */
+
+.unRead {
     background: white;
 }
 

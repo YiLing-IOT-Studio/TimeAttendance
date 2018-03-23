@@ -32,7 +32,7 @@
                         <span class="owner">田宇</span>
                     </div>
                     <div>
-                        <a href="javascript:;"><span class="mailNum">1</span>条私信</a>
+                        <a href="javascript:;" class="lookMail"><span class="mailNum">1</span>条私信</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                                     <h4 class="list-group-item-heading">示例：</h4>
                                     <p class="list-group-item-text">申请人：张三</p>
                                     <p class="list-group-item-text">申请总天数：3</p>
-                                    <p class="list-group-item-text">请假日期：2018-3-10 2018-3-11 2018-3-12</p>
+                                    <p class="list-group-item-text">请假日期：2018-03-10 2018-03-11 2018-03-12</p>
                                     <p class="list-group-item-text">请假理由：xxxx</p>
                                 </a>
                             </div>
@@ -125,7 +125,7 @@
                     <div class="emailHead">
                         <h3>私信</h3>
                         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        <span class="notRead">10</span><span>未读</span>
+                        <span class="notRead mailNum">10</span><span>未读</span>
                     </div>
                     <div class="option clearfix">
                         <div class="pull-left">
@@ -139,19 +139,21 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- <div class="alert alert-danger noEmail" role="alert">
+                    <div class="alert alert-danger noEmail" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <a href="#" class="alert-link">信箱为空,可刷新再次获取</a>
-                    </div> -->
+                    </div>
                     <div class="email">
-                        <div class="one clearfix">
+                        <div class="one clearfix unRead">
                             <div class="col-sm-1 pull-left text-center">
                                 <input type="checkbox" name="emailCheck" class="emailCheck">
                             </div>
                             <div class="col-sm-2 pull-left text-center">
                                 <span>发件人：</span><strong>田宇</strong>
-                                <p>12:32:10</p>
-                                <p>2018-2-12</p>
+                                <div class="emailTime">
+                                    <p>12:32:10</p>
+                                    <p>2018-2-12</p>
+                                </div>
                             </div>
                             <div class="col-sm-8 pull-left">
                                 <div>
@@ -161,7 +163,7 @@
                                 <span class="glyphicon glyphicon-chevron-up"></span>
                             </div>
                         </div>
-                        <div class="one clearfix">
+                        <div class="one clearfix isRead">
                             <div class="col-sm-1 pull-left text-center">
                                 <input type="checkbox" name="emailCheck" class="emailCheck">
                             </div>
