@@ -17,6 +17,7 @@ body {
 
 .envelope {
     font-size: 20px;
+    color: rgb(84, 84, 170);
 }
 
 h1 img {
@@ -127,6 +128,10 @@ textarea {
 .list-group h4 {
     margin: 0;
     font-size: 12px;
+}
+
+.form-control-feedback {
+    display: none;
 }
 
 
