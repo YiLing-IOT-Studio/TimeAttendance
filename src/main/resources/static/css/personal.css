@@ -197,7 +197,7 @@ textarea {
     margin: 0;
 }
 
-.glyphicon-chevron-up {
+.toggleMark {
     cursor: pointer;
     position: absolute;
     top: 10px;
