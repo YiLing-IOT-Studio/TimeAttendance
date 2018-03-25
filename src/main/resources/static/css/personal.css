@@ -34,7 +34,7 @@ h1 img {
     top: 20px;
 }
 
-.pull-right .email {
+.pull-right .headEmail {
     margin-right: 10px;
 }
 
@@ -210,5 +210,9 @@ textarea {
 }
 
 .mainMsg {
+    display: none;
+}
+
+.glyphicon-chevron-left {
     display: none;
 }

@@ -23,7 +23,7 @@
                 </h1>
             </div>
             <div class="pull-right col-sm-2">
-                <div class="email">
+                <div class="headEmail">
                     <span class="glyphicon glyphicon-envelope envelope"></span>
                 </div>
                 <div>
@@ -144,7 +144,7 @@
                         <a href="#" class="alert-link">信箱为空,可刷新再次获取</a>
                     </div>
                     <div class="email">
-                        <div class="one clearfix unRead">
+                        <!-- <div class="one clearfix unRead">
                             <div class="col-sm-1 pull-left text-center">
                                 <input type="checkbox" name="emailCheck" class="emailCheck">
                             </div>
@@ -219,7 +219,7 @@
                                 </div>
                                 <span class="toggleMark glyphicon glyphicon-chevron-up"></span>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -234,11 +234,6 @@
 <script type="text/javascript">
     $(function() {
         // $('#emailCheck').icheck();
-        $('.emailCheck').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // 
-        });
         var oDate = new Date();
         $(".ECalendar").val(oDate.getFullYear() + '-' + (oDate.getMonth() + 1) + '-' + oDate.getDate());
         $("#ECalendar_date").ECalendar({

@@ -20,7 +20,7 @@ $(function() {
     //考勤情况
     $(".chooseDate>input[type = 'button']").click(function() {
         $.ajax({
-            type: "post",
+            type: "get",
             url: "",
             dataType: "json",
             data: {
@@ -28,13 +28,14 @@ $(function() {
                 "endDate": $("#ECalendar_date1").val()
             },
             success: function(data) {
+                console.log(data);
                 for (i in data) {
                     var dateList = $("<tr>" +
-                        "<td>" + data.num + "</td>" +
-                        "<td>" + data.dateNum + "</td>" +
-                        "<td>" + data.inTime + "</td>" +
-                        "<td>" + data.outTime + "</td>" +
-                        "<td>" + data.attendance + "</td>" +
+                        "<td>" + data[i].num + "</td>" +
+                        "<td>" + data[i].dateNum + "</td>" +
+                        "<td>" + data[i].inTime + "</td>" +
+                        "<td>" + data[i].outTime + "</td>" +
+                        "<td>" + data[i].attendance + "</td>" +
                         +"</tr>");
                     $(".attendanceTable").append(dateList);
                 }
@@ -95,11 +96,19 @@ $(function() {
         })
         //私信
     $(function() {
-        var page;
-        requestEmail(0, 5);
+        var page,
+            onePage = 5,
+            startPage = 0,
+            endPage,
+            curPage = 1;
+        requestEmail();
         //刷新、标为已读、删除
         $(".refresh").click(function() {
-            requestEmail(0, 5);
+            startPage = 0;
+            curPage = 1;
+            $(".email").empty();
+            requestEmail();
+            $(".glyphicon-chevron-right").css("display", "block");
         });
         $(".markRead").click(function() {
             var arr = [];
@@ -124,39 +133,71 @@ $(function() {
                 }
             })
         });
-
-        function requestEmail(startMail, endMail) {
-            //获取员工信息
-            $.ajax({
-                    type: "get",
-                    url: "",
-                    dataType: "json",
-                    data: {},
-                    success: function(data) {
-                        $(".staffName").html(data.staffName);
-                        $(".staffId").html(data.staffId);
-                        $(".mailNum").html(data.mailNum);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                })
-                //获取邮件
-            $.ajax({
-                type: "post",
+        //获取员工信息
+        $.ajax({
+                type: "get",
                 url: "",
+                dataType: "json",
+                data: {},
+                success: function(data) {
+                    $(".staffName").html(data.staffName);
+                    $(".staffId").html(data.staffId);
+                    $(".mailNum").html(data.mailNum);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            })
+            //下一页，上一页
+        $(".glyphicon-chevron-left").click(function() {
+            if (curPage - 1 == 1) {
+                $(this).css("display", "none");
+            }
+            if (curPage > 0) {
+                startPage -= onePage;
+                curPage -= 1;
+                $(".email").empty();
+                requestEmail();
+                $(".glyphicon-chevron-right").css("display", "block");
+            }
+
+        });
+        $(".glyphicon-chevron-right").click(function() {
+            if ((curPage + 1) == page) {
+                $(this).css("display", "none");
+            }
+            if (curPage < page) {
+                startPage += onePage;
+                curPage += 1;
+                $(".email").empty();
+                requestEmail();
+                $(".glyphicon-chevron-left").css("display", "block");
+            }
+
+        });
+
+        function requestEmail() {
+            //获取邮件
+            $.ajax({
+                type: "get",
+                url: "http://localhost:7070/post",
                 dataType: "json",
                 data: {
 
                 },
                 success: function(data) {
-                    page = data.length / onePage + 1;
                     if (data.length == 0) {
                         $(".noEmail").css("display", "block");
                     } else {
-                        for (var i = startMail; i < endMail; i++) {
-                            var oneEmail = $('<div class="one clearfix">' +
-                                '<div class="col-sm-1 pull-left text-center' + data[i].status + '">' +
+                        page = Math.floor(data.length / onePage) + 1;
+                        if (page == 1 || curPage == page) {
+                            endPage = data.length;
+                        } else {
+                            endPage = startPage + onePage;
+                        }
+                        for (var i = startPage; i < endPage; i++) {
+                            var oneEmail = $('<div class="one clearfix ' + data[i].status + '">' +
+                                '<div class="col-sm-1 pull-left text-center">' +
                                 '<input type="checkbox" name="emailCheck" class="emailCheck">' +
                                 '</div>' +
                                 '<div class="col-sm-2 pull-left text-center">' +
@@ -176,6 +217,11 @@ $(function() {
                                 '</div>');
                             $(".email").append(oneEmail);
                         }
+                        $('.emailCheck').iCheck({
+                            checkboxClass: 'icheckbox_square-blue',
+                            radioClass: 'iradio_square-blue',
+                            increaseArea: '20%'
+                        });
                         $(".toggleMark").click(function() {
                             if ($(this).hasClass("glyphicon-chevron-up")) {
                                 $(this).prev().children('p').slideUp();
@@ -187,6 +233,7 @@ $(function() {
                                 $(this).removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
                             }
                         });
+
                     }
                 },
                 error: function(error) {
