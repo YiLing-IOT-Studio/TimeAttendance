@@ -16,6 +16,7 @@
 <body>
     <canvas id="canvas"></canvas>
     <div class="container">
+        <p th:if="${param.error}" class="bg-danger">有错误，请重试</p>
         <div class="row">
             <div class="col-xs-8 col-md-5 col-center-block">
                 <form class="middle" action="" method="POST">
