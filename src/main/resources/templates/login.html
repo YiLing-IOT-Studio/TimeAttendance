@@ -16,7 +16,6 @@
 <body>
     <canvas id="canvas"></canvas>
     <div class="container">
-        <p th:if="${param.error}" class="bg-danger">有错误，请重试</p>
         <div class="row">
             <div class="col-xs-8 col-md-5 col-center-block">
                 <form class="middle" action="" method="POST">
@@ -31,6 +30,7 @@
                     记住我</label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">登录个人管理中心</button>
+                    <p th:if="${param.error}" class="bg-danger text-center">有错误，请重试</p>
                 </form>
             </div>
         </div>

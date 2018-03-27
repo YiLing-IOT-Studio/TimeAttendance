@@ -50,55 +50,10 @@ input {
     margin-bottom: 10px;
 }
 
-
-/* fieldset {
-    border: 0;
+.bg-danger {
+    padding: 10px;
+    /* position: relative;
+    top: 100px; */
+    margin-top: 20px;
+    border-radius: 5px;
 }
-
-fieldset>div {
-    margin: 16px 0;
-}
-
-legend {
-    border-radius: 16px 16px 0 0;
-    font-size: 32px;
-    width: 100%;
-    text-align: center;
-    line-height: 50px;
-    color: seashell;
-    background: rosybrown;
-}
-
-p {
-    padding: 16px;
-    display: flex;
-    align-items: center;
-}
-
-label {
-    display: inline-block;
-    width: 30%;
-    height: 32px;
-    text-align: right;
-    font-size: 20px;
-}
-
-input {
-    font-size: 16px;
-    width: 50%;
-    line-height: 32px;
-}
-
-p:nth-child(3) {
-    text-align: left;
-}
-
-#sub {
-    background: rosybrown;
-    font-size: 20px;
-    color: seashell;
-    border: none;
-    position: absolute;
-    right: 20px;
-    padding: 5px 10px;
-} */

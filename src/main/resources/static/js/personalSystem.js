@@ -186,6 +186,13 @@ $(function() {
 
                 },
                 success: function(data) {
+                    var noReadEmail = [];
+                    for (var i in data) {
+                        if (data[i].status == 'unRead') {
+                            noReadEmail.push(data[i]);
+                        }
+                    }
+                    $(".mailNum").html(noReadEmail.length);
                     if (data.length == 0) {
                         $(".noEmail").css("display", "block");
                     } else {
