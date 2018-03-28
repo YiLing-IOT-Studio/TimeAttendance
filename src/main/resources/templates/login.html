@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-8 col-md-5 col-center-block">
-                <form class="middle" action="" method="POST">
+                <form class="middle" action="/login" method="POST">
                     <h2>Login</h2>
                     <label for="username" class="sr-only">用户名</label>
                     <input type="text" id="username" name="username" class="form-control" placeholder="用户名" required autofocus>
