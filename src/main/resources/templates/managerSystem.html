@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../static/css/bootstrap.css">
     <script src="../static/js/jquery-3.2.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
     <script src="../static/js/echarts.min.js"></script>
     <link rel="stylesheet" href="../static/css/manager.css">
 </head>
@@ -27,55 +27,195 @@
                 <span>Admin</span>
             </div>
         </header>
-        <div class="block ui-accordion ui-widget ui-helper-reset ui-accordion-icons" id="section-menu" role="tablist">
-            <ul class="section menu">
-                <li class=""><a class="menuitem ui-accordion-header ui-helper-reset current ui-state-active ui-corner-top" role="tab" aria-expanded="true" aria-selected="true" tabindex="0"><span class="ui-icon ui-icon-triangle-1-s"></span>Menu 1</a>
-                    <ul class="submenu ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom current ui-accordion-content-active" role="tabpanel" style="height: 70px; display: block; overflow: visible; padding-top: 0px; padding-bottom: 0px;">
-                        <li><a>Submenu 1</a> </li>
-                        <li><a>Submenu 2</a> </li>
+        <div class="main">
+            <div class="asideBar pull-left">
+                <ul>
+                    <li class="focus"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>员工信息表</li>
+                    <li class="focus"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>考勤情况</li>
+                    <li><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>请假申请</li>
+                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>私信<span class="badge mailNum">42</span></li>
+                </ul>
+            </div>
+            <div class="mainMsg pull-left">
+                <h2>员工信息表</h2>
+                <div class="staffMsg">
+                    <div class="timeTable">
+                        <div class="search pull-left">
+                            <label for="searchName">姓名：</label>
+                            <input type="text" id="searchName" name="searchName">
+                            <a class="searchBtn" href="javascript:;"><img src="../static/img/search.ico" alt="search"></a>
+                        </div>
+                        <div class="pull-right">
+                            <div class="pull-left yearAndMonth">
+                                <input type="button" class="btn btn-primary year" value="">
+                                <input type="button" class="btn btn-primary month" value="">
+                                <input type="button" class="btn btn-primary day" value="">
+                                <span class="week text-primary"></span>
+                            </div>
+                            <div class="pull-right time">
+                                <div>
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                </div>
+                                <span>:</span>
+                                <div>
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                </div>
+                                <span>:</span>
+                                <div>
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                </div>
+                            </div>
+                        </div>
+                        <form class="container-fluid">
+                            <div>
+                                <label for="staffId">编号：</label>
+                                <input type="text" name="staffId" id="staffId">
+                            </div>
+                            <div>
+                                <label for="staffName">姓名：</label>
+                                <input type="text" name="staffName" id="staffName">
+                            </div>
+                            <div>
+                                <label for="staffDate">入职日期：</label>
+                                <input type="text" name="staffDate" id="staffDate">
+                            </div>
+                            <button type="submit" class="btn btn-default">添加</button>
+                        </form>
+                        <table class="table table-hover">
+                            <thead>
+                                <th>编号</th>
+                                <th>姓名</th>
+                                <th>入职日期</th>
+                                <th>编辑</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>tianyu</td>
+                                    <td>2017-11-07</td>
+                                    <td><a href="#">删除</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    </ul>
-                </li>
-                <li class=""><a class="menuitem ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>Menu 2</a>
-                    <ul class="submenu ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" role="tabpanel" style="height: 175px; display: none; overflow: visible; padding-top: 0px; padding-bottom: 0px;">
-                        <li><a>Submenu 1</a> </li>
-                        <li><a>Submenu 2</a> </li>
-                        <li><a>Submenu 3</a> </li>
-                        <li><a>Submenu 4</a> </li>
-                        <li><a>Submenu 5</a> </li>
-                    </ul>
-                </li>
-                <li><a class="menuitem ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>Menu 3</a>
-                    <ul class="submenu ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" role="tabpanel" style="height: auto; display: none;">
-                        <li><a>Submenu 1</a> </li>
-                        <li><a>Submenu 2</a> </li>
-                        <li><a>Submenu 3</a> </li>
-                        <li><a>Submenu 4</a> </li>
-                        <li><a>Submenu 5</a> </li>
-                        <li><a>Submenu 1</a> </li>
-                        <li><a>Submenu 2</a> </li>
-                        <li><a>Submenu 3</a> </li>
-                        <li><a>Submenu 4</a> </li>
-                        <li><a>Submenu 5</a> </li>
-                    </ul>
-                </li>
-                <li><a class="menuitem ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="false" aria-selected="false" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-e"></span>Menu 4</a>
-                    <ul class="submenu ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" role="tabpanel" style="height: auto; display: none;">
-                        <li><a>Submenu 1</a> </li>
-                        <li><a>Submenu 2</a> </li>
-                        <li><a>Submenu 3</a> </li>
-                        <li><a>Submenu 4</a> </li>
-                        <li><a>Submenu 5</a> </li>
-                        <li><a>Submenu 6</a> </li>
-                        <li><a>Submenu 7</a> </li>
-                        <li><a>Submenu 8</a> </li>
-                        <li><a>Submenu 9</a> </li>
-                        <li><a>Submenu 10</a> </li>
+                    </div>
+                    <!-- <div class="mainMsg pull-left">
+                <h2>员工考勤情况</h2>
+                <div id="timeAttendance">
 
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </div> -->
+                </div>
+            </div>
+            <script src="../static/js/main.js"></script>
+            <script>
+                var myChart = echarts.init(document.getElementById('timeAttendance'));
+
+                myChart.setOption({
+                    title: {
+                        text: '员工三月考勤一览表'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    toolbox: {
+                        feature: {
+                            dataView: {
+                                show: false,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: false,
+                                type: ['line', 'bar']
+                            },
+                            restore: {
+                                show: false
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    legend: {
+                        data: ['出勤天数', '迟到天数', '早退天数']
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        data: ['张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三']
+                    }],
+                    yAxis: [{
+                        type: 'value',
+                        name: '出勤天数',
+                        min: 0,
+                        max: 31,
+                        axisLabel: {
+                            formatter: '{value} 天'
+                        }
+                    }, {
+                        type: 'value',
+                        name: '迟到天数',
+                        min: 0,
+                        max: 31,
+                        axisLabel: {
+                            formatter: '{value} 天'
+                        }
+                    }, {
+                        type: 'value',
+                        name: '早退天数',
+                        min: 0,
+                        max: 31,
+                        axisLabel: {
+                            formatter: '{value} 天'
+                        }
+                    }],
+                    series: [{
+                        name: '出勤天数',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: {
+                                color: function(params) {
+                                    var colorList = [
+                                        '#5e7e54', '#e44f2f', '#81b6b2', '#eba422', '#5e7e54',
+                                        '#e44f2f', '#81b6b2', '#eba422', '#5e7e54', '#e44f2f'
+                                    ];
+                                    return colorList[params.dataIndex]
+                                },
+                                　　　　　　　　　　　　　
+                            }
+                        },
+                        data: [6, 7, 8, 7, 9, 8, 8, 9, 7, 7]
+                    }, {
+                        name: '迟到天数',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        itemStyle: {
+                            normal: {
+                                color: '#58585a',
+                                lineStyle: {
+                                    color: '#58585a'
+                                }
+                            }
+                        },
+                        data: [1, 2, 4, 2, 1, 0, 5, 2, 1, 2]
+                    }, {
+                        name: '早退天数',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        itemStyle: {
+                            normal: {
+                                color: 'rgb(32, 59, 110)',
+                                lineStyle: {
+                                    color: 'rgb(32, 59, 110)'
+                                }
+                            }
+                        },
+                        data: [2, 4, 1, 0, 0, 3, 1, 4, 1, 2]
+                    }]
+                });
+            </script>
 </body>
 
 </html>
