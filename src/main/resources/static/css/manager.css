@@ -70,7 +70,8 @@ header .pull-right {
 .mainMsg {
     width: 80%;
     margin-left: 40px;
-    background: rgb(206, 202, 202);
+    margin-bottom: 20px;
+    background: rgb(243, 241, 241);
     border-radius: 5px 5px 0 0;
 }
 
@@ -89,8 +90,12 @@ header .pull-right {
 
 /* 员工信息表 */
 
-.timeTable {
+.staffMsg {
     padding: 20px 20px;
+}
+
+.timeTable {
+    margin-bottom: 50px;
 }
 
 .search {
@@ -191,7 +196,13 @@ table {
 }
 
 form {
-    margin-top: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #timeAttendance {

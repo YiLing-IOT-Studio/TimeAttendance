@@ -52,7 +52,6 @@ $(function() {
                 if (i == 2) {
                     $(val).blur(function() {
                         var dateArr = $(val).val().split(" ");
-                        console.log(dateArr);
                         var flag = true;
                         for (var j = 0; j < dateArr.length; j++) {
                             flag = reg[i].test(dateArr[j]) ? true : false;
@@ -110,45 +109,57 @@ $(function() {
             requestEmail();
             $(".glyphicon-chevron-right").css("display", "block");
         });
-        $(".markRead").click(function() {
-            var arr = [];
-            $(".email input[type = 'checkbox']").each(function(i, val) {
-                if (val.checked) {
-                    arr.push(val);
-                }
-            })
-            $.ajax({
-                type: "post",
-                url: "",
-                dataType: "json",
-                data: {
-                    "markRead": arr
-                },
-                success: function(data) {
-
-                },
-                error: function(error) {
-                    console.log(error);
-                    // alert("操作失败，请重试");
-                }
-            })
-        });
-        //获取员工信息
-        $.ajax({
-                type: "get",
-                url: "",
-                dataType: "json",
-                data: {},
-                success: function(data) {
-                    $(".staffName").html(data.staffName);
-                    $(".staffId").html(data.staffId);
-                    $(".mailNum").html(data.mailNum);
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            })
-            //下一页，上一页
+        // $(".markRead").click(function() {
+        //     var arr = [];
+        //     $(".email input[type = 'checkbox']").each(function(i, val) {
+        //         if (val.checked) {
+        //             arr.push(val.attr('id'));
+        //         }
+        //     })
+        //     $.ajax({
+        //         type: "post",
+        //         url: "",
+        //         dataType: "json",
+        //         data: {
+        //             "markRead": arr
+        //         },
+        //         success: function(data) {
+        //             requestEmail();
+        //         },
+        //         error: function(error) {
+        //             console.log(error);
+        //             // alert("操作失败，请重试");
+        //         }
+        //     })
+        // });
+        function sendArr($className, dataName) {
+            $("." + $className).click(function() {
+                var arr = [];
+                $(".email input[type = 'checkbox']").each(function(i, val) {
+                    if (val.attr(checked)) {
+                        arr.push(val.attr('type'));
+                    }
+                })
+                $.ajax({
+                    type: "post",
+                    url: "",
+                    dataType: "json",
+                    data: {
+                        dataName: arr
+                    },
+                    success: function(data) {
+                        requestEmail();
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        // alert("操作失败，请重试");
+                    }
+                })
+            });
+        }
+        sendArr("markRead", "markRead");
+        sendArr("delete", "delete");
+        //下一页，上一页
         $(".glyphicon-chevron-left").click(function() {
             if (curPage - 1 == 1) {
                 $(this).css("display", "none");
@@ -203,7 +214,7 @@ $(function() {
                             endPage = startPage + onePage;
                         }
                         for (var i = startPage; i < endPage; i++) {
-                            var oneEmail = $('<div class="one clearfix ' + data[i].status + '">' +
+                            var oneEmail = $('<div class="one clearfix ' + data[i].status + '" type="' + data[i].id + '">' +
                                 '<div class="col-sm-1 pull-left text-center">' +
                                 '<input type="checkbox" name="emailCheck" class="emailCheck">' +
                                 '</div>' +

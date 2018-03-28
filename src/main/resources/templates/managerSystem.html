@@ -69,7 +69,9 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="container-fluid">
+                    </div>
+                    <div class="clearfix">
+                        <form>
                             <div>
                                 <label for="staffId">编号：</label>
                                 <input type="text" name="staffId" id="staffId">
@@ -82,140 +84,146 @@
                                 <label for="staffDate">入职日期：</label>
                                 <input type="text" name="staffDate" id="staffDate">
                             </div>
-                            <button type="submit" class="btn btn-default">添加</button>
+                            <button type="submit" class="btn btn-primary">添加</button>
                         </form>
-                        <table class="table table-hover">
-                            <thead>
-                                <th>编号</th>
-                                <th>姓名</th>
-                                <th>入职日期</th>
-                                <th>编辑</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>tianyu</td>
-                                    <td>2017-11-07</td>
-                                    <td><a href="#">删除</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
                     </div>
-                    <!-- <div class="mainMsg pull-left">
-                <h2>员工考勤情况</h2>
-                <div id="timeAttendance">
-
-                </div>
-            </div> -->
+                    <table class="table table-hover">
+                        <thead>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>入职日期</th>
+                            <th>编辑</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>tianyu</td>
+                                <td>2017-11-07</td>
+                                <td><a href="#">删除</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <script src="../static/js/main.js"></script>
-            <script>
-                var myChart = echarts.init(document.getElementById('timeAttendance'));
+            <div class="mainMsg pull-left">
+                <div>
+                    <h2>员工考勤情况</h2>
+                    <div id="timeAttendance">
 
-                myChart.setOption({
-                    title: {
-                        text: '员工三月考勤一览表'
+                    </div>
+                </div>
+                <div>
+                    <h2>查询员工请假详情</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/main.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('timeAttendance'));
+
+        myChart.setOption({
+            title: {
+                text: '员工三月考勤一览表'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            toolbox: {
+                feature: {
+                    dataView: {
+                        show: false,
+                        readOnly: false
                     },
-                    tooltip: {
-                        trigger: 'axis'
+                    magicType: {
+                        show: false,
+                        type: ['line', 'bar']
                     },
-                    toolbox: {
-                        feature: {
-                            dataView: {
-                                show: false,
-                                readOnly: false
-                            },
-                            magicType: {
-                                show: false,
-                                type: ['line', 'bar']
-                            },
-                            restore: {
-                                show: false
-                            },
-                            saveAsImage: {
-                                show: true
-                            }
-                        }
+                    restore: {
+                        show: false
                     },
-                    legend: {
-                        data: ['出勤天数', '迟到天数', '早退天数']
-                    },
-                    xAxis: [{
-                        type: 'category',
-                        data: ['张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三']
-                    }],
-                    yAxis: [{
-                        type: 'value',
-                        name: '出勤天数',
-                        min: 0,
-                        max: 31,
-                        axisLabel: {
-                            formatter: '{value} 天'
-                        }
-                    }, {
-                        type: 'value',
-                        name: '迟到天数',
-                        min: 0,
-                        max: 31,
-                        axisLabel: {
-                            formatter: '{value} 天'
-                        }
-                    }, {
-                        type: 'value',
-                        name: '早退天数',
-                        min: 0,
-                        max: 31,
-                        axisLabel: {
-                            formatter: '{value} 天'
-                        }
-                    }],
-                    series: [{
-                        name: '出勤天数',
-                        type: 'bar',
-                        itemStyle: {
-                            normal: {
-                                color: function(params) {
-                                    var colorList = [
-                                        '#5e7e54', '#e44f2f', '#81b6b2', '#eba422', '#5e7e54',
-                                        '#e44f2f', '#81b6b2', '#eba422', '#5e7e54', '#e44f2f'
-                                    ];
-                                    return colorList[params.dataIndex]
-                                },
-                                　　　　　　　　　　　　　
-                            }
+                    saveAsImage: {
+                        show: true
+                    }
+                }
+            },
+            legend: {
+                data: ['出勤天数', '迟到天数', '早退天数']
+            },
+            xAxis: [{
+                type: 'category',
+                data: ['张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三', '张三']
+            }],
+            yAxis: [{
+                type: 'value',
+                name: '出勤天数',
+                min: 0,
+                max: 31,
+                axisLabel: {
+                    formatter: '{value} 天'
+                }
+            }, {
+                type: 'value',
+                name: '迟到天数',
+                min: 0,
+                max: 31,
+                axisLabel: {
+                    formatter: '{value} 天'
+                }
+            }, {
+                type: 'value',
+                name: '早退天数',
+                min: 0,
+                max: 31,
+                axisLabel: {
+                    formatter: '{value} 天'
+                }
+            }],
+            series: [{
+                name: '出勤天数',
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var colorList = [
+                                '#5e7e54', '#e44f2f', '#81b6b2', '#eba422', '#5e7e54',
+                                '#e44f2f', '#81b6b2', '#eba422', '#5e7e54', '#e44f2f'
+                            ];
+                            return colorList[params.dataIndex]
                         },
-                        data: [6, 7, 8, 7, 9, 8, 8, 9, 7, 7]
-                    }, {
-                        name: '迟到天数',
-                        type: 'line',
-                        yAxisIndex: 1,
-                        itemStyle: {
-                            normal: {
-                                color: '#58585a',
-                                lineStyle: {
-                                    color: '#58585a'
-                                }
-                            }
-                        },
-                        data: [1, 2, 4, 2, 1, 0, 5, 2, 1, 2]
-                    }, {
-                        name: '早退天数',
-                        type: 'line',
-                        yAxisIndex: 1,
-                        itemStyle: {
-                            normal: {
-                                color: 'rgb(32, 59, 110)',
-                                lineStyle: {
-                                    color: 'rgb(32, 59, 110)'
-                                }
-                            }
-                        },
-                        data: [2, 4, 1, 0, 0, 3, 1, 4, 1, 2]
-                    }]
-                });
-            </script>
+                        　　　　　　　　　　　　　
+                    }
+                },
+                data: [6, 7, 8, 7, 9, 8, 8, 9, 7, 7]
+            }, {
+                name: '迟到天数',
+                type: 'line',
+                yAxisIndex: 1,
+                itemStyle: {
+                    normal: {
+                        color: '#58585a',
+                        lineStyle: {
+                            color: '#58585a'
+                        }
+                    }
+                },
+                data: [1, 2, 4, 2, 1, 0, 5, 2, 1, 2]
+            }, {
+                name: '早退天数',
+                type: 'line',
+                yAxisIndex: 1,
+                itemStyle: {
+                    normal: {
+                        color: 'rgb(32, 59, 110)',
+                        lineStyle: {
+                            color: 'rgb(32, 59, 110)'
+                        }
+                    }
+                },
+                data: [2, 4, 1, 0, 0, 3, 1, 4, 1, 2]
+            }]
+        });
+    </script>
 </body>
 
 </html>
