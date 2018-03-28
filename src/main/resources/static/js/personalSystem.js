@@ -180,7 +180,7 @@ $(function() {
             //获取邮件
             $.ajax({
                 type: "get",
-                url: "http://localhost:7070/post",
+                url: "/letters",
                 dataType: "json",
                 data: {
 
@@ -216,8 +216,8 @@ $(function() {
                                 '</div>' +
                                 '<div class="col-sm-8 pull-left">' +
                                 '<div>' +
-                                '<span>' + data[i].mainContent + '</span>' +
-                                '<p>' + data[i].allContent + '</p>' +
+                                '<span>' + data[i].main_content + '</span>' +
+                                '<p>' + data[i].all_content + '</p>' +
                                 '</div>' +
                                 '<span class="toggleMark glyphicon glyphicon-chevron-up"></span>' +
                                 '</div>' +
