@@ -109,56 +109,52 @@ $(function() {
             requestEmail();
             $(".glyphicon-chevron-right").css("display", "block");
         });
-        // $(".markRead").click(function() {
-        //     var arr = [];
-        //     $(".email input[type = 'checkbox']").each(function(i, val) {
-        //         if (val.checked) {
-        //             arr.push(val.attr('id'));
-        //         }
-        //     })
-        //     $.ajax({
-        //         type: "post",
-        //         url: "",
-        //         dataType: "json",
-        //         data: {
-        //             "markRead": arr
-        //         },
-        //         success: function(data) {
-        //             requestEmail();
-        //         },
-        //         error: function(error) {
-        //             console.log(error);
-        //             // alert("操作失败，请重试");
-        //         }
-        //     })
-        // });
-        function sendArr($className, dataName) {
-            $("." + $className).click(function() {
-                var arr = [];
-                $(".email input[type = 'checkbox']").each(function(i, val) {
-                    if (val.attr(checked)) {
-                        arr.push(val.attr('type'));
-                    }
-                })
-                $.ajax({
-                    type: "post",
-                    url: "",
-                    dataType: "json",
-                    data: {
-                        dataName: arr
-                    },
-                    success: function(data) {
-                        requestEmail();
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        // alert("操作失败，请重试");
-                    }
-                })
-            });
-        }
-        sendArr("markRead", "markRead");
-        sendArr("delete", "delete");
+        $(".markRead").click(function() {
+            var arr = [];
+            $(".email input[type = 'checkbox']").each(function(i, val) {
+                if (val.attr(checked)) {
+                    arr.push(val.attr('id'));
+                }
+            })
+            $.ajax({
+                type: "post",
+                url: "",
+                dataType: "json",
+                data: {
+                    "markRead": arr
+                },
+                success: function(data) {
+                    requestEmail();
+                },
+                error: function(error) {
+                    console.log(error);
+                    // alert("操作失败，请重试");
+                }
+            })
+        });
+        $(".delete").click(function() {
+            var arr = [];
+            $(".email input[type = 'checkbox']").each(function(i, val) {
+                if (val.attr(checked)) {
+                    arr.push(val.attr('id'));
+                }
+            })
+            $.ajax({
+                type: "post",
+                url: "",
+                dataType: "json",
+                data: {
+                    "markRead": arr
+                },
+                success: function(data) {
+                    requestEmail();
+                },
+                error: function(error) {
+                    console.log(error);
+                    // alert("操作失败，请重试");
+                }
+            })
+        });
         //下一页，上一页
         $(".glyphicon-chevron-left").click(function() {
             if (curPage - 1 == 1) {
