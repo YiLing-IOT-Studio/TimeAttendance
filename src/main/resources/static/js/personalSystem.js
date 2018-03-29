@@ -114,8 +114,6 @@ $(function() {
             $('.email input[type=checkbox]:checked').each(function() {
                 arr.push($(this).attr('index'));
             })
-            console.log(arr)
-
             $.ajax({
                 type: "post",
                 url: "/read_state",
@@ -133,15 +131,13 @@ $(function() {
         });
         $(".delete").click(function() {
             var arr = [];
-            $(".email input[type = 'checkbox']").each(function(i, val) {
-                if ($(val).attr("checked")) {
-                    arr.push($(val).attr('id'));
-                }
+            $('.email input[type=checkbox]:checked').each(function() {
+                arr.push($(this).attr('index'));
             })
             $.ajax({
                 type: "post",
-                url: "",
-                dataType: "json",
+                url: "/delete_letter",
+                traditional: true,
                 data: {
                     "markRead": arr
                 },
@@ -150,7 +146,6 @@ $(function() {
                 },
                 error: function(error) {
                     console.log(error);
-                    // alert("操作失败，请重试");
                 }
             })
         });

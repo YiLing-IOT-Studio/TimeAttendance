@@ -31,4 +31,8 @@ public class LetterService {
     public void letterState(Integer id) {
         letterMapper.letterState(id);
     }
+
+    public void deleteLetter(Integer id) {
+        letterMapper.deleteLetter(id);
+    }
  }

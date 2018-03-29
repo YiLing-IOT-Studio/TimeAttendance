@@ -33,24 +33,26 @@ public class LetterController {
         return gson.toJson(letters);
     }
 
-    @PostMapping("/read_state")
+    // TODO: 2018/3/29  MyBatis批量更新
     @ResponseBody
+    @PostMapping("/read_state")
     public void letterState(HttpServletRequest request) {
         String[] ids = request.getParameterValues("markRead");
         if (ids.length != 0) {
-            for (int i = 0;i<ids.length;i++) {
-                letterService.letterState(Integer.valueOf(ids[i]));
+            for (String id : ids) {
+                letterService.letterState(Integer.valueOf(id));
             }
         }
     }
 
-    @PostMapping("/delete_letter")
+    // TODO: 2018/3/29 MyBatis批量删除
     @ResponseBody
+    @PostMapping("/delete_letter")
     public void deleteLetter(HttpServletRequest request) {
         String[] ids = request.getParameterValues("markRead");
         if (ids.length != 0) {
-            for (int i = 0;i<ids.length;i++) {
-                letterService.letterState(Integer.valueOf(ids[i]));
+            for (String id : ids) {
+                letterService.deleteLetter(Integer.valueOf(id));
             }
         }
     }
