@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.attendance.mapper.VocationMapper">
+    <resultMap id="vocation" type="Vocation">
+        <id property="id" column="id"/>
+        <result property="applicant" column="applicant"/>
+        <result property="leave_days" column="leave_days"/>
+        <result property="leave_date" column="leave_date"/>
+        <result property="leave_reason" column="leave_reason"/>
+    </resultMap>
+
+    <!--<select id="getImageById" parameterType="hashMap" resultType="image"> &lt;!&ndash;image为上面的id名&ndash;&gt;-->
+        <!--SELECT-->
+        <!--id,-->
+        <!--name,-->
+        <!--url,-->
+        <!--date,-->
+        <!--user_id-->
+        <!--FROM image-->
+        <!--WHERE user_id = #{userId}-->
+        <!--ORDER BY date DESC-->
+    <!--</select>-->
+
+    <!--<delete id="delById" parameterType="hashMap">-->
+        <!--DELETE FROM image WHERE id=#{id}-->
+    <!--</delete>-->
+
+    <insert id="addVocation" parameterType="vocation">
+        INSERT INTO
+        vocation(applicant,leave_days,leave_date,leave_reason)
+        VALUES
+        (#{applicant},#{leave_days},#{leave_date},#{leave_reason})
+    </insert>
+</mapper>

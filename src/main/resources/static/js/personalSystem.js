@@ -111,15 +111,15 @@ $(function() {
         });
         $(".markRead").click(function() {
             var arr = [];
-            $(".email input[type = 'checkbox']").each(function(i, val) {
-                if (val.attr(checked)) {
-                    arr.push(val.attr('id'));
-                }
+            $('.email input[type=checkbox]:checked').each(function() {
+                arr.push($(this).attr('index'));
             })
+            console.log(arr)
+
             $.ajax({
                 type: "post",
-                url: "",
-                dataType: "json",
+                url: "/read_state",
+                traditional: true,
                 data: {
                     "markRead": arr
                 },
@@ -128,15 +128,14 @@ $(function() {
                 },
                 error: function(error) {
                     console.log(error);
-                    // alert("操作失败，请重试");
                 }
             })
         });
         $(".delete").click(function() {
             var arr = [];
             $(".email input[type = 'checkbox']").each(function(i, val) {
-                if (val.attr(checked)) {
-                    arr.push(val.attr('id'));
+                if ($(val).attr("checked")) {
+                    arr.push($(val).attr('id'));
                 }
             })
             $.ajax({
@@ -210,9 +209,9 @@ $(function() {
                             endPage = startPage + onePage;
                         }
                         for (var i = startPage; i < endPage; i++) {
-                            var oneEmail = $('<div class="one clearfix ' + data[i].status + '" type="' + data[i].id + '">' +
+                            var oneEmail = $('<div class="one clearfix ' + data[i].status + '">' +
                                 '<div class="col-sm-1 pull-left text-center">' +
-                                '<input type="checkbox" name="emailCheck" class="emailCheck">' +
+                                '<input type="checkbox" name="emailCheck" class="emailCheck" index="'+ data[i].id +'">' +
                                 '</div>' +
                                 '<div class="col-sm-2 pull-left text-center">' +
                                 '<span>发件人：</span><strong>' + data[i].sender + '</strong>' +
