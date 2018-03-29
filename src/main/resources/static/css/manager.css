@@ -71,11 +71,15 @@ header .pull-right {
     width: 80%;
     margin-left: 40px;
     margin-bottom: 20px;
+}
+
+.box {
+    margin-bottom: 20px;
     background: rgb(243, 241, 241);
     border-radius: 5px 5px 0 0;
 }
 
-.mainMsg h2 {
+.box h2 {
     margin: 0;
     padding-left: 10px;
     font-size: 20px;
@@ -101,7 +105,6 @@ header .pull-right {
 .search {
     padding: 2px 0 2px 5px;
     width: 50%;
-    color: rgb(78, 148, 214);
     margin: 10px 0;
 }
 
@@ -205,8 +208,69 @@ form {
     margin-bottom: 20px;
 }
 
+.tableSearch {
+    width: 300px;
+    margin-left: 20px;
+}
+
+.tableSearch select {
+    margin-right: 10px;
+}
+
 #timeAttendance {
     margin: 20px 0 0 20px;
     width: 80%;
     height: 500px;
+}
+
+.moreMsg {
+    position: relative;
+}
+
+#search {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 20px;
+    padding: 3px;
+    margin-left: 30px;
+}
+
+.moreMsg img {
+    width: 40px;
+    position: absolute;
+    left: 350px;
+    top: 0;
+}
+
+.box .leaves {
+    width: 100%;
+    padding: 20px;
+}
+
+.leaves .leave {
+    width: 400px;
+    height: 200px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0 10px #c8c8c8 inset;
+    -moz-box-shadow: 0px 0 10px #c8c8c8 inset;
+    box-shadow: 0px 0 10px #c8c8c8 inset;
+}
+
+.leave p {
+    width: 100%;
+    text-align: center;
+    color: rgba(51, 54, 54, 0.774);
+}
+
+.leave:nth-of-type(odd) {
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.leave:nth-of-type(even) {
+    margin-left: 30px;
+    margin-bottom: 20px;
 }

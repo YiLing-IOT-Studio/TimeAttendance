@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>管理员中心</title>
-    <link rel="shortcut icon" href="/img/icon.png" />
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="../static/img/icon.png" />
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <!-- <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-    <script src="/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="/css/manager.css">
+    <script src="../static/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="../static/css/manager.css">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                 <h1>管理员中心</h1>
             </div>
             <div class="pull-right">
-                <img src="/img/admin.jpg" alt="admin">
+                <img src="../static/img/admin.jpg" alt="admin">
                 <span>Hello</span>
                 <span>Admin</span>
             </div>
@@ -36,14 +36,14 @@
                     <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>私信<span class="badge mailNum">42</span></li>
                 </ul>
             </div>
-            <div class="mainMsg pull-left">
+            <div class="mainMsg box pull-left">
                 <h2>员工信息表</h2>
                 <div class="staffMsg">
                     <div class="timeTable">
                         <div class="search pull-left">
                             <label for="searchName">姓名：</label>
                             <input type="text" id="searchName" name="searchName">
-                            <a class="searchBtn" href="javascript:;"><img src="/img/search.ico" alt="search"></a>
+                            <a class="searchBtn" href="javascript:;"><img src="../static/img/search.ico" alt="search"></a>
                         </div>
                         <div class="pull-right">
                             <div class="pull-left yearAndMonth">
@@ -54,18 +54,18 @@
                             </div>
                             <div class="pull-right time">
                                 <div>
-                                    <img class="num num0" src="/img/time.png" alt="0">
-                                    <img class="num num0" src="/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
                                 </div>
                                 <span>:</span>
                                 <div>
-                                    <img class="num num0" src="/img/time.png" alt="0">
-                                    <img class="num num0" src="/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
                                 </div>
                                 <span>:</span>
                                 <div>
-                                    <img class="num num0" src="/img/time.png" alt="0">
-                                    <img class="num num0" src="/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
+                                    <img class="num num0" src="../static/img/time.png" alt="0">
                                 </div>
                             </div>
                         </div>
@@ -106,25 +106,105 @@
                 </div>
             </div>
             <div class="mainMsg pull-left">
-                <div>
+                <div class="box">
                     <h2>员工考勤情况</h2>
+                    <form class="tableSearch container-fulid">
+                        <select class="form-control pull-left col-2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        <select class="form-control pull-left col-2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        <button type="button" class="btn btn-primary">查询</button>
+                    </form>
                     <div id="timeAttendance">
 
                     </div>
                 </div>
-                <div>
+                <div class="box">
                     <h2>查询员工请假详情</h2>
+                    <form class="moreMsg">
+                        <input type="text" id="search" name="search">
+                        <a class="btn" href="javascript:;"><img src="../static/img/search.ico" alt="search"></a>
+                    </form>
+                    <div class="leaves clearfix">
+                        <div class="leave pull-left">
+                            <p><strong>tianyu</strong></p>
+                            <p>
+                                <span>编号:</span>
+                                <span>001</span>
+                            </p>
+                            <p>
+                                <span>出勤天数:</span>
+                                <span>30天</span>
+                            </p>
+                            <p>
+                                <span>请假天数：</span>
+                                <span>2天</span>
+                            </p>
+                            <p>
+                                <span>请假日期：</span>
+                                <span>2018-1-1 2018-1-1 2018-1-1 2018-1-1 2018-1-1 2018-1-1</span>
+                            </p>
+                        </div>
+                        <div class="leave pull-left">
+                            <p><strong>tianyu</strong></p>
+                            <p>
+                                <span>编号:</span>
+                                <span>001</span>
+                            </p>
+                            <p>
+                                <span>出勤天数:</span>
+                                <span>30天</span>
+                            </p>
+                            <p>
+                                <span>请假天数：</span>
+                                <span>2天</span>
+                            </p>
+                            <p>
+                                <span>请假日期：</span>
+                                <span>2018-1-1 2018-1-1 2018-1-1 2018-1-1 2018-1-1 2018-1-1</span>
+                            </p>
+                        </div>
+                        <div class="leave pull-left">
+                            <p><strong>tianyu</strong></p>
+                            <p>
+                                <span>编号:</span>
+                                <span>001</span>
+                            </p>
+                            <p>
+                                <span>出勤天数:</span>
+                                <span>30天</span>
+                            </p>
+                            <p>
+                                <span>请假天数：</span>
+                                <span>2天</span>
+                            </p>
+                            <p>
+                                <span>请假日期：</span>
+                                <span>2018-1-1 2018-1-1 2018-1-1 2018-1-1 2018-1-1 2018-1-1</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/js/main.js"></script>
+    <script src="../static/js/main.js"></script>
     <script>
         var myChart = echarts.init(document.getElementById('timeAttendance'));
 
         myChart.setOption({
             title: {
-                text: '员工三月考勤一览表'
+                text: '2017年3月员工考勤一览表'
             },
             tooltip: {
                 trigger: 'axis'
@@ -156,7 +236,7 @@
             }],
             yAxis: [{
                 type: 'value',
-                name: '出勤天数',
+                name: '天数',
                 min: 0,
                 max: 31,
                 axisLabel: {
@@ -164,15 +244,7 @@
                 }
             }, {
                 type: 'value',
-                name: '迟到天数',
-                min: 0,
-                max: 31,
-                axisLabel: {
-                    formatter: '{value} 天'
-                }
-            }, {
-                type: 'value',
-                name: '早退天数',
+                name: '天数',
                 min: 0,
                 max: 31,
                 axisLabel: {

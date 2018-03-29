@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="" method="" action="2.html" enctype=" ">
+        <input type="text" id="num" value="" />
+        <input type="button" value="该整数的阶乘为" onclick="cal()" />
+        <input type="text" name="pname" id="pname" value="" />
+    </form>
+    <script>
+        function cal() {
+            var num = parseInt(document.getElementById("num").value);
+            if (isNaN(num)) {
+                alert("请输入数字！");
+                return;
+            }
+            aa(num);
+
+            //var result = jiechen(num);
+            //alert(num+"的阶乘是:" + result);
+        }
+
+
+        function aa(num) {
+            var result = jiechen(num);
+            document.getElementById("pname").value = result;
+        }
+
+        function jiechen(num) {
+            if (num == 1) return 1;
+            else return num * jiechen(num - 1);
+        }
+    </script>
+</body>
+
+</html>

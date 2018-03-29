@@ -111,13 +111,13 @@ $(function() {
         });
         $(".markRead").click(function() {
             var arr = [];
-            $('.email input[type=checkbox]:checked').each(function() {
-                arr.push($(this).attr('index'));
+            $(".email input[type = 'checkbox']:checked").each(function() {
+                arr.push($(this).attr('type'));
             })
             $.ajax({
                 type: "post",
-                url: "/read_state",
-                traditional: true,
+                url: "",
+
                 data: {
                     "markRead": arr
                 },
@@ -126,18 +126,18 @@ $(function() {
                 },
                 error: function(error) {
                     console.log(error);
+                    // alert("操作失败，请重试");
                 }
             })
         });
         $(".delete").click(function() {
             var arr = [];
-            $('.email input[type=checkbox]:checked').each(function() {
-                arr.push($(this).attr('index'));
+            $(".email input[type = 'checkbox']:checked").each(function() {
+                arr.push($(this).attr('type'));
             })
             $.ajax({
                 type: "post",
-                url: "/delete_letter",
-                traditional: true,
+                url: "",
                 data: {
                     "markRead": arr
                 },
@@ -146,6 +146,7 @@ $(function() {
                 },
                 error: function(error) {
                     console.log(error);
+                    // alert("操作失败，请重试");
                 }
             })
         });
@@ -188,9 +189,16 @@ $(function() {
                 },
                 success: function(data) {
                     var noReadEmail = [];
+                    var allEmail = [];
                     for (var i in data) {
                         if (data[i].status == 'unRead') {
                             noReadEmail.push(data[i]);
+                            allEmail.push(data[i]);
+                        }
+                    }
+                    for (var i in data) {
+                        if (data[i].status != 'unRead') {
+                            allEmail.push(data[i]);
                         }
                     }
                     $(".mailNum").html(noReadEmail.length);
@@ -204,21 +212,21 @@ $(function() {
                             endPage = startPage + onePage;
                         }
                         for (var i = startPage; i < endPage; i++) {
-                            var oneEmail = $('<div class="one clearfix ' + data[i].status + '">' +
+                            var oneEmail = $('<div class="one clearfix ' + allEmail[i].status + '">' +
                                 '<div class="col-sm-1 pull-left text-center">' +
-                                '<input type="checkbox" name="emailCheck" class="emailCheck" index="'+ data[i].id +'">' +
+                                '<input type="checkbox" name="emailCheck" class="emailCheck" type = "' + allEmail[i].id + '">' +
                                 '</div>' +
                                 '<div class="col-sm-2 pull-left text-center">' +
-                                '<span>发件人：</span><strong>' + data[i].sender + '</strong>' +
+                                '<span>发件人：</span><strong>' + allEmail[i].sender + '</strong>' +
                                 '<div>' +
-                                '<p>' + data[i].time + '</p>' +
-                                '<p>' + data[i].date + '</p>' +
+                                '<p>' + allEmail[i].time + '</p>' +
+                                '<p>' + allEmail[i].date + '</p>' +
                                 '</div>' +
                                 '</div>' +
                                 '<div class="col-sm-8 pull-left">' +
                                 '<div>' +
-                                '<span>' + data[i].main_content + '</span>' +
-                                '<p>' + data[i].all_content + '</p>' +
+                                '<span>' + allEmail[i].main_content + '</span>' +
+                                '<p>' + allEmail[i].all_content + '</p>' +
                                 '</div>' +
                                 '<span class="toggleMark glyphicon glyphicon-chevron-up"></span>' +
                                 '</div>' +
