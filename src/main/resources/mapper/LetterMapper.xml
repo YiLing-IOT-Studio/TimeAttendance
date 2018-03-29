@@ -47,10 +47,25 @@
         id = #{id}
     </update>
 
+    <!--<update id="letterState" parameterType="java.util.List">-->
+        <!--UPDATE letter-->
+        <!--<trim prefix="set" suffixOverrides=",">-->
+            <!--<trim prefix="status =case" suffix="end,">-->
+                <!--<foreach collection="list" item="letter" index="index">-->
+                    <!--WHEN id=#{letter.id} THEN "isRead"-->
+                <!--</foreach>-->
+            <!--</trim>-->
+        <!--</trim>-->
+        <!--WHERE id IN -->
+        <!--<foreach collection="list" item="letter" index="index" separator="," open="(" close=")">-->
+            <!--#{letter.id}-->
+        <!--</foreach>-->
+    <!--</update>-->
+
     <delete id="deleteLetter" parameterType="Integer">
-    DELETE FROM
-    letter
-    WHERE
-    id = #{id}
+        DELETE FROM
+        letter
+        WHERE
+        id = #{id}
     </delete>
 </mapper>
