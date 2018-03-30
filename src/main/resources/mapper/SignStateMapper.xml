@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.attendance.mapper.SignStateMapper">
+    <resultMap id="signState" type="SignState">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+    <select id="getAllSignState" resultType="signState">
+        SELECT
+        id, name,state
+        FROM
+        sign_state
+        ORDER BY
+        id
+        DESC
+    </select>
+</mapper>
