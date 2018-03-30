@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -21,12 +22,12 @@ public class LetterController {
 
     @Autowired
     private LetterService letterService;
-    @Autowired
-    private Gson gson;
+
+    private Gson gson = new Gson();
 
     @GetMapping("/letters")
     @ResponseBody
-    public String letterList() {
+    public String letterList(HttpServletResponse response) {
         String accepter_name = SecurityUtil.getCurrentUsername();
         List<Letter> letters = letterService.getAllLetterByAccepter(accepter_name);
         return gson.toJson(letters);

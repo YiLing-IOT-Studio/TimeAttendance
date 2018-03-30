@@ -7,6 +7,7 @@ body {
 body {
     background: #0d415fd5;
     padding: 0 60px;
+    min-width: 1340px;
 }
 
 header {
@@ -34,7 +35,7 @@ header .pull-right {
 .asideBar {
     background: #d1dce2;
     width: 200px;
-    height: 800px;
+    height: 620px;
     padding: 0;
 }
 
@@ -53,6 +54,10 @@ header .pull-right {
     background: rgb(240, 240, 240);
 }
 
+.focus {
+    background: rgb(240, 240, 240) ! important;
+}
+
 .asideBar ul li span {
     margin-right: 10px;
 }
@@ -68,6 +73,7 @@ header .pull-right {
 }
 
 .mainMsg {
+    display: none;
     width: 80%;
     margin-left: 40px;
     margin-bottom: 20px;
@@ -208,6 +214,10 @@ form {
     margin-bottom: 20px;
 }
 
+.deleteStaff {
+    color: red;
+}
+
 .tableSearch {
     width: 400px;
     margin-left: 20px;
@@ -219,7 +229,7 @@ form {
 
 #timeAttendance {
     margin: 20px 0 0 20px;
-    width: 80%;
+    width: 800px;
     height: 500px;
 }
 
@@ -279,8 +289,9 @@ form {
     padding: 20px;
 }
 
-.emailBox {
+.emailList {
     margin-top: 20px;
+    margin-bottom: 20px;
     border-bottom: 2px dashed rgb(34, 46, 82);
     overflow: hidden;
 }
@@ -297,4 +308,8 @@ form {
 .checkBox {
     font-size: 25px;
     float: right;
+}
+
+.glyphicon-remove {
+    color: red;
 }
