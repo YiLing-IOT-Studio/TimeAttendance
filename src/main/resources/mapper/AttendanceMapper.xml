@@ -7,17 +7,21 @@
         <result property="staffName" column="staff_name"/>
         <result property="inTime" column="in_time"/>
         <result property="outTime" column="out_time"/>
-        <result property="attendance" column="attendance"/>
     </resultMap>
-
-    <sql id="Base_Column_List" >
-        id, staff_name, come_time, leave_time, attendance
-    </sql>
 
     <insert id="add" parameterType="Attendance">
         INSERT INTO
-        attendance_info(staff_name,come_time,leave_time,attendance)
+        attendance_info(staff_name,in_time,out_time)
         VALUES
-        (#{staffName},#{comeTime},#{leaveTime})
+        (#{staffName},#{inTime},#{outTime})
     </insert>
+
+    <select id="getAttendanceByName" parameterType="String" resultType="attendance">
+        SELECT
+        id,staff_name,inTime,outTime
+        FROM
+        attendance
+        WHERE
+        staff_name = #{name}
+    </select>
 </mapper>

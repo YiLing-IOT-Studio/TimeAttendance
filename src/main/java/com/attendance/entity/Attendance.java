@@ -22,15 +22,13 @@ public class Attendance {
     private String staffName;
     private String inTime;
     private String outTime;
-    private String attendance;
 
     public Attendance() {
     }
 
-    public Attendance(String staffName, String inTime, String outTime, String attendance) {
+    public Attendance(String staffName, String inTime, String outTime) {
         this.staffName = staffName;
         this.inTime = inTime;
         this.outTime = outTime;
-        this.attendance = attendance;
     }
 }

@@ -115,7 +115,7 @@ $(function() {
             })
             $.ajax({
                 type: "post",
-                url: "",
+                url: "/read_state",
                 traditional: true,
                 data: {
                     "markRead": arr
@@ -136,7 +136,7 @@ $(function() {
             })
             $.ajax({
                 type: "post",
-                url: "",
+                url: "/delete_letter",
                 traditional: true,
                 data: {
                     "markRead": arr

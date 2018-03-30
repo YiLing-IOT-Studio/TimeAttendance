@@ -5,6 +5,8 @@ import com.attendance.mapper.AttendanceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by FantasticPan on 2018/3/19.
  */
@@ -16,5 +18,9 @@ public class AttendanceService {
 
     public void add(Attendance attendanceInfo) {
         attendanceMapper.add(attendanceInfo);
+    }
+
+    public List<Attendance> getAttendanceByName(String name) {
+        return attendanceMapper.getAttendanceByName(name);
     }
 }
