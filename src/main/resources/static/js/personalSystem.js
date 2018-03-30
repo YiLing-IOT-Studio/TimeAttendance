@@ -105,18 +105,17 @@ $(function() {
         $(".refresh").click(function() {
             startPage = 0;
             curPage = 1;
-            $(".email").empty();
             requestEmail();
             $(".glyphicon-chevron-right").css("display", "block");
         });
         $(".markRead").click(function() {
             var arr = [];
             $(".email input[type = 'checkbox']:checked").each(function() {
-                arr.push($(this).attr('type'));
+                arr.push($(this).attr('index'));
             })
             $.ajax({
                 type: "post",
-                url: "/read_state",
+                url: "",
                 traditional: true,
                 data: {
                     "markRead": arr
@@ -133,11 +132,11 @@ $(function() {
         $(".delete").click(function() {
             var arr = [];
             $(".email input[type = 'checkbox']:checked").each(function() {
-                arr.push($(this).attr('type'));
+                arr.push($(this).attr('index'));
             })
             $.ajax({
                 type: "post",
-                url: "/delete_letter",
+                url: "",
                 traditional: true,
                 data: {
                     "markRead": arr
@@ -159,7 +158,6 @@ $(function() {
             if (curPage > 0) {
                 startPage -= onePage;
                 curPage -= 1;
-                $(".email").empty();
                 requestEmail();
                 $(".glyphicon-chevron-right").css("display", "block");
             }
@@ -172,7 +170,6 @@ $(function() {
             if (curPage < page) {
                 startPage += onePage;
                 curPage += 1;
-                $(".email").empty();
                 requestEmail();
                 $(".glyphicon-chevron-left").css("display", "block");
             }
@@ -180,6 +177,7 @@ $(function() {
         });
 
         function requestEmail() {
+            $(".email").empty();
             //获取邮件
             $.ajax({
                 type: "get",
@@ -215,7 +213,7 @@ $(function() {
                         for (var i = startPage; i < endPage; i++) {
                             var oneEmail = $('<div class="one clearfix ' + allEmail[i].status + '">' +
                                 '<div class="col-sm-1 pull-left text-center">' +
-                                '<input type="checkbox" name="emailCheck" class="emailCheck" type = "' + allEmail[i].id + '">' +
+                                '<input type="checkbox" name="emailCheck" class="emailCheck" index = "' + allEmail[i].id + '">' +
                                 '</div>' +
                                 '<div class="col-sm-2 pull-left text-center">' +
                                 '<span>发件人：</span><strong>' + allEmail[i].sender + '</strong>' +

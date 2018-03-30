@@ -209,7 +209,7 @@ form {
 }
 
 .tableSearch {
-    width: 300px;
+    width: 400px;
     margin-left: 20px;
 }
 
@@ -273,4 +273,28 @@ form {
 .leave:nth-of-type(even) {
     margin-left: 30px;
     margin-bottom: 20px;
+}
+
+.emailCheck {
+    padding: 20px;
+}
+
+.emailBox {
+    margin-top: 20px;
+    border-bottom: 2px dashed rgb(34, 46, 82);
+    overflow: hidden;
+}
+
+.emailList p {
+    text-indent: 2em;
+}
+
+.contentBox {
+    width: 60%;
+    float: left;
+}
+
+.checkBox {
+    font-size: 25px;
+    float: right;
 }
