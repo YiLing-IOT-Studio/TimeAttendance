@@ -228,6 +228,5 @@ $(function() {
         }
         check('glyphicon-ok', '', 'true', '已通过');
         check('glyphicon-remove', '', 'false', '已驳回');
-
     }
 })
