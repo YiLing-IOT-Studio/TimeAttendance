@@ -46,7 +46,8 @@ $(function() {
             }
         });
     }
-    echartFun('2017', '3');
+    var oDate = new Date();
+    echartFun(oDate.getFullYear, oDate.getMonth + 1);
 
     function echartFun(year, month) {
         $.post('', {
@@ -218,7 +219,7 @@ $(function() {
                     result: result
                 }, function(data) {
                     if (data) {
-                        $(this).parent().parent().html(text);
+                        $(this).parent().parent().html('<button class="btn btn-danger">' + text + '</button>');
                     } else {
                         alert("操作失败");
                     }

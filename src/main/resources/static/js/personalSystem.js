@@ -224,7 +224,7 @@ $(function() {
                                 '</div>' +
                                 '<div class="col-sm-8 pull-left">' +
                                 '<div>' +
-                                '<span>' + allEmail[i].main_content + '</span>' +
+                                '<span>请假回执</span>' +
                                 '<p>' + allEmail[i].all_content + '</p>' +
                                 '</div>' +
                                 '<span class="toggleMark glyphicon glyphicon-chevron-up"></span>' +
