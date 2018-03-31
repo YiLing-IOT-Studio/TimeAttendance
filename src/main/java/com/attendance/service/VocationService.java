@@ -16,12 +16,16 @@ public class VocationService {
     @Autowired
     private VocationMapper vocationMapper;
 
-    public void addVocation(Vocation leave) {
-        vocationMapper.addVocation(leave);
+    public void addVocation(Vocation vocation) {
+        vocationMapper.addVocation(vocation);
     }
 
     public List<Vocation> getAllVocationByApplicant(String applicant_name) {
         return vocationMapper.getAllVocationByApplicant(applicant_name);
+    }
+
+    public List<Vocation> getAllVocationByAdmin(String admin_name) {
+        return vocationMapper.getAllVocationByAdmin(admin_name);
     }
 
     public void vocationReadState(Integer id) {

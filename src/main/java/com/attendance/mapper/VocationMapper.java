@@ -14,6 +14,7 @@ public interface VocationMapper {
     void addVocation(Vocation vocation);
     Long getVocationNumByApplicant(String applicant_name);
     List<Vocation> getAllVocationByApplicant(String applicant_name);
+    List<Vocation> getAllVocationByAdmin(String admin_name);
     void vocationReadState(Integer id);
     void vocationHandleState();
     void deleteVocation(Integer id);

@@ -1,5 +1,6 @@
 package com.attendance.controller;
 
+import com.attendance.entity.JsonTest;
 import com.attendance.entity.Vocation;
 import com.attendance.repository.StaffRepository;
 import com.attendance.service.VocationService;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,7 +51,15 @@ public class VocationController {
 
     @GetMapping("/vocations")
     @ResponseBody
-    public String letterList(HttpServletResponse response) {
+    public String vocationList() {
+        String applicant_name = SecurityUtil.getCurrentUsername();
+        List<Vocation> vocationList = vocationService.getAllVocationByApplicant(applicant_name);
+        return gson.toJson(vocationList);
+    }
+
+    @GetMapping("/vocations_admin")
+    @ResponseBody
+    public String vocationListAdmin() {
         String applicant_name = SecurityUtil.getCurrentUsername();
         List<Vocation> vocationList = vocationService.getAllVocationByApplicant(applicant_name);
         return gson.toJson(vocationList);
@@ -60,7 +68,7 @@ public class VocationController {
     // TODO: 2018/3/29  MyBatis批量更新
     @ResponseBody
     @PostMapping("/read_state")
-    public void letterState(HttpServletRequest request) {
+    public void vocationState(HttpServletRequest request) {
         String[] ids = request.getParameterValues("markRead");
         if (ids.length != 0) {
             for (String id : ids) {
@@ -72,12 +80,19 @@ public class VocationController {
     // TODO: 2018/3/29 MyBatis批量删除
     @ResponseBody
     @PostMapping("/delete_vocation")
-    public void deleteLetter(HttpServletRequest request) {
+    public void deleteVocation(HttpServletRequest request) {
         String[] ids = request.getParameterValues("markRead");
         if (ids.length != 0) {
             for (String id : ids) {
                 vocationService.deleteVocation(Integer.valueOf(id));
             }
         }
+    }
+
+    @ResponseBody
+    @PostMapping("/json_test")
+    public String json_test() {
+        JsonTest jsonTest = new JsonTest("tianyu","001",29,2);
+        return gson.toJson(jsonTest);
     }
 }

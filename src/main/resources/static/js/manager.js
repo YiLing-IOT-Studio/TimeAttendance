@@ -151,7 +151,7 @@ $(function() {
         echartFun(year, month);
     });
     $("searchMore").click(function() {
-            $.post('', {
+            $.post('/json_test', {
                 searchName: $(this).prev().val()
             }, function(data) {
                 var more = JSON.parse(data);
@@ -183,7 +183,7 @@ $(function() {
         })
         //请假申请批复
     function respond() {
-        $.post('', {}, function(data) {
+        $.post('/vocations_admin', {}, function(data) {
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
