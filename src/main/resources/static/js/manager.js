@@ -212,9 +212,9 @@ $(function() {
             $(".emailCheck").append(respondEmail);
         })
 
-        function check($name, result, text) {
+        function check($name, url, result, text) {
             $("." + $name).click(function() {
-                $.post('', {
+                $.post(url, {
                     id: $(this).parent().parent().attr("index"),
                     result: result
                 }, function(data) {
@@ -226,7 +226,7 @@ $(function() {
                 })
             });
         }
-        check('glyphicon-ok', 'true', '已通过');
-        check('glyphicon-remove', 'false', '已驳回');
+        check('glyphicon-ok', '', 'true', '已通过');
+        check('glyphicon-remove', '', 'false', '已驳回');
     }
 })
