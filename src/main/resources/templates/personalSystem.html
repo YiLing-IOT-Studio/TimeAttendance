@@ -6,11 +6,11 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人管理中心</title>
-    <link rel="shortcut icon" href="../static/img/icon.png" />
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <script src="../static/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../static/css/personal.css">
+    <link rel="shortcut icon" href="/img/icon.png" />
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/personal.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <div class="topBar container">
             <div class="pull-left col-sm-5">
                 <h1>
-                    <img src="../static/img/team1.png" alt="icon">
+                    <img src="/img/team1.png" alt="icon">
                     <span>个人管理中心</span>
                 </h1>
             </div>
@@ -40,7 +40,7 @@
         <div class="bottom container-fuid">
             <div class="asideBar pull-left">
                 <div class="personalMsg text-center">
-                    <img class="center-block" src="../static/img/staff.png" alt="头像">
+                    <img class="center-block" src="/img/staff.png" alt="头像">
                     <p class="staffName" sec:authentication="name"></p>
                     <!-- <span>编号：</span>
                     <span class="staffId">001</span> -->
@@ -77,30 +77,30 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <a href="#" class="alert-link">请提前三天提交请假申请，并详细说明理由，待收到回复后， 此次请假申请才算完成。</a>
                 </div>
-                <form action="" method="post" class="form-horizontal applyForm">
+                <form action="/vocation" method="post" class="form-horizontal applyForm">
                     <div class="form-group has-feedback">
                         <label class="control-label col-sm-3" for="applicant">申请人：</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="applicant" aria-describedby="inputSuccess1Status">
+                            <input type="text" class="form-control" id="applicant" name="applicant" aria-describedby="inputSuccess1Status">
                             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
                         <label class="control-label col-sm-3" for="days">申请总天数：</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="days" aria-describedby="inputSuccess2Status">
+                            <input type="text" class="form-control" id="days" name="days" aria-describedby="inputSuccess2Status">
                             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                         </div>
                         <label class="control-label col-sm-2" for="days">请假日期：</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="date" aria-describedby="inputSuccess3Status">
+                            <input type="text" class="form-control" id="date" name="date" aria-describedby="inputSuccess3Status">
                             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
                         <label class="control-label col-sm-3" for="applicant">请假理由：</label>
                         <div class="col-sm-7">
-                            <textarea rows="4" class="form-control" id="why" aria-describedby="inputSuccess4Status"></textarea>
+                            <textarea rows="4" class="form-control" id="why" name="why" aria-describedby="inputSuccess4Status"></textarea>
                             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
                         </div>
                     </div>
@@ -150,11 +150,11 @@
         </div>
     </div>
 </body>
-<link rel="stylesheet" href="../static/css/blue.css">
-<link rel="stylesheet" href="../static/css/style.css" />
-<script src="../static/js/Ecalendar.jquery.min.js"></script>
-<script src="../static/js/icheck.min.js"></script>
-<script src="../static/js/personalSystem.js"></script>
+<link rel="stylesheet" href="/css/blue.css">
+<link rel="stylesheet" href="/css/style.css" />
+<script src="/js/Ecalendar.jquery.min.js"></script>
+<script src="/js/icheck.min.js"></script>
+<script src="/js/personalSystem.js"></script>
 <script type="text/javascript">
     $(function() {
         // $('#emailCheck').icheck();

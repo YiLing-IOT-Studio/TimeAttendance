@@ -20,15 +20,25 @@ public class Vocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String applicant;
+    private String admin;
+    private String date;
+    private String time;
     private String leave_days;
     private String leave_date;
     private String leave_reason;
+    private String all_content;
+    @Column(columnDefinition="VARCHAR(255) default 'unRead'")
+    private String read_state;
+    private String handle_state;
 
     public Vocation() {
     }
 
-    public Vocation(String applicant, String leave_days, String leave_date, String leave_reason) {
+    public Vocation(String applicant, String admin, String date, String time, String leave_days, String leave_date, String leave_reason) {
         this.applicant = applicant;
+        this.admin = admin;
+        this.date = date;
+        this.time = time;
         this.leave_days = leave_days;
         this.leave_date = leave_date;
         this.leave_reason = leave_reason;

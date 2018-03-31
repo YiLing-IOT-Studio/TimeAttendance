@@ -5,31 +5,64 @@
     <resultMap id="vocation" type="Vocation">
         <id property="id" column="id"/>
         <result property="applicant" column="applicant"/>
+        <result property="admin" column="admin"/>
+        <result property="date" column="date"/>
+        <result property="time" column="time"/>
         <result property="leave_days" column="leave_days"/>
         <result property="leave_date" column="leave_date"/>
         <result property="leave_reason" column="leave_reason"/>
+        <result property="all_content" column="all_content"/>
+        <result property="read_state" column="read_state"/>
+        <result property="handle_state" column="handle_state"/>
     </resultMap>
-
-    <!--<select id="getImageById" parameterType="hashMap" resultType="image"> &lt;!&ndash;image为上面的id名&ndash;&gt;-->
-        <!--SELECT-->
-        <!--id,-->
-        <!--name,-->
-        <!--url,-->
-        <!--date,-->
-        <!--user_id-->
-        <!--FROM image-->
-        <!--WHERE user_id = #{userId}-->
-        <!--ORDER BY date DESC-->
-    <!--</select>-->
-
-    <!--<delete id="delById" parameterType="hashMap">-->
-        <!--DELETE FROM image WHERE id=#{id}-->
-    <!--</delete>-->
 
     <insert id="addVocation" parameterType="vocation">
         INSERT INTO
-        vocation(applicant,leave_days,leave_date,leave_reason)
+        vocation(applicant,admin,date,time,leave_days,leave_date,leave_reason)
         VALUES
-        (#{applicant},#{leave_days},#{leave_date},#{leave_reason})
+        (#{applicant},#{admin},#{date},#{time},#{leave_days},#{leave_date},#{leave_reason})
     </insert>
+
+    <select id="getVocationNumByApplicant" parameterType="String" resultType="Long">
+        SELECT
+        count(*)
+        FROM
+        vocation
+        WHERE
+        applicant = #{applicant_name}
+    </select>
+
+    <select id="getAllVocationByApplicant" parameterType="String" resultType="vocation">
+        SELECT
+        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state,handle_state
+        FROM
+        vocation
+        WHERE
+        (applicant = #{applicant_name} AND all_content IS NOT NULL)
+    </select>
+
+    <select id="getAllVocationByAdmin" parameterType="String" resultType="vocation">
+        SELECT
+        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state,handle_state
+        FROM
+        vocation
+        WHERE
+        (admin = #{admin_name})
+    </select>
+
+    <update id="vocationReadState" parameterType="Integer">
+        UPDATE
+        vocation
+        SET
+        read_state="isRead"
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteVocation" parameterType="Integer">
+        DELETE FROM
+        vocation
+        WHERE
+        id = #{id}
+    </delete>
 </mapper>

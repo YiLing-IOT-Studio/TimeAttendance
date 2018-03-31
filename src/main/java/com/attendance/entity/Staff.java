@@ -30,7 +30,6 @@ public class Staff implements UserDetails {
 
     private String staffName;
     private String password;
-    private Long letterNumber;
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<Role> roles;

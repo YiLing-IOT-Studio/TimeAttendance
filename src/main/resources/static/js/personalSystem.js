@@ -115,7 +115,7 @@ $(function() {
             })
             $.ajax({
                 type: "post",
-                url: "",
+                url: "/read_state",
                 traditional: true,
                 data: {
                     "markRead": arr
@@ -136,7 +136,7 @@ $(function() {
             })
             $.ajax({
                 type: "post",
-                url: "",
+                url: "/delete_vocation",
                 traditional: true,
                 data: {
                     "markRead": arr
@@ -181,7 +181,7 @@ $(function() {
             //获取邮件
             $.ajax({
                 type: "get",
-                url: "/letters",
+                url: "/vocations",
                 dataType: "json",
                 data: {
 
@@ -190,13 +190,13 @@ $(function() {
                     var noReadEmail = [];
                     var allEmail = [];
                     for (var i in data) {
-                        if (data[i].status == 'unRead') {
+                        if (data[i].read_state == 'unRead') {
                             noReadEmail.push(data[i]);
                             allEmail.push(data[i]);
                         }
                     }
                     for (var i in data) {
-                        if (data[i].status != 'unRead') {
+                        if (data[i].read_state != 'unRead') {
                             allEmail.push(data[i]);
                         }
                     }
@@ -211,12 +211,12 @@ $(function() {
                             endPage = startPage + onePage;
                         }
                         for (var i = startPage; i < endPage; i++) {
-                            var oneEmail = $('<div class="one clearfix ' + allEmail[i].status + '">' +
+                            var oneEmail = $('<div class="one clearfix ' + allEmail[i].read_state + '">' +
                                 '<div class="col-sm-1 pull-left text-center">' +
                                 '<input type="checkbox" name="emailCheck" class="emailCheck" index = "' + allEmail[i].id + '">' +
                                 '</div>' +
                                 '<div class="col-sm-2 pull-left text-center">' +
-                                '<span>发件人：</span><strong>' + allEmail[i].sender + '</strong>' +
+                                '<span>发件人：</span><strong>' + allEmail[i].admin + '</strong>' +
                                 '<div>' +
                                 '<p>' + allEmail[i].time + '</p>' +
                                 '<p>' + allEmail[i].date + '</p>' +
