@@ -184,6 +184,7 @@ $(function() {
         //请假申请批复
     function respond() {
         $.post('', {}, function(data) {
+            $(".emailCheck").empty();
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
@@ -215,6 +216,7 @@ $(function() {
         function check($name, url, result, text) {
             $("." + $name).click(function() {
                 $.post(url, {
+                    sender: $(this).parent().parent().prev().find("strong").text(),
                     id: $(this).parent().parent().attr("index"),
                     result: result
                 }, function(data) {
@@ -225,6 +227,7 @@ $(function() {
                     }
                 })
             });
+            respond();
         }
         check('glyphicon-ok', '', 'true', '已通过');
         check('glyphicon-remove', '', 'false', '已驳回');
