@@ -14,9 +14,18 @@ $(function() {
             });
         })
         //员工信息表
+        //添加
+    $("#add").click(function() {
+        $.post('', {
+            "data": $("#addForm").serialize() //数据格式为a=1&b=123的字符串
+        }, function() {
+            staffAjax();
+        })
+    });
     staffAjax();
 
     function staffAjax() {
+        $("tbody").empty();
         $.ajax({
             type: "get",
             url: "",
@@ -25,13 +34,14 @@ $(function() {
             success: function(data) {
                 for (i in data) {
                     var staffMsg = $('<tr>' +
-                        '<td>' + data[i].staffId + '</td>' +
-                        '<td>' + data[i].staffName + '</td>' +
-                        '<td>' + data[i].staffDate + '</td>' +
+                        '<td>' + data[i].id + '</td>' +
+                        '<td>' + data[i].admin + '</td>' +
+                        '<td>' + data[i].date + '</td>' +
                         '<td><a class="deleteStaff" href="#">删除</a></td>' +
                         '</tr>');
                     $("tbody").append(staffMsg);
                 }
+                //删除
                 $(".deleteStaff").click(function() {
                     $.post('', {
                         staffId: $(this).parent().siblings().eq(0).html()
@@ -59,7 +69,7 @@ $(function() {
                 workDay = [],
                 restDay = [];
             for (i in data) {
-                staffArr.push(data[i].staffName);
+                staffArr.push(data[i].admin);
                 workDay.push(data[i].workDay);
                 restDay.push(data[i].restDay);
             }
@@ -160,10 +170,10 @@ $(function() {
                     return false;
                 }
                 var msg = $('<div class="leave pull-left">' +
-                    '<p><strong>' + data.staffName + '</strong></p>' +
+                    '<p><strong>' + data.admin + '</strong></p>' +
                     '<p>' +
                     '<span>编号:</span>' +
-                    '<span>' + data.staffId + '</span>' +
+                    '<span>' + data.id + '</span>' +
                     '</p>' +
                     '<p>' +
                     '<span>出勤天数:</span>' +
@@ -175,7 +185,7 @@ $(function() {
                     '</p>' +
                     '<p>' +
                     '<span>请假日期：</span>' +
-                    '<span>' + restDay + '</span>' +
+                    '<span>' + data.leave_date + '</span>' +
                     '</p>' +
                     '</div>');
                 $(".leaves").append(msg);
@@ -189,18 +199,18 @@ $(function() {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].staffName + '</strong></span>' +
+                    '<span><strong>' + data[i].admin + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
                     '<span>申请天数：</span>' +
-                    '<span><strong>' + data[i].restDay + '</strong>天</span>' +
+                    '<span><strong>' + data[i].leave_days + '</strong>天</span>' +
                     '<div>' +
                     '<span>申请日期：</span>' +
-                    '<span>' + data[i].date + '</span>' +
+                    '<span>' + data[i].leave_date + '</span>' +
                     '</div>' +
                     '<span>内容：</span>' +
-                    '<p>' + data[i].content + '</p>' +
+                    '<p>' + data[i].leave_reason + '</p>' +
                     '</div>' +
                     '<div class="checkBox" index = "' + data[i].id + '">' +
                     '<a href="#"><span class="glyphicon glyphicon-ok"></span></a>' +
