@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "staff_info")
-public class StaffInfo {
+@Table(name = "work_info")
+public class WorkInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

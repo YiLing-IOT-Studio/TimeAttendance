@@ -177,7 +177,7 @@ $(function() {
         });
 
         function requestEmail() {
-            // $(".email").empty();
+            $(".email").empty();
             //获取邮件
             $.ajax({
                 type: "get",
@@ -224,7 +224,7 @@ $(function() {
                                 '</div>' +
                                 '<div class="col-sm-8 pull-left">' +
                                 '<div>' +
-                                '<span>请假日期：</span>' + allEmail[i].leave_date +
+                                '<span>请假日期：' + allEmail[i].leave_date +'</span>'+
                                 '<p>' + allEmail[i].all_content + '</p>' +
                                 '</div>' +
                                 '<span class="toggleMark glyphicon glyphicon-chevron-up"></span>' +

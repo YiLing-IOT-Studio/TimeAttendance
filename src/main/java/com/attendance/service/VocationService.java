@@ -35,4 +35,12 @@ public class VocationService {
     public void deleteVocation(Integer id) {
         vocationMapper.deleteVocation(id);
     }
+
+    public void disagreeVocation(Integer id) {
+        vocationMapper.disagreeVocation(id);
+    }
+
+    public void agreeVocation(Integer id) {
+        vocationMapper.agreeVocation(id);
+    }
 }

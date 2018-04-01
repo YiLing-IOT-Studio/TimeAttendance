@@ -16,6 +16,8 @@ public interface VocationMapper {
     List<Vocation> getAllVocationByApplicant(String applicant_name);
     List<Vocation> getAllVocationByAdmin(String admin_name);
     void vocationReadState(Integer id);
-    void vocationHandleState();
+    void agreeVocation(Integer id);
+    void disagreeVocation(Integer id);
     void deleteVocation(Integer id);
+    Long getWorkDay();
 }

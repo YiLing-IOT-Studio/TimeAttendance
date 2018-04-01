@@ -28,15 +28,15 @@ $(function() {
         $("tbody").empty();
         $.ajax({
             type: "get",
-            url: "",
+            url: "/getAllStaff",
             dataType: "json",
             data: {},
             success: function(data) {
                 for (i in data) {
                     var staffMsg = $('<tr>' +
                         '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].admin + '</td>' +
-                        '<td>' + data[i].date + '</td>' +
+                        '<td>' + data[i].staffName + '</td>' +
+                        '<td>' + data[i].staffDate + '</td>' +
                         '<td><a class="deleteStaff" href="#">删除</a></td>' +
                         '</tr>');
                     $("tbody").append(staffMsg);
@@ -57,19 +57,21 @@ $(function() {
         });
     }
     var oDate = new Date();
-    echartFun(oDate.getFullYear, oDate.getMonth + 1);
+    echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {
-        $.post('', {
+        $.post('/work', {
             year: year,
             month: month
         }, function(data) {
             var myChart = echarts.init(document.getElementById('timeAttendance'));
+            data = JSON.parse(data);
             var staffArr = [],
                 workDay = [],
                 restDay = [];
             for (i in data) {
-                staffArr.push(data[i].admin);
+                console.log(data[i])
+                staffArr.push(data[i].staffName);
                 workDay.push(data[i].workDay);
                 restDay.push(data[i].restDay);
             }
@@ -193,13 +195,15 @@ $(function() {
         })
         //请假申请批复
     function respond() {
-        $.post('', {}, function(data) {
+        $.post('/vocations_admin', {}, function(data) {
+            console.log(data);
             $(".emailCheck").empty();
             for (i in data) {
+                alert(i);
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].admin + '</strong></span>' +
+                    '<span><strong>' + data[i].applicant + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
