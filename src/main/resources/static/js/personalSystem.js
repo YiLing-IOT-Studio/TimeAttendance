@@ -108,17 +108,30 @@ $(function() {
             requestEmail();
             $(".glyphicon-chevron-right").css("display", "block");
         });
+        var arrEyes = [];
+        $(".email input[type = 'checkbox']").click(function() {
+            if (arrEyes.length == 0) {
+                $(".markRead").attr("disabled", true);
+            } else {
+                $(".markRead").attr("disabled", false);
+            }
+            if (this.checked && $(this).hasClass("unRead")) {
+                if ($.inArray($(this).attr("id"), arrEyes) == -1) {
+                    arrEyes.push($(this).attr("id"));
+                }
+            } else {
+                if ($.inArray($(this).attr("id"), arrEyes) != -1) {
+                    arrEyes.splice($.inArray($(this).attr("id"), arrEyes), 1);
+                }
+            }
+        });
         $(".markRead").click(function() {
-            var arr = [];
-            $(".email input[type = 'checkbox']:checked").each(function() {
-                arr.push($(this).attr('index'));
-            })
             $.ajax({
                 type: "post",
                 url: "/read_state",
                 traditional: true,
                 data: {
-                    "markRead": arr
+                    "markRead": arrEyes
                 },
                 success: function(data) {
                     requestEmail();
@@ -177,7 +190,7 @@ $(function() {
         });
 
         function requestEmail() {
-            $(".email").empty();
+            // $(".email").empty();
             //获取邮件
             $.ajax({
                 type: "get",
@@ -224,7 +237,7 @@ $(function() {
                                 '</div>' +
                                 '<div class="col-sm-8 pull-left">' +
                                 '<div>' +
-                                '<span>请假日期：' + allEmail[i].leave_date +'</span>'+
+                                '<span>请假日期：' + allEmail[i].leave_date + '</span>' +
                                 '<p>' + allEmail[i].all_content + '</p>' +
                                 '</div>' +
                                 '<span class="toggleMark glyphicon glyphicon-chevron-up"></span>' +
@@ -248,6 +261,7 @@ $(function() {
                                 $(this).removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
                             }
                         });
+                        $(".toggleMark").trigger("click");
                     }
                 },
                 error: function(error) {

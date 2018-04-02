@@ -29,8 +29,6 @@ public class Staff implements UserDetails {
     private Integer id;
 
     private String staffName;
-    private String staffDate;
-    @Column(columnDefinition="VARCHAR(255) default '666'")
     private String password;
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)

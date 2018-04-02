@@ -42,5 +42,6 @@ public class Vocation {
         this.leave_days = leave_days;
         this.leave_date = leave_date;
         this.leave_reason = leave_reason;
+
     }
 }

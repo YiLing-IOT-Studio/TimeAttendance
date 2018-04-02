@@ -65,22 +65,4 @@
         WHERE
         id = #{id}
     </delete>
-
-    <update id="agreeVocation" parameterType="Integer">
-        UPDATE
-        vocation
-        SET
-        handle_state="同意"
-        WHERE
-        id = #{id}
-    </update>
-
-    <update id="disagreeVocation" parameterType="Integer">
-        UPDATE
-        vocation
-        SET
-        handle_state="拒绝"
-        WHERE
-        id = #{id}
-    </update>
 </mapper>

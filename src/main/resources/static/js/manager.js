@@ -28,15 +28,15 @@ $(function() {
         $("tbody").empty();
         $.ajax({
             type: "get",
-            url: "/getAllStaff",
+            url: "",
             dataType: "json",
             data: {},
             success: function(data) {
                 for (i in data) {
                     var staffMsg = $('<tr>' +
                         '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].staffName + '</td>' +
-                        '<td>' + data[i].staffDate + '</td>' +
+                        '<td>' + data[i].admin + '</td>' +
+                        '<td>' + data[i].date + '</td>' +
                         '<td><a class="deleteStaff" href="#">删除</a></td>' +
                         '</tr>');
                     $("tbody").append(staffMsg);
@@ -60,18 +60,16 @@ $(function() {
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {
-        $.post('/work', {
+        $.post('', {
             year: year,
             month: month
         }, function(data) {
             var myChart = echarts.init(document.getElementById('timeAttendance'));
-            data = JSON.parse(data);
             var staffArr = [],
                 workDay = [],
                 restDay = [];
             for (i in data) {
-                console.log(data[i])
-                staffArr.push(data[i].staffName);
+                staffArr.push(data[i].admin);
                 workDay.push(data[i].workDay);
                 restDay.push(data[i].restDay);
             }
@@ -194,16 +192,17 @@ $(function() {
             })
         })
         //请假申请批复
+    respond();
+
     function respond() {
-        $.post('/vocations_admin', {}, function(data) {
+        $.post('http://localhost:7070/post', {}, function(data) {
             console.log(data);
             $(".emailCheck").empty();
             for (i in data) {
-                alert(i);
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].applicant + '</strong></span>' +
+                    '<span><strong>' + data[i].admin + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
@@ -223,25 +222,22 @@ $(function() {
                     '</div>' +
                     '</div>' +
                     '</div>');
+                $(".emailCheck").append(respondEmail);
             }
-            $(".emailCheck").append(respondEmail);
-        })
+        });
 
         function check($name, url, result, text) {
             $("." + $name).click(function() {
+                var _this = $(this).parent().parent();
                 $.post(url, {
-                    sender: $(this).parent().parent().prev().find("strong").text(),
-                    id: $(this).parent().parent().attr("index"),
+                    sender: _this.prev().find("strong").text(),
+                    id: _this.attr("index"),
                     result: result
-                }, function(data) {
-                    if (data) {
-                        $(this).parent().parent().html('<button class="btn btn-danger">' + text + '</button>');
-                    } else {
-                        alert("操作失败");
-                    }
+                }, function() {
+                    _this.html('<button class="btn btn-danger">' + text + '</button>');
+                    respond();
                 })
             });
-            respond();
         }
         check('glyphicon-ok', '', 'true', '已通过');
         check('glyphicon-remove', '', 'false', '已驳回');

@@ -1,8 +1,8 @@
 package com.attendance.controller;
 
+import com.attendance.entity.JsonTest;
 import com.attendance.entity.Vocation;
 import com.attendance.repository.StaffRepository;
-import com.attendance.repository.WorkRepository;
 import com.attendance.service.VocationService;
 import com.attendance.util.SecurityUtil;
 import com.google.gson.Gson;
@@ -30,14 +30,12 @@ public class VocationController {
     @Autowired
     private StaffRepository staffRepository;
     @Autowired
-    private WorkRepository workRepository;
-    @Autowired
     private Gson gson;
 
     @PostMapping("/vocation")
     public String leave(HttpServletRequest request) {
         Calendar calendar = Calendar.getInstance();
-        String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+        String time = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
         String applicant_name = request.getParameter("applicant");
         String leave_days = request.getParameter("days");
         String leave_date = request.getParameter("date");
@@ -46,7 +44,7 @@ public class VocationController {
         Random random = new Random();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         System.out.println(sdf.format(new Timestamp(System.currentTimeMillis())));
-        Vocation vocation = new Vocation(applicant_name, roleList.get(random.nextInt(roleList.size())), sdf.format(System.currentTimeMillis()), time, leave_days, leave_date, leave_reason);
+        Vocation vocation = new Vocation(applicant_name,roleList.get(random.nextInt(roleList.size())),sdf.format(System.currentTimeMillis()),time,leave_days,leave_date,leave_reason);
         vocationService.addVocation(vocation);
         return "redirect:/personal_center";
     }
@@ -59,11 +57,11 @@ public class VocationController {
         return gson.toJson(vocationList);
     }
 
-    @PostMapping("/vocations_admin")
+    @GetMapping("/vocations_admin")
     @ResponseBody
     public String vocationListAdmin() {
-        String admin = SecurityUtil.getCurrentUsername();
-        List<Vocation> vocationList = vocationService.getAllVocationByAdmin(admin);
+        String applicant_name = SecurityUtil.getCurrentUsername();
+        List<Vocation> vocationList = vocationService.getAllVocationByApplicant(applicant_name);
         return gson.toJson(vocationList);
     }
 
@@ -91,23 +89,10 @@ public class VocationController {
         }
     }
 
-    // TODO: 2018/4/1 id 不确定
     @ResponseBody
-    @PostMapping("agree_vocation")
-    public void agreeVocation() {
-        vocationService.agreeVocation(1);
-    }
-
-    // TODO: 2018/4/1 id 不确定
-    @ResponseBody
-    @PostMapping("disagree_vocation")
-    public void disagreeVocation() {
-        vocationService.disagreeVocation(1);
-    }
-
-    @ResponseBody
-    @PostMapping("/work")
-    public String work() {
-        return gson.toJson(workRepository.findWorkInfoByStaffName("李攀"));
+    @PostMapping("/json_test")
+    public String json_test() {
+        JsonTest jsonTest = new JsonTest("tianyu","001",29,2);
+        return gson.toJson(jsonTest);
     }
 }
