@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by FantasticPan on 2018/3/18.
@@ -20,17 +21,10 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String staffName;
-    private String inTime;
-    private String outTime;
+    private Timestamp inTime;
+    private Timestamp outTime;
     private String attendance;
 
     public Attendance() {
-    }
-
-    public Attendance(String staffName, String inTime, String outTime, String attendance) {
-        this.staffName = staffName;
-        this.inTime = inTime;
-        this.outTime = outTime;
-        this.attendance = attendance;
     }
 }

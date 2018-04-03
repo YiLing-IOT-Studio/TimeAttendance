@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.attendance.mapper.WorkInfoMapper">
+    <resultMap id="workInfo" type="WorkInfo">
+        <id property="id" column="id"/>
+        <result property="staffName" column="staff_name"/>
+        <result property="staffId" column="staff_id"/>
+        <result property="workDay" column="work_day"/>
+        <result property="restDay" column="rest_day"/>
+        <result property="workDate" column="work_date"/>
+    </resultMap>
+
+    <insert id="addWorkInfo" parameterType="WorkInfo">
+        INSERT INTO
+        work_info
+        (staff_name,staff_id,work_day,rest_day,work_date)
+        VALUES
+        (#{staffName},#{staffId},#{workDay},#{restDay},#{workDate})
+    </insert>
+
+    <select id="getAllWorkInfo" resultType="workInfo">
+        SELECT
+        staff_name,staff_id,work_day,rest_day,work_date
+        FROM
+        work_info
+        WHERE
+        work_date = #{state}
+    </select>
+</mapper>

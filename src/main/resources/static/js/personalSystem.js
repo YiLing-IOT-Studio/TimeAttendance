@@ -160,7 +160,7 @@ $(function() {
             //获取邮件
             $.ajax({
                 type: "get",
-                url: "http://localhost:6060/post",
+                url: "/vocations",
                 dataType: "json",
                 data: {
 
