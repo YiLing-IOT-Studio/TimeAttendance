@@ -27,7 +27,6 @@ public class Staff implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String staffName;
     private String staffDate;
     @Column(columnDefinition="VARCHAR(255) default '666'")
@@ -35,6 +34,12 @@ public class Staff implements UserDetails {
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    public Staff(String staffName, String staffDate, String password) {
+        this.staffName = staffName;
+        this.staffDate = staffDate;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

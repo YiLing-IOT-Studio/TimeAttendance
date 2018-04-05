@@ -30,6 +30,8 @@ public class Vocation {
     private String all_content;
     @Column(columnDefinition="VARCHAR(255) default 'unRead'")
     private String read_state;
+    @Column(columnDefinition="VARCHAR(255) default 'unHandle'")
+    private String handle_state;
 
     public Vocation() {
     }

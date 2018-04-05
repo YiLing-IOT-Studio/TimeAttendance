@@ -2,6 +2,7 @@ package com.attendance.controller;
 
 import com.attendance.entity.Staff;
 import com.attendance.repository.StaffRepository;
+import com.attendance.service.StaffRoleService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class StaffController {
     private StaffRepository staffRepository;
     @Autowired
     private Gson gson;
+    @Autowired
+    private StaffRoleService staffService;
 
     @ResponseBody
     @GetMapping("/getStaffByName")

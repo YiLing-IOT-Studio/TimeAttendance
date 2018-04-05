@@ -162,7 +162,7 @@ $(function() {
         echartFun(year, month);
     });
     $("searchMore").click(function() {
-            $.post('', {
+            $.post('/work_info_name', {
                 searchName: $(this).prev().val()
             }, function(data) {
                 var more = JSON.parse(data);
@@ -171,10 +171,10 @@ $(function() {
                     return false;
                 }
                 var msg = $('<div class="leave pull-left">' +
-                    '<p><strong>' + data.admin + '</strong></p>' +
+                    '<p><strong>' + data.staffName + '</strong></p>' +
                     '<p>' +
                     '<span>编号:</span>' +
-                    '<span>' + data.id + '</span>' +
+                    '<span>' + data.staffId + '</span>' +
                     '</p>' +
                     '<p>' +
                     '<span>出勤天数:</span>' +
@@ -186,7 +186,7 @@ $(function() {
                     '</p>' +
                     '<p>' +
                     '<span>请假日期：</span>' +
-                    '<span>' + data.leave_date + '</span>' +
+                    '<span>' + data.leaveDate + '</span>' +
                     '</p>' +
                     '</div>');
                 $(".leaves").append(msg);

@@ -31,4 +31,8 @@ public interface VocationMapper {
     Integer getWorkDayByDate(Date start, Date end, String name);
 
     List<String> getVocationNameByDate(Date start, Date end);
+
+    void vocationHandleState(Date start, Date end, String name);
+
+    List<String> getLeaveDateByName(String name);
 }

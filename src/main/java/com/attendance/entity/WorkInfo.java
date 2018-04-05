@@ -23,8 +23,18 @@ public class WorkInfo {
     private Integer workDay;
     private Integer restDay;
     private Date workDate;
+    private String leaveDate;
 
     public WorkInfo() {
+    }
+
+    public WorkInfo(String staffName, String staffId, Integer workDay, Integer restDay, Date workDate, String leaveDate) {
+        this.staffName = staffName;
+        this.staffId = staffId;
+        this.workDay = workDay;
+        this.restDay = restDay;
+        this.workDate = workDate;
+        this.leaveDate = leaveDate;
     }
 
     public WorkInfo(String staffName, String staffId, Integer workDay, Integer restDay, Date workDate) {

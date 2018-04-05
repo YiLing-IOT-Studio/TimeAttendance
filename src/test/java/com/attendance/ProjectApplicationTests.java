@@ -1,7 +1,10 @@
 package com.attendance;
 
+import com.attendance.entity.Staff;
 import com.attendance.repository.StaffRepository;
+import com.attendance.service.StaffRoleService;
 import com.attendance.service.VocationService;
+import com.attendance.service.WorkInfoService;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,10 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,6 +24,11 @@ public class ProjectApplicationTests {
     private StaffRepository staffRepository;
     @Autowired
     private VocationService vocationService;
+    @Autowired
+    private WorkInfoService workInfoService;
+    @Autowired
+    private StaffRoleService staffRoleService;
+
 
     private Gson gson = new Gson();
 
@@ -42,23 +47,13 @@ public class ProjectApplicationTests {
     }
 
     @Test
-    public void index() throws ParseException {
-        Calendar calendar = Calendar.getInstance();
-        String month = "4";
-        String year = "2018";
-        Integer month2 = Integer.valueOf(month);
-        Integer year2 = Integer.valueOf(year);
-        calendar.set(year2,month2,0);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date1 = year+"-"+month+"-"+"01";
-        String date2 = year+"-"+month+"-"+calendar.get(Calendar.DAY_OF_MONTH);
-        Date start = sdf.parse(date1);
-        Date end = sdf.parse(date2);
-        List<String> vocationList = vocationService.getVocationNameByDate(start,end);
-        HashSet hashSet = new HashSet(vocationList);
-        vocationList.clear();
-        vocationList.addAll(hashSet);
-        System.out.println(vocationList);
+    public void index() {
+        System.out.println(staffRoleService.getRoleId("ROLE_USER"));
+        Staff staff = new Staff("dsdght","ddwd","dwqd");
+        int role_id = staffRoleService.getRoleId("ROLE_USER");
+        staffRoleService.addStaff(staff);
+        int staff_id =staff.getId();
+        staffRoleService.addStaffWithRole(staff_id,role_id);
     }
 
 }

@@ -12,6 +12,9 @@ import java.util.List;
 @Service
 public interface WorkInfoMapper {
 
-    void addWorkInfo(WorkInfo workInfo);
     List<WorkInfo> getAllWorkInfo(Date start);
+
+    List<WorkInfo> findWorkInfoByName(String name);
+
+    void addOrUpdate(WorkInfo workInfo);
 }

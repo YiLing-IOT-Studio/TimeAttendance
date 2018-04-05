@@ -63,7 +63,6 @@ public class VocationController {
         return gson.toJson(vocationList);
     }
 
-    // TODO: 2018/3/29  MyBatis批量更新
     @ResponseBody
     @PostMapping("/read_state")
     public void vocationState(HttpServletRequest request) {
@@ -75,7 +74,6 @@ public class VocationController {
         }
     }
 
-    // TODO: 2018/3/29 MyBatis批量删除
     @ResponseBody
     @PostMapping("/delete_vocation")
     public void deleteVocation(HttpServletRequest request) {

@@ -17,11 +17,15 @@ public class WorkInfoService {
     @Autowired
     private WorkInfoMapper workInfoMapper;
 
-    public void addWorkInfo(WorkInfo workInfo) {
-        workInfoMapper.addWorkInfo(workInfo);
-    }
-
     public List<WorkInfo> getAllWorkInfo(Date start) {
         return workInfoMapper.getAllWorkInfo(start);
+    }
+
+    public void addOrUpdate(WorkInfo workInfo) {
+        workInfoMapper.addOrUpdate(workInfo);
+    }
+
+    public List<WorkInfo> findWorkInfoByName(String name) {
+        return workInfoMapper.findWorkInfoByName(name);
     }
 }
