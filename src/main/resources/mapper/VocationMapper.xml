@@ -71,7 +71,7 @@
         FROM
         vocation
         WHERE
-        date &gt; #{arg0} AND date &lt; #{arg1} AND applicant = #{arg2} AND all_content IS NOT NULL AND handle_state = "unHandle"
+        date &gt; #{arg0} AND date &lt; #{arg1} AND applicant = #{arg2} AND all_content IS NOT NULL
     </select>
 
     <select id="getVocationNameByDate" resultType="String">
@@ -83,21 +83,12 @@
         date &gt; #{arg0} AND date &lt; #{arg1}
     </select>
 
-    <update id="vocationHandleState">
-        UPDATE
-        vocation
-        SET
-        handle_state="isHandle"
-        WHERE
-        date &gt; #{arg0} AND date &lt; #{arg1} AND applicant = #{arg2}
-    </update>
-
     <select id="getLeaveDateByName" resultType="String">
         SELECT
         leave_date
         FROM
         vocation
         WHERE
-        applicant = #{arg0} AND all_content IS NOT NULL AND handle_state = "isHandle"
+        applicant = #{arg0} AND all_content IS NOT NULL
     </select>
 </mapper>

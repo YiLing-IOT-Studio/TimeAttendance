@@ -54,7 +54,6 @@ public class WorkInfoController {
             if (rest_day == null) {
                 rest_day = 0;
             }
-            vocationService.vocationHandleState(start, end, staff.getStaffName());
             List<String> leaveDateList = vocationService.getLeaveDateByName(staff.getStaffName());
             if (leaveDateList.size() == 0) {
                 String leaveDate = "";

@@ -41,6 +41,9 @@ public class Staff implements UserDetails {
         this.password = password;
     }
 
+    public Staff() {
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> auths = new ArrayList<>();

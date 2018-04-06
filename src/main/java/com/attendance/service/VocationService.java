@@ -53,10 +53,6 @@ public class VocationService {
         return vocationMapper.getVocationNameByDate(start, end);
     }
 
-    public void vocationHandleState(Date start, Date end, String name) {
-        vocationMapper.vocationHandleState(start, end, name);
-    }
-
     public List<String> getLeaveDateByName(String name) {
         return vocationMapper.getLeaveDateByName(name);
     }

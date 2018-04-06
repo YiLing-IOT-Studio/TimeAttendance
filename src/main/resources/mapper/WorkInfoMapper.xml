@@ -21,12 +21,25 @@
         work_date = #{arg0}
     </select>
 
+    <!--<insert id="addOrUpdate">-->
+        <!--<selectKey keyProperty="id" resultType="workInfo" order="BEFORE">-->
+            <!--SELECT count(id) AS id FROM work_info WHERE staff_name = #{staffName} AND work_date = #{workDate}-->
+        <!--</selectKey>-->
+        <!--<if test="id == 1">-->
+            <!--UPDATE work_info SET rest_day = rest_day + #{restDay},work_day = work_day - #{restDay},leave_date = #{leaveDate}-->
+            <!--WHERE staff_name = #{staffName} AND work_date = #{workDate}-->
+        <!--</if>-->
+        <!--<if test="id == 0">-->
+            <!--INSERT INTO work_info (staff_name,staff_id,work_day,rest_day,work_date,leave_date)-->
+            <!--VALUES (#{staffName},#{staffId},#{workDay},#{restDay},#{workDate},#{leaveDate})-->
+        <!--</if>-->
+    <!--</insert>-->
     <insert id="addOrUpdate">
         <selectKey keyProperty="id" resultType="workInfo" order="BEFORE">
             SELECT count(id) AS id FROM work_info WHERE staff_name = #{staffName} AND work_date = #{workDate}
         </selectKey>
         <if test="id == 1">
-            UPDATE work_info SET rest_day = rest_day + #{restDay},work_day = work_day - #{restDay},leave_date = #{leaveDate}
+            UPDATE work_info SET rest_day = #{restDay},work_day = #{workDay},leave_date = #{leaveDate}
             WHERE staff_name = #{staffName} AND work_date = #{workDate}
         </if>
         <if test="id == 0">
