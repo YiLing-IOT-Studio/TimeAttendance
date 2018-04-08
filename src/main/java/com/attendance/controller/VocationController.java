@@ -1,6 +1,5 @@
 package com.attendance.controller;
 
-import com.attendance.entity.JsonTest;
 import com.attendance.entity.Vocation;
 import com.attendance.repository.StaffRepository;
 import com.attendance.service.VocationService;
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -34,17 +32,17 @@ public class VocationController {
 
     @PostMapping("/vocation")
     public String leave(HttpServletRequest request) {
-        Calendar calendar = Calendar.getInstance();
-        String time = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+":"+calendar.get(Calendar.SECOND);
         String applicant_name = request.getParameter("applicant");
         String leave_days = request.getParameter("days");
         String leave_date = request.getParameter("date");
         String leave_reason = request.getParameter("why");
         List<String> roleList = staffRepository.findByRole("ROLE_ADMIN");
         Random random = new Random();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(sdf.format(new Timestamp(System.currentTimeMillis())));
-        Vocation vocation = new Vocation(applicant_name,roleList.get(random.nextInt(roleList.size())),sdf.format(System.currentTimeMillis()),time,leave_days,leave_date,leave_reason);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        Vocation vocation =
+                new Vocation(applicant_name, roleList.get(random.nextInt(roleList.size())),
+                        new Date(System.currentTimeMillis()), sdf.format(new Date()),
+                        leave_days, leave_date, leave_reason);
         vocationService.addVocation(vocation);
         return "redirect:/personal_center";
     }
@@ -57,15 +55,14 @@ public class VocationController {
         return gson.toJson(vocationList);
     }
 
-    @GetMapping("/vocations_admin")
+    @PostMapping("/vocations_admin")
     @ResponseBody
     public String vocationListAdmin() {
-        String applicant_name = SecurityUtil.getCurrentUsername();
-        List<Vocation> vocationList = vocationService.getAllVocationByApplicant(applicant_name);
+        String admin = SecurityUtil.getCurrentUsername();
+        List<Vocation> vocationList = vocationService.getAllVocationByAdmin(admin);
         return gson.toJson(vocationList);
     }
 
-    // TODO: 2018/3/29  MyBatis批量更新
     @ResponseBody
     @PostMapping("/read_state")
     public void vocationState(HttpServletRequest request) {
@@ -77,7 +74,6 @@ public class VocationController {
         }
     }
 
-    // TODO: 2018/3/29 MyBatis批量删除
     @ResponseBody
     @PostMapping("/delete_vocation")
     public void deleteVocation(HttpServletRequest request) {
@@ -89,10 +85,17 @@ public class VocationController {
         }
     }
 
+    // TODO: 2018/4/1 id 不确定
     @ResponseBody
-    @PostMapping("/json_test")
-    public String json_test() {
-        JsonTest jsonTest = new JsonTest("tianyu","001",29,2);
-        return gson.toJson(jsonTest);
+    @PostMapping("agree_vocation")
+    public void agreeVocation() {
+        vocationService.agreeVocation(1);
+    }
+
+    // TODO: 2018/4/1 id 不确定
+    @ResponseBody
+    @PostMapping("disagree_vocation")
+    public void disagreeVocation() {
+        vocationService.disagreeVocation(1);
     }
 }

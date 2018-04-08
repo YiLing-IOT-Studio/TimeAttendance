@@ -3,6 +3,7 @@ package com.attendance.mapper;
 import com.attendance.entity.Vocation;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,10 +13,24 @@ import java.util.List;
 public interface VocationMapper {
 
     void addVocation(Vocation vocation);
+
     Long getVocationNumByApplicant(String applicant_name);
+
     List<Vocation> getAllVocationByApplicant(String applicant_name);
+
     List<Vocation> getAllVocationByAdmin(String admin_name);
+
     void vocationReadState(Integer id);
-    void vocationHandleState();
+
+    void agreeVocation(Integer id);
+
+    void disagreeVocation(Integer id);
+
     void deleteVocation(Integer id);
+
+    Integer getWorkDayByDate(Date start, Date end, String name);
+
+    List<String> getVocationNameByDate(Date start, Date end);
+
+    List<String> getLeaveDateByName(String name);
 }

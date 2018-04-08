@@ -13,7 +13,6 @@
         <result property="leave_reason" column="leave_reason"/>
         <result property="all_content" column="all_content"/>
         <result property="read_state" column="read_state"/>
-        <result property="handle_state" column="handle_state"/>
     </resultMap>
 
     <insert id="addVocation" parameterType="vocation">
@@ -34,20 +33,20 @@
 
     <select id="getAllVocationByApplicant" parameterType="String" resultType="vocation">
         SELECT
-        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state,handle_state
+        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state
         FROM
         vocation
         WHERE
-        (applicant = #{applicant_name} AND all_content IS NOT NULL)
+        applicant = #{applicant_name} AND all_content IS NOT NULL
     </select>
 
     <select id="getAllVocationByAdmin" parameterType="String" resultType="vocation">
         SELECT
-        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state,handle_state
+        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state
         FROM
         vocation
         WHERE
-        (admin = #{admin_name})
+        admin = #{admin_name}
     </select>
 
     <update id="vocationReadState" parameterType="Integer">
@@ -65,4 +64,31 @@
         WHERE
         id = #{id}
     </delete>
+
+    <select id="getWorkDayByDate" resultType="Integer">
+        SELECT
+        sum(leave_days)
+        FROM
+        vocation
+        WHERE
+        date &gt; #{arg0} AND date &lt; #{arg1} AND applicant = #{arg2} AND all_content IS NOT NULL
+    </select>
+
+    <select id="getVocationNameByDate" resultType="String">
+        SELECT
+        applicant
+        FROM
+        vocation
+        WHERE
+        date &gt; #{arg0} AND date &lt; #{arg1}
+    </select>
+
+    <select id="getLeaveDateByName" resultType="String">
+        SELECT
+        leave_date
+        FROM
+        vocation
+        WHERE
+        applicant = #{arg0} AND all_content IS NOT NULL
+    </select>
 </mapper>
