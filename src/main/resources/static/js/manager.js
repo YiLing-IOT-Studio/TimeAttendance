@@ -260,6 +260,5 @@ $(function() {
             check('glyphicon-ok', '/handle_vocation', '申请同意');
             check('glyphicon-remove', '/handle_vocation', '申请驳回');
         });
-
     }
 })
