@@ -35,10 +35,9 @@ public class Staff implements UserDetails {
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<Role> roles;
 
-    public Staff(String staffName, String staffDate, String password) {
+    public Staff(String staffName, String staffDate) {
         this.staffName = staffName;
         this.staffDate = staffDate;
-        this.password = password;
     }
 
     public Staff() {

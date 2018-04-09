@@ -91,4 +91,22 @@
         WHERE
         applicant = #{arg0} AND all_content IS NOT NULL
     </select>
+
+    <update id="agreeVocation">
+        UPDATE
+        vocation
+        SET
+        all_content=#{arg1}
+        WHERE
+        id = #{arg0}
+    </update>
+
+    <update id="disagreeVocation">
+        UPDATE
+        vocation
+        SET
+        all_content=#{arg1}
+        WHERE
+        id = #{arg0}
+    </update>
 </mapper>

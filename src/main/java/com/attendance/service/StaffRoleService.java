@@ -25,4 +25,13 @@ public class StaffRoleService {
     public void addStaffWithRole(int staff_id,int role_id) {
         staffRoleMapper.addStaffWithRole(staff_id,role_id);
     }
+
+    public void delStaffWithRole(int staff_id) {
+        staffRoleMapper.delStaffWithRole(staff_id);
+        staffRoleMapper.delStaff(staff_id);
+    }
+
+    public void delStaff(int staff_id) {
+        staffRoleMapper.delStaff(staff_id);
+    }
 }

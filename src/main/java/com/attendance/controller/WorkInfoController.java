@@ -38,10 +38,8 @@ public class WorkInfoController {
     @PostMapping("/work_info")
     public String work_info(HttpServletRequest request) throws ParseException {
         Calendar calendar = Calendar.getInstance();
-        String month = "4";
-        String year = "2018";
-        //String month = request.getParameter("month");
-        //String year = request.getParameter("year");
+        String month = request.getParameter("month");
+        String year = request.getParameter("year");
         Integer month2 = Integer.valueOf(month);
         Integer year2 = Integer.valueOf(year);
         calendar.set(year2, month2, 0);

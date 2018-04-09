@@ -17,8 +17,8 @@ public class SignStateController {
 
     @Autowired
     private SignStateService signStateService;
-
-    private Gson gson = new Gson();
+    @Autowired
+    private Gson gson;
 
     @RequestMapping("/allSignState")
     public String getAllSignState() {

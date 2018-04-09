@@ -85,17 +85,12 @@ public class VocationController {
         }
     }
 
-    // TODO: 2018/4/1 id 不确定
     @ResponseBody
-    @PostMapping("agree_vocation")
-    public void agreeVocation() {
-        vocationService.agreeVocation(1);
-    }
-
-    // TODO: 2018/4/1 id 不确定
-    @ResponseBody
-    @PostMapping("disagree_vocation")
-    public void disagreeVocation() {
-        vocationService.disagreeVocation(1);
+    @PostMapping("/handle_vocation")
+    public void handleVocation(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        Integer id1 = Integer.valueOf(id);
+        String result = request.getParameter("result");
+        vocationService.handleVocation(id1, result);
     }
 }

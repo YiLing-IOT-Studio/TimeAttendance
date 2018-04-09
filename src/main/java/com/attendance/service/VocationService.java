@@ -37,12 +37,8 @@ public class VocationService {
         vocationMapper.deleteVocation(id);
     }
 
-    public void disagreeVocation(Integer id) {
-        vocationMapper.disagreeVocation(id);
-    }
-
-    public void agreeVocation(Integer id) {
-        vocationMapper.agreeVocation(id);
+    public void handleVocation(Integer id, String result) {
+        vocationMapper.handleVocation(id, result);
     }
 
     public Integer getWorkDayByDate(Date start, Date end, String name) {

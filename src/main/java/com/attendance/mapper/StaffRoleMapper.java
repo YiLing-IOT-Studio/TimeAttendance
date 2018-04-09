@@ -1,10 +1,7 @@
 package com.attendance.mapper;
 
 import com.attendance.entity.Staff;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,4 +21,10 @@ public interface StaffRoleMapper {
 
     @Insert("INSERT INTO staff_roles(staff_id,roles_id) VALUES (#{staff_id},#{role_id})")
     void addStaffWithRole(@Param("staff_id") int staffId, @Param("role_id") int roleId);
+
+    @Delete("DELETE FROM staff_roles WHERE staff_id = #{staff_id}")
+    void delStaffWithRole(@Param("staff_id") int staffId);
+
+    @Delete("DELETE FROM staff WHERE id = #{staff_id}")
+    void delStaff(@Param("staff_id") int staffId);
 }
