@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by FantasticPan on 2018/3/26.
@@ -22,7 +21,7 @@ public class Vocation {
     private Integer id;
     private String applicant;
     private String admin;
-    private Date date;
+    private String date;
     private String time;
     private String leave_days;
     private String leave_date;
@@ -30,11 +29,12 @@ public class Vocation {
     private String all_content;
     @Column(columnDefinition="VARCHAR(255) default 'unRead'")
     private String read_state;
+    private String handle_state;
 
     public Vocation() {
     }
 
-    public Vocation(String applicant, String admin, Date date, String time, String leave_days, String leave_date, String leave_reason) {
+    public Vocation(String applicant, String admin, String date, String time, String leave_days, String leave_date, String leave_reason) {
         this.applicant = applicant;
         this.admin = admin;
         this.date = date;
@@ -42,5 +42,6 @@ public class Vocation {
         this.leave_days = leave_days;
         this.leave_date = leave_date;
         this.leave_reason = leave_reason;
+
     }
 }

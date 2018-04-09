@@ -15,7 +15,11 @@ html {
     box-shadow: 0 0 20px rgb(190, 189, 189);
 }
 
-.envelope {
+.topBar a:hover {
+    text-decoration: none;
+}
+
+.topBar .envelope {
     font-size: 20px;
     color: rgb(84, 84, 170);
 }
@@ -26,16 +30,18 @@ h1 img {
     font-size: 4em;
 }
 
-.pull-right {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+.topBar .pull-right {
+    text-align: center;
     position: relative;
     top: 20px;
 }
 
 .pull-right .headEmail {
     margin-right: 10px;
+}
+
+.pull-right .envelope {
+    vertical-align: top;
 }
 
 .pull-right .emailMark {
@@ -154,7 +160,7 @@ textarea {
 }
 
 .emailHead .notRead {
-    color: rgb(201, 61, 61);
+    color: rgba(201, 61, 61, 0.007);
     font-weight: bold;
 }
 

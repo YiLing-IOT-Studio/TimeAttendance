@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人管理中心</title>
-    <link rel="shortcut icon" href="/img/icon.png" />
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <script src="/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/personal.css">
+    <link rel="shortcut icon" href="../static/img/icon.png" />
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/personal.css">
 </head>
 
 <body>
@@ -18,22 +18,20 @@
         <div class="topBar container">
             <div class="pull-left col-sm-5">
                 <h1>
-                    <img src="/img/team1.png" alt="icon">
+                    <img src="/img/team1.png" alt="">
                     <span>个人管理中心</span>
                 </h1>
             </div>
             <div class="pull-right col-sm-2">
                 <div class="headEmail">
                     <span class="glyphicon glyphicon-envelope envelope"></span>
+                    <a href="javascript:;" class="lookMail"><span class="mailNum">1</span>条私信</a>
                 </div>
                 <div>
-                    <div>
-                        <span>欢迎</span>
-                        <span class="owner" sec:authentication="name"></span>
-                    </div>
-                    <div>
-                        <a href="javascript:;" class="lookMail"><span class="mailNum"></span>条私信</a>
-                    </div>
+                    <span>欢迎</span>
+                    <span class="owner" sec:authentication="name">tianyu</span>
+                    <span>|</span>
+                    <span><a href="">注销</a></span>
                 </div>
             </div>
         </div>
@@ -150,11 +148,11 @@
         </div>
     </div>
 </body>
-<link rel="stylesheet" href="/css/blue.css">
-<link rel="stylesheet" href="/css/style.css" />
-<script src="/js/Ecalendar.jquery.min.js"></script>
-<script src="/js/icheck.min.js"></script>
-<script src="/js/personalSystem.js"></script>
+<link rel="stylesheet" href="../static/css/blue.css">
+<link rel="stylesheet" href="../static/css/style.css" />
+<script src="../static/js/Ecalendar.jquery.min.js"></script>
+<script src="../static/js/icheck.min.js"></script>
+<script src="../static/js/personalSystem.js"></script>
 <script type="text/javascript">
     $(function() {
         // $('#emailCheck').icheck();
