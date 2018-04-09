@@ -28,6 +28,15 @@ header .pull-right {
     transform: translateY(-50%);
 }
 
+header a {
+    color: aliceblue;
+}
+
+header a:hover {
+    color: antiquewhite;
+    text-decoration: none;
+}
+
 .main {
     margin-top: 20px;
 }

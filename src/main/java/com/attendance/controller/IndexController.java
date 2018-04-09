@@ -16,7 +16,7 @@ public class IndexController {
     @RequestMapping("/personal_center")
     public String login(HttpServletRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
+        if(auth.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
             return "managerSystem";
         }
         return "personalSystem";
