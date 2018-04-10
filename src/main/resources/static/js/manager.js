@@ -60,16 +60,17 @@ $(function() {
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {
-        $.post('', {
+        $.post('/work_info', {
             year: year,
             month: month
         }, function(data) {
+            data = JSON.parse(data);
             var myChart = echarts.init(document.getElementById('timeAttendance'));
             var staffArr = [],
                 workDay = [],
                 restDay = [];
             for (i in data) {
-                staffArr.push(data[i].admin);
+                staffArr.push(data[i].staffName);
                 workDay.push(data[i].workDay);
                 restDay.push(data[i].restDay);
             }
@@ -161,7 +162,7 @@ $(function() {
         echartFun(year, month);
     });
     $(".searchMore").click(function() {
-            $.post('', {
+            $.post('/work_info_name', {
                 searchName: $(this).prev().val()
             }, function(data) {
                 $(".leaves").empty();
@@ -172,10 +173,10 @@ $(function() {
                 }
                 for (i in data) {
                     var msg = $('<div class="leave pull-left">' +
-                        '<p><strong>' + data[i].admin + '</strong></p>' +
+                        '<p><strong>' + data[i].staffName + '</strong></p>' +
                         '<p>' +
                         '<span>编号:</span>' +
-                        '<span>' + data[i].id + '</span>' +
+                        '<span>' + data[i].staffId + '</span>' +
                         '</p>' +
                         '<p>' +
                         '<span>出勤天数:</span>' +
@@ -187,7 +188,7 @@ $(function() {
                         '</p>' +
                         '<p>' +
                         '<span>请假日期：</span>' +
-                        '<span>' + data[i].leave_date + '</span>' +
+                        '<span>' + data[i].leaveDate + '</span>' +
                         '</p>' +
                         '</div>');
                     $(".leaves").append(msg);
@@ -198,14 +199,14 @@ $(function() {
     respond();
 
     function respond() {
-        $.post('', {}, function(data) {
+        $.post('/vocations_admin', {}, function(data) {
             data = JSON.parse(data);
             $(".emailCheck").empty();
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].admin + '</strong></span>' +
+                    '<span><strong>' + data[i].applicant + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
