@@ -22,7 +22,7 @@ public interface VocationMapper {
 
     void vocationReadState(Integer id);
 
-    void handleVocation(Integer id,String result);
+    void handleVocation(Integer id, String result);
 
     void deleteVocation(Integer id);
 

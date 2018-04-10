@@ -1,6 +1,6 @@
 var canvas = document.querySelector("#canvas");
 var WIDTH = document.body.scrollWidth,
-    HEIGHT = document.documentElement.scrollHeight || document.body.scrollHeight;
+    HEIGHT = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
 canvas.setAttribute("width", WIDTH);
 canvas.setAttribute("height", HEIGHT);
 canvas.width = WIDTH;
@@ -103,7 +103,7 @@ function draw() {
 //浏览器改变大小时
 window.onresize = function() {
     var WIDTH = document.body.scrollWidth,
-        HEIGHT = document.documentElement.scrollHeight || document.body.scrollHeight;
+        HEIGHT = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
     canvas.setAttribute("width", WIDTH);
     canvas.setAttribute("height", HEIGHT);
     canvas.width = WIDTH;

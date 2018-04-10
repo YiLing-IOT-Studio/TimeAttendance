@@ -43,7 +43,7 @@ $(function() {
                 }
                 //删除
                 $(".deleteStaff").click(function() {
-                    $.post('/delStaff', {
+                    $.post('', {
                         staffId: $(this).parent().siblings().eq(0).html()
                     }, function() {
                         staffAjax();
@@ -60,110 +60,100 @@ $(function() {
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {
-        $.ajax({
-                type: "POST",
-                url: "/work_info",
-                dataType: "json",
-                data: {
-                    "year": year,
-                    "month": month
+        $.post('', {
+            year: year,
+            month: month
+        }, function(data) {
+            var myChart = echarts.init(document.getElementById('timeAttendance'));
+            var staffArr = [],
+                workDay = [],
+                restDay = [];
+            for (i in data) {
+                staffArr.push(data[i].admin);
+                workDay.push(data[i].workDay);
+                restDay.push(data[i].restDay);
+            }
+            myChart.setOption({
+                title: {
+                    text: year + '年' + month + '月员工考勤一览表'
                 },
-                success: function(data) {
-                    var myChart = echarts.init(document.getElementById('timeAttendance'));
-                    var staffArr = [],
-                        workDay = [],
-                        restDay = [];
-                    for (i in data) {
-                        staffArr.push(data[i].staffName);
-                        workDay.push(data[i].workDay);
-                        restDay.push(data[i].restDay);
+                tooltip: {
+                    trigger: 'axis'
+                },
+                toolbox: {
+                    feature: {
+                        dataView: {
+                            show: false,
+                            readOnly: false
+                        },
+                        magicType: {
+                            show: false,
+                            type: ['line', 'bar']
+                        },
+                        restore: {
+                            show: false
+                        },
+                        saveAsImage: {
+                            show: true
+                        }
                     }
-                    myChart.setOption({
-                        title: {
-                            text: year + '年' + month + '月员工考勤一览表'
-                        },
-                        tooltip: {
-                            trigger: 'axis'
-                        },
-                        toolbox: {
-                            feature: {
-                                dataView: {
-                                    show: false,
-                                    readOnly: false
-                                },
-                                magicType: {
-                                    show: false,
-                                    type: ['line', 'bar']
-                                },
-                                restore: {
-                                    show: false
-                                },
-                                saveAsImage: {
-                                    show: true
-                                }
-                            }
-                        },
-                        legend: {
-                            data: ['出勤天数', '请假天数']
-                        },
-                        xAxis: [{
-                            type: 'category',
-                            data: staffArr
-                        }],
-                        yAxis: [{
-                            type: 'value',
-                            name: '出勤天数',
-                            min: 0,
-                            max: 31,
-                            axisLabel: {
-                                formatter: '{value} 天'
-                            }
-                        }, {
-                            type: 'value',
-                            name: '请假天数',
-                            min: 0,
-                            max: 31,
-                            axisLabel: {
-                                formatter: '{value} 天'
-                            }
-                        }],
-                        series: [{
-                            name: '出勤天数',
-                            type: 'bar',
-                            itemStyle: {
-                                normal: {
-                                    color: function(params) {
-                                        var colorList = [
-                                            '#5e7e54', '#e44f2f', '#81b6b2', '#eba422', '#5e7e54',
-                                            '#e44f2f', '#81b6b2', '#eba422', '#5e7e54', '#e44f2f'
-                                        ];
-                                        return colorList[params.dataIndex]
-                                    },
-                                    　　　　　　　　　　　　　
-                                }
-                            },
-                            data: workDay
-                        }, {
-                            name: '请假天数',
-                            type: 'line',
-                            yAxisIndex: 1,
-                            itemStyle: {
-                                normal: {
-                                    color: '#58585a',
-                                    lineStyle: {
-                                        color: '#58585a'
-                                    }
-                                }
-                            },
-                            data: restDay
-                        }]
-                    })
                 },
-                error: function(error) {
-                    console.log(error);
-                }
-            })
-
+                legend: {
+                    data: ['出勤天数', '请假天数']
+                },
+                xAxis: [{
+                    type: 'category',
+                    data: staffArr
+                }],
+                yAxis: [{
+                    type: 'value',
+                    name: '出勤天数',
+                    min: 0,
+                    max: 31,
+                    axisLabel: {
+                        formatter: '{value} 天'
+                    }
+                }, {
+                    type: 'value',
+                    name: '请假天数',
+                    min: 0,
+                    max: 31,
+                    axisLabel: {
+                        formatter: '{value} 天'
+                    }
+                }],
+                series: [{
+                    name: '出勤天数',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: function(params) {
+                                var colorList = [
+                                    '#5e7e54', '#e44f2f', '#81b6b2', '#eba422', '#5e7e54',
+                                    '#e44f2f', '#81b6b2', '#eba422', '#5e7e54', '#e44f2f'
+                                ];
+                                return colorList[params.dataIndex]
+                            },
+                            　　　　　　　　　　　　　
+                        }
+                    },
+                    data: workDay
+                }, {
+                    name: '请假天数',
+                    type: 'line',
+                    yAxisIndex: 1,
+                    itemStyle: {
+                        normal: {
+                            color: '#58585a',
+                            lineStyle: {
+                                color: '#58585a'
+                            }
+                        }
+                    },
+                    data: restDay
+                }]
+            });
+        })
     }
     $("#searchBtn").click(function() {
         var year = $(".selectYear").find("option:selected").text();
@@ -171,58 +161,51 @@ $(function() {
         echartFun(year, month);
     });
     $(".searchMore").click(function() {
-            $.ajax({
-                    type: "POST",
-                    url: "/work_info_name",
-                    dataType: "json",
-                    data: {
-                        "searchName": $(this).prev().val()
-                    },
-                    success: function(data) {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        if (data.length == 0) {
-                            alert("未查询到结果，请输入完整姓名");
-                            return false;
-                        }
-                        var msg = $('<div class="leave pull-left">' +
-                            '<p><strong>' + data.staffName + '</strong></p>' +
-                            '<p>' +
-                            '<span>编号:</span>' +
-                            '<span>' + data.staffId + '</span>' +
-                            '</p>' +
-                            '<p>' +
-                            '<span>出勤天数:</span>' +
-                            '<span>' + data.workDay + '</span>' +
-                            '</p>' +
-                            '<p>' +
-                            '<span>请假天数：</span>' +
-                            '<span>' + data.restDay + '</span>' +
-                            '</p>' +
-                            '<p>' +
-                            '<span>请假日期：</span>' +
-                            '<span>' + data.leaveDate + '</span>' +
-                            '</p>' +
-                            '</div>');
-                        $(".leaves").append(msg);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                })
+            $.post('', {
+                searchName: $(this).prev().val()
+            }, function(data) {
+                $(".leaves").empty();
+                data = JSON.parse(data);
+                if (data.length == 0) {
+                    alert("未查询到结果，请输入完整姓名");
+                    return false;
+                }
+                for (i in data) {
+                    var msg = $('<div class="leave pull-left">' +
+                        '<p><strong>' + data[i].admin + '</strong></p>' +
+                        '<p>' +
+                        '<span>编号:</span>' +
+                        '<span>' + data[i].id + '</span>' +
+                        '</p>' +
+                        '<p>' +
+                        '<span>出勤天数:</span>' +
+                        '<span>' + data[i].workDay + '</span>' +
+                        '</p>' +
+                        '<p>' +
+                        '<span>请假天数：</span>' +
+                        '<span>' + data[i].restDay + '</span>' +
+                        '</p>' +
+                        '<p>' +
+                        '<span>请假日期：</span>' +
+                        '<span>' + data[i].leave_date + '</span>' +
+                        '</p>' +
+                        '</div>');
+                    $(".leaves").append(msg);
+                }
+            })
         })
         //请假申请批复
     respond();
 
     function respond() {
-        $.post('/vocations_admin', {}, function(data) {
+        $.post('', {}, function(data) {
             data = JSON.parse(data);
             $(".emailCheck").empty();
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].applicant + '</strong></span>' +
+                    '<span><strong>' + data[i].admin + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
@@ -244,21 +227,22 @@ $(function() {
                     '</div>');
                 $(".emailCheck").append(respondEmail);
             }
-            function check($name, url, result) {
+
+            function check($name, url, result, text) {
                 $("." + $name).click(function() {
                     var _this = $(this).parent().parent();
                     $.post(url, {
+                        sender: _this.prev().find("strong").text(),
                         id: _this.attr("index"),
                         result: result
-                    }, function(data) {
-                        data = JSON.parse(data);
-                        _this.html('<button class="btn btn-danger">' + data[0]. + '</button>');
+                    }, function() {
+                        _this.html('<button class="btn btn-danger">' + text + '</button>');
                         respond();
                     })
                 });
             }
-            check('glyphicon-ok', '/handle_vocation', '申请同意');
-            check('glyphicon-remove', '/handle_vocation', '申请驳回');
+            check('glyphicon-ok', '', 'true', '已通过');
+            check('glyphicon-remove', '', 'false', '已驳回');
         });
     }
 })
