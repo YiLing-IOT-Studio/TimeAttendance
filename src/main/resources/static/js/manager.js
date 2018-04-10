@@ -16,7 +16,7 @@ $(function() {
         //员工信息表
         //添加
     $("#add").click(function() {
-        $.post('', {
+        $.post('/addStaff', {
             "data": $("#addForm").serialize() //数据格式为a=1&b=123的字符串
         }, function() {
             staffAjax();
@@ -28,15 +28,15 @@ $(function() {
         $("tbody").empty();
         $.ajax({
             type: "get",
-            url: "",
+            url: "/getAllStaff",
             dataType: "json",
             data: {},
             success: function(data) {
                 for (i in data) {
                     var staffMsg = $('<tr>' +
                         '<td>' + data[i].id + '</td>' +
-                        '<td>' + data[i].admin + '</td>' +
-                        '<td>' + data[i].date + '</td>' +
+                        '<td>' + data[i].staffName + '</td>' +
+                        '<td>' + data[i].staffDate + '</td>' +
                         '<td><a class="deleteStaff" href="#">删除</a></td>' +
                         '</tr>');
                     $("tbody").append(staffMsg);
