@@ -160,42 +160,45 @@ $(function() {
         var month = $(".selectMonth").find("option:selected").text();
         echartFun(year, month);
     });
-    $("searchMore").click(function() {
+    $(".searchMore").click(function() {
             $.post('', {
                 searchName: $(this).prev().val()
             }, function(data) {
+                $(".leaves").empty();
                 data = JSON.parse(data);
                 if (data.length == 0) {
                     alert("未查询到结果，请输入完整姓名");
                     return false;
                 }
-                var msg = $('<div class="leave pull-left">' +
-                    '<p><strong>' + data.admin + '</strong></p>' +
-                    '<p>' +
-                    '<span>编号:</span>' +
-                    '<span>' + data.id + '</span>' +
-                    '</p>' +
-                    '<p>' +
-                    '<span>出勤天数:</span>' +
-                    '<span>' + data.workDay + '</span>' +
-                    '</p>' +
-                    '<p>' +
-                    '<span>请假天数：</span>' +
-                    '<span>' + data.restDay + '</span>' +
-                    '</p>' +
-                    '<p>' +
-                    '<span>请假日期：</span>' +
-                    '<span>' + data.leave_date + '</span>' +
-                    '</p>' +
-                    '</div>');
-                $(".leaves").append(msg);
+                for (i in data) {
+                    var msg = $('<div class="leave pull-left">' +
+                        '<p><strong>' + data[i].admin + '</strong></p>' +
+                        '<p>' +
+                        '<span>编号:</span>' +
+                        '<span>' + data[i].id + '</span>' +
+                        '</p>' +
+                        '<p>' +
+                        '<span>出勤天数:</span>' +
+                        '<span>' + data[i].workDay + '</span>' +
+                        '</p>' +
+                        '<p>' +
+                        '<span>请假天数：</span>' +
+                        '<span>' + data[i].restDay + '</span>' +
+                        '</p>' +
+                        '<p>' +
+                        '<span>请假日期：</span>' +
+                        '<span>' + data[i].leave_date + '</span>' +
+                        '</p>' +
+                        '</div>');
+                    $(".leaves").append(msg);
+                }
             })
         })
         //请假申请批复
     respond();
 
     function respond() {
-        $.post('http://localhost:6060/post', {}, function(data) {
+        $.post('', {}, function(data) {
             data = JSON.parse(data);
             $(".emailCheck").empty();
             for (i in data) {
@@ -224,22 +227,22 @@ $(function() {
                     '</div>');
                 $(".emailCheck").append(respondEmail);
             }
-        });
 
-        function check($name, url, result, text) {
-            $("." + $name).click(function() {
-                var _this = $(this).parent().parent();
-                $.post(url, {
-                    sender: _this.prev().find("strong").text(),
-                    id: _this.attr("index"),
-                    result: result
-                }, function() {
-                    _this.html('<button class="btn btn-danger">' + text + '</button>');
-                    respond();
-                })
-            });
-        }
-        check('glyphicon-ok', '', 'true', '已通过');
-        check('glyphicon-remove', '', 'false', '已驳回');
+            function check($name, url, result, text) {
+                $("." + $name).click(function() {
+                    var _this = $(this).parent().parent();
+                    $.post(url, {
+                        sender: _this.prev().find("strong").text(),
+                        id: _this.attr("index"),
+                        result: result
+                    }, function() {
+                        _this.html('<button class="btn btn-danger">' + text + '</button>');
+                        respond();
+                    })
+                });
+            }
+            check('glyphicon-ok', '', 'true', '已通过');
+            check('glyphicon-remove', '', 'false', '已驳回');
+        });
     }
 })
