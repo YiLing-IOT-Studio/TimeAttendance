@@ -5,6 +5,7 @@ import com.attendance.mapper.VocationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,5 +35,21 @@ public class VocationService {
 
     public void deleteVocation(Integer id) {
         vocationMapper.deleteVocation(id);
+    }
+
+    public void handleVocation(Integer id, String result) {
+        vocationMapper.handleVocation(id, result);
+    }
+
+    public Integer getWorkDayByDate(Date start, Date end, String name) {
+        return vocationMapper.getWorkDayByDate(start, end, name);
+    }
+
+    public List<String> getVocationNameByDate(Date start, Date end) {
+        return vocationMapper.getVocationNameByDate(start, end);
+    }
+
+    public List<String> getLeaveDateByName(String name) {
+        return vocationMapper.getLeaveDateByName(name);
     }
 }
