@@ -27,8 +27,8 @@ $(function() {
     function staffAjax() {
         $("tbody").empty();
         $.ajax({
-            type: "get",
-            url: "/getAllStaff",
+            type: "post",
+            url: "http://localhost:7070/post",
             dataType: "json",
             data: {},
             success: function(data) {
@@ -43,8 +43,11 @@ $(function() {
                 }
                 //删除
                 $(".deleteStaff").click(function() {
-                    $.post('', {
-                        staffId: $(this).parent().siblings().eq(0).html()
+                    var _this = $(this);
+                    console.log(_this.parent().prev().prev().html());
+                    $.post('http://localhost:7070/post', {
+                        staffId: _this.parent().prev().prev().prev().html(),
+                        staffName: _this.parent().prev().prev().html()
                     }, function() {
                         staffAjax();
                     })
@@ -60,17 +63,16 @@ $(function() {
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {
-        $.post('/work_info', {
+        $.post('', {
             year: year,
             month: month
         }, function(data) {
-            data = JSON.parse(data);
             var myChart = echarts.init(document.getElementById('timeAttendance'));
             var staffArr = [],
                 workDay = [],
                 restDay = [];
             for (i in data) {
-                staffArr.push(data[i].staffName);
+                staffArr.push(data[i].admin);
                 workDay.push(data[i].workDay);
                 restDay.push(data[i].restDay);
             }
@@ -162,7 +164,7 @@ $(function() {
         echartFun(year, month);
     });
     $(".searchMore").click(function() {
-            $.post('/work_info_name', {
+            $.post('', {
                 searchName: $(this).prev().val()
             }, function(data) {
                 $(".leaves").empty();
@@ -173,10 +175,10 @@ $(function() {
                 }
                 for (i in data) {
                     var msg = $('<div class="leave pull-left">' +
-                        '<p><strong>' + data[i].staffName + '</strong></p>' +
+                        '<p><strong>' + data[i].admin + '</strong></p>' +
                         '<p>' +
                         '<span>编号:</span>' +
-                        '<span>' + data[i].staffId + '</span>' +
+                        '<span>' + data[i].id + '</span>' +
                         '</p>' +
                         '<p>' +
                         '<span>出勤天数:</span>' +
@@ -188,7 +190,7 @@ $(function() {
                         '</p>' +
                         '<p>' +
                         '<span>请假日期：</span>' +
-                        '<span>' + data[i].leaveDate + '</span>' +
+                        '<span>' + data[i].leave_date + '</span>' +
                         '</p>' +
                         '</div>');
                     $(".leaves").append(msg);
@@ -199,14 +201,14 @@ $(function() {
     respond();
 
     function respond() {
-        $.post('/vocations_admin', {}, function(data) {
+        $.post('', {}, function(data) {
             data = JSON.parse(data);
             $(".emailCheck").empty();
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].applicant + '</strong></span>' +
+                    '<span><strong>' + data[i].admin + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
@@ -220,30 +222,32 @@ $(function() {
                     '<p>' + data[i].leave_reason + '</p>' +
                     '</div>' +
                     '<div class="checkBox" index = "' + data[i].id + '">' +
-                    '<a href="#"><span class="glyphicon glyphicon-ok"></span></a>' +
-                    '<span>|</span>' +
-                    '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>' +
                     '</div>' +
                     '</div>' +
                     '</div>');
                 $(".emailCheck").append(respondEmail);
+                if (data[i].all_content) {
+                    $('.checkBox').eq(i).html('<button class="btn btn-danger">' + data[i].all_content + '</button>');
+                } else {
+                    $('.checkBox').eq(i).html('<a href="#"><span class="glyphicon glyphicon-ok"></span></a>' +
+                        '<span>|</span>' +
+                        '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>');
+                }
             }
 
-            function check($name, url, result, text) {
+            function check($name, url, result) {
                 $("." + $name).click(function() {
                     var _this = $(this).parent().parent();
                     $.post(url, {
-                        sender: _this.prev().find("strong").text(),
                         id: _this.attr("index"),
                         result: result
                     }, function() {
-                        _this.html('<button class="btn btn-danger">' + text + '</button>');
                         respond();
                     })
                 });
             }
-            check('glyphicon-ok', '', 'true', '已通过');
-            check('glyphicon-remove', '', 'false', '已驳回');
+            check('glyphicon-ok', '', 'true');
+            check('glyphicon-remove', '', 'false');
         });
     }
 })
