@@ -52,4 +52,8 @@ public class VocationService {
     public List<String> getLeaveDateByName(String name) {
         return vocationMapper.getLeaveDateByName(name);
     }
+
+    public Vocation getVocationByContent(Integer id) {
+        return vocationMapper.getVocationByContent(id);
+    }
 }

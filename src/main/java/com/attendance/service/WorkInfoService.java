@@ -28,4 +28,8 @@ public class WorkInfoService {
     public List<WorkInfo> findWorkInfoByName(String name) {
         return workInfoMapper.findWorkInfoByName(name);
     }
+
+    public void delAllWorkInfoByName(String name) {
+        workInfoMapper.delAllWorkInfoByName(name);
+    }
 }

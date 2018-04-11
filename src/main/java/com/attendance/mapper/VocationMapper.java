@@ -31,4 +31,6 @@ public interface VocationMapper {
     List<String> getVocationNameByDate(Date start, Date end);
 
     List<String> getLeaveDateByName(String name);
+
+    Vocation getVocationByContent(Integer id);
 }

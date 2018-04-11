@@ -5,16 +5,31 @@
     <resultMap id="signState" type="SignState">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="state" column="state"/>
+        <result property="markOne" column="mark_one"/>
+        <result property="markTwo" column="mark_two"/>
     </resultMap>
 
     <select id="getAllSignState" resultType="signState">
         SELECT
-        id, name,state
+        id, name, mark_one, mark_two
         FROM
         sign_state
         ORDER BY
         id
         DESC
     </select>
+
+    <insert id="addSignState" parameterType="String">
+        INSERT INTO
+        sign_state(name)
+        VALUES
+        (#{name})
+    </insert>
+
+    <delete id="delSignState" parameterType="String">
+        DELETE FROM
+        sign_state
+        WHERE
+        name = #{name}
+    </delete>
 </mapper>

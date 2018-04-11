@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface StaffRoleMapper {
 
-    @Insert("INSERT INTO staff(staff_name,password,staff_date) " +
-            "VALUES (#{staff.staffName},#{staff.password},#{staff.staffDate})")
+    @Insert("INSERT INTO staff(staff_name,staff_date) " +
+            "VALUES (#{staff.staffName},#{staff.staffDate})")
     @Options(useGeneratedKeys = true, keyProperty = "staff.id")
     void addStaff(@Param("staff") Staff staff);
 

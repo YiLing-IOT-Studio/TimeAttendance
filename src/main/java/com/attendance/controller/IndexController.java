@@ -18,6 +18,8 @@ public class IndexController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth.getAuthorities().toString().equals("[ROLE_ADMIN]")) {
             return "managerSystem";
+        } else if (auth.getAuthorities().toString().equals("[ROLE_SIGN]")) {
+            return "main";
         }
         return "personalSystem";
     }

@@ -12,4 +12,8 @@ import java.util.List;
 public interface SignStateMapper {
 
     List<SignState> getAllSignState();
+
+    void addSignState(String name);
+
+    void delSignState(String name);
 }

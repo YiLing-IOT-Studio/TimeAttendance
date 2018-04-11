@@ -16,19 +16,23 @@ $(function() {
         //员工信息表
         //添加
     $("#add").click(function() {
-        $.post('/addStaff', {
-            "data": $("#addForm").serialize() //数据格式为a=1&b=123的字符串
-        }, function() {
-            staffAjax();
-        })
+        $.ajax({
+            type : "post",
+            url : "/addStaff",
+            dataType : "json",
+            data : $("#addForm").serialize(),
+            success : function() {
+                staffAjax();
+            }
+        });
     });
     staffAjax();
 
     function staffAjax() {
         $("tbody").empty();
         $.ajax({
-            type: "post",
-            url: "http://localhost:7070/post",
+            type: "get",
+            url: "/getAllStaff",
             dataType: "json",
             data: {},
             success: function(data) {
@@ -43,9 +47,8 @@ $(function() {
                 }
                 //删除
                 $(".deleteStaff").click(function() {
-                    var _this = $(this);
-                    console.log(_this.parent().prev().prev().html());
-                    $.post('http://localhost:7070/post', {
+                    var _this=$(this);
+                    $.post('/delStaff', {
                         staffId: _this.parent().prev().prev().prev().html(),
                         staffName: _this.parent().prev().prev().html()
                     }, function() {
@@ -63,16 +66,17 @@ $(function() {
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {
-        $.post('', {
+        $.post('/work_info', {
             year: year,
             month: month
         }, function(data) {
+            data = JSON.parse(data);
             var myChart = echarts.init(document.getElementById('timeAttendance'));
             var staffArr = [],
                 workDay = [],
                 restDay = [];
             for (i in data) {
-                staffArr.push(data[i].admin);
+                staffArr.push(data[i].staffName);
                 workDay.push(data[i].workDay);
                 restDay.push(data[i].restDay);
             }
@@ -164,7 +168,7 @@ $(function() {
         echartFun(year, month);
     });
     $(".searchMore").click(function() {
-            $.post('', {
+            $.post('/work_info_name', {
                 searchName: $(this).prev().val()
             }, function(data) {
                 $(".leaves").empty();
@@ -175,10 +179,10 @@ $(function() {
                 }
                 for (i in data) {
                     var msg = $('<div class="leave pull-left">' +
-                        '<p><strong>' + data[i].admin + '</strong></p>' +
+                        '<p><strong>' + data[i].staffName + '</strong></p>' +
                         '<p>' +
                         '<span>编号:</span>' +
-                        '<span>' + data[i].id + '</span>' +
+                        '<span>' + data[i].staffId + '</span>' +
                         '</p>' +
                         '<p>' +
                         '<span>出勤天数:</span>' +
@@ -190,7 +194,7 @@ $(function() {
                         '</p>' +
                         '<p>' +
                         '<span>请假日期：</span>' +
-                        '<span>' + data[i].leave_date + '</span>' +
+                        '<span>' + data[i].leaveDate + '</span>' +
                         '</p>' +
                         '</div>');
                     $(".leaves").append(msg);
@@ -201,14 +205,14 @@ $(function() {
     respond();
 
     function respond() {
-        $.post('', {}, function(data) {
+        $.post('/vocations_admin', {}, function(data) {
             data = JSON.parse(data);
             $(".emailCheck").empty();
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +
                     '<div class="sender col-12">' +
                     '<span>申请人：</span>' +
-                    '<span><strong>' + data[i].admin + '</strong></span>' +
+                    '<span><strong>' + data[i].applicant + '</strong></span>' +
                     '</div>' +
                     '<div class="emailBox">' +
                     '<div class="contentBox">' +
@@ -246,8 +250,8 @@ $(function() {
                     })
                 });
             }
-            check('glyphicon-ok', '', 'true');
-            check('glyphicon-remove', '', 'false');
+            check('glyphicon-ok', '/handle_vocation', '已通过');
+            check('glyphicon-remove', '/handle_vocation', '已驳回');
         });
     }
 })

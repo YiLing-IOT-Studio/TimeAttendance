@@ -92,7 +92,7 @@
         applicant = #{arg0} AND all_content IS NOT NULL
     </select>
 
-    <update id="agreeVocation">
+    <update id="handleVocation">
         UPDATE
         vocation
         SET
@@ -101,12 +101,12 @@
         id = #{arg0}
     </update>
 
-    <update id="disagreeVocation">
-        UPDATE
+    <select id="getVocationByContent" resultMap="vocation">
+        SELECT
+        id,applicant,admin,date,time,leave_days,leave_date,leave_reason,all_content,read_state
+        FROM
         vocation
-        SET
-        all_content=#{arg1}
         WHERE
-        id = #{arg0}
-    </update>
+        id = #{id} AND all_content IS NOT NULL
+    </select>
 </mapper>

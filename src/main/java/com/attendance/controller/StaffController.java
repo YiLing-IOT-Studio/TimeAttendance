@@ -2,7 +2,9 @@ package com.attendance.controller;
 
 import com.attendance.entity.Staff;
 import com.attendance.repository.StaffRepository;
+import com.attendance.service.SignStateService;
 import com.attendance.service.StaffRoleService;
+import com.attendance.service.WorkInfoService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,10 @@ public class StaffController {
     private StaffRoleService staffService;
     @Autowired
     private StaffRoleService staffRoleService;
+    @Autowired
+    private WorkInfoService workInfoService;
+    @Autowired
+    private SignStateService signStateService;
 
     @ResponseBody
     @GetMapping("/getStaffByName")
@@ -44,20 +50,24 @@ public class StaffController {
     @ResponseBody
     @PostMapping("/addStaff")
     public void addStaff(HttpServletRequest request) {
-        String staffName = request.getParameter("data");
-        //Staff staff = new Staff(staffName,staffDate);
-        //staffRoleService.addStaff(staff);
-        //Integer staff_id = staff.getId();
-        //Integer rol_id = staffRoleService.getRoleId("ROLE_USER");
-        //staffRoleService.addStaffWithRole(staff_id,rol_id);
-        System.out.println(staffName);
+        String staffName = request.getParameter("staffName");
+        String staffDate = request.getParameter("staffDate");
+        Staff staff = new Staff(staffName,staffDate);
+        staffRoleService.addStaff(staff);
+        Integer staff_id = staff.getId();
+        Integer rol_id = staffRoleService.getRoleId("ROLE_USER");
+        staffRoleService.addStaffWithRole(staff_id,rol_id);
+        //signStateService.addSignState(staffName);
     }
 
     @ResponseBody
     @PostMapping("/delStaff")
     public void delStaff(HttpServletRequest request) {
         String staffId = request.getParameter("staffId");
+        String staffName = request.getParameter("staffName");
         Integer staff_id = Integer.valueOf(staffId);
         staffRoleService.delStaffWithRole(staff_id);
+        workInfoService.delAllWorkInfoByName(staffName);
+        //signStateService.delSignState(staffName);
     }
 }

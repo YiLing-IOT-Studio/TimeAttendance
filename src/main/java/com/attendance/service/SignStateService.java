@@ -19,4 +19,12 @@ public class SignStateService {
     public List<SignState> getAllSignState() {
         return signStateMapper.getAllSignState();
     }
+
+    public void addSignState(String name) {
+        signStateMapper.addSignState(name);
+    }
+
+    public void delSignState(String name) {
+        signStateMapper.delSignState(name);
+    }
 }

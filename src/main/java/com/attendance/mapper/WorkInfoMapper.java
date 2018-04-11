@@ -17,4 +17,6 @@ public interface WorkInfoMapper {
     List<WorkInfo> findWorkInfoByName(String name);
 
     void addOrUpdate(WorkInfo workInfo);
+
+    void delAllWorkInfoByName(String name);
 }

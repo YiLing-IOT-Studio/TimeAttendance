@@ -2,7 +2,7 @@
     function addStaff() {
         $.ajax({
             type: "GET",
-            url: "http://localhost:7070/get",
+            url: "/allSignState",
             dataType: "json",
             data: {
 
@@ -12,10 +12,10 @@
                 var oTbody = $('tbody');
                 for (var i = 0; i < data.length; i++) {
                     var member = $('<tr>' +
-                        '<td>' + data[i].staffId + '</td>' +
-                        '<td>' + data[i].staffName + '</td>' +
-                        '<td><button class = "btn btn-primary signIn ' + data[i].mark1 + '" >签到</button></td>' +
-                        '<td><button class = "btn btn-danger signOut ' + data[i].mark2 + '">签退</button></td>' +
+                        '<td>' + data[i].id + '</td>' +
+                        '<td>' + data[i].name + '</td>' +
+                        '<td><button class = "btn btn-primary signIn ' + data[i].markOne + '" >签到</button></td>' +
+                        '<td><button class = "btn btn-danger signOut ' + data[i].markTwo + '">签退</button></td>' +
                         '</tr>')
                     oTbody.append(member);
                 }

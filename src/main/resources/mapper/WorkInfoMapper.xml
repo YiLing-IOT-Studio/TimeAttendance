@@ -43,4 +43,11 @@
         WHERE
         staff_name = #{arg0}
     </select>
+
+    <delete id="delAllWorkInfoByName" parameterType="String">
+        DELETE FROM
+        work_info
+        WHERE
+        staff_name = #{arg0}
+    </delete>
 </mapper>

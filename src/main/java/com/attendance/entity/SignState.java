@@ -1,17 +1,13 @@
 package com.attendance.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import javax.persistence.*;
 
 /**
  * Created by FantasticPan on 2018/3/27.
  */
-@Getter
-@Setter
-@ToString
+@Data
 @Entity
 @Table(name = "sign_state")
 public class SignState {
@@ -20,5 +16,8 @@ public class SignState {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer state;
+    @Column(columnDefinition="VARCHAR(255) default 'display'")
+    private String markOne;
+    @Column(columnDefinition="VARCHAR(255) default 'hidden'")
+    private String markTwo;
 }

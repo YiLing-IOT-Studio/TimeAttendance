@@ -87,10 +87,11 @@ public class VocationController {
 
     @ResponseBody
     @PostMapping("/handle_vocation")
-    public void handleVocation(HttpServletRequest request) {
+    public String handleVocation(HttpServletRequest request) {
         String id = request.getParameter("id");
         Integer id1 = Integer.valueOf(id);
         String result = request.getParameter("result");
         vocationService.handleVocation(id1, result);
+        return gson.toJson(vocationService.getVocationByContent(id1));
     }
 }
