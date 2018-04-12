@@ -16,4 +16,8 @@ public interface SignStateMapper {
     void addSignState(String name);
 
     void delSignState(String name);
+
+    void signIn(String name);
+
+    void signOut(String name);
 }

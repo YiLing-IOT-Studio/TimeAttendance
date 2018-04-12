@@ -1,4 +1,5 @@
 (function() {
+    addStaff();
     function addStaff() {
         $.ajax({
             type: "GET",
@@ -24,17 +25,19 @@
                 for (var i = 0; i < inBtn.length; i++) {
                     addHandler(inBtn[i], 'click', function() {
                         var _this = $(this);
-                        $.post("", {
+                        $.post("/signIn", {
                             staffName: _this.parent().prev().text()
                         }, function() {
+                            oTbody.empty();
                             addStaff();
                         })
                     })
                     addHandler(outBtn[i], 'click', function() {
                         var _this = $(this);
-                        $.post("", {
+                        $.post("signOut", {
                             staffName: _this.parent().prev().prev().text()
                         }, function() {
+                            oTbody.empty();
                             addStaff();
                         })
                     })

@@ -57,7 +57,7 @@ public class StaffController {
         Integer staff_id = staff.getId();
         Integer rol_id = staffRoleService.getRoleId("ROLE_USER");
         staffRoleService.addStaffWithRole(staff_id,rol_id);
-        //signStateService.addSignState(staffName);
+        signStateService.addSignState(staffName);
     }
 
     @ResponseBody
@@ -68,6 +68,6 @@ public class StaffController {
         Integer staff_id = Integer.valueOf(staffId);
         staffRoleService.delStaffWithRole(staff_id);
         workInfoService.delAllWorkInfoByName(staffName);
-        //signStateService.delSignState(staffName);
+        signStateService.delSignState(staffName);
     }
 }

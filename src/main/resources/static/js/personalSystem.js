@@ -32,10 +32,9 @@ $(function() {
                 for (i in data) {
                     var dateList = $("<tr>" +
                         "<td>" + data[i].num + "</td>" +
-                        "<td>" + data[i].dateNum + "</td>" +
                         "<td>" + data[i].inTime + "</td>" +
                         "<td>" + data[i].outTime + "</td>" +
-                        "<td>" + data[i].attendance + "</td>" +
+                        "<td>" + data[i].dateNum + "</td>" +
                         +"</tr>");
                     $(".attendanceTable").append(dateList);
                 }

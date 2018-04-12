@@ -1,5 +1,6 @@
 $(function() {
     //导航
+    var oDate = new Date();
     $(".mainMsg:eq(1)").css("display", "block");
     $(".asideBar>ul>li").each(function(i, val) {
             $(val).click(function() {
@@ -53,6 +54,7 @@ $(function() {
                         staffName: _this.parent().prev().prev().html()
                     }, function() {
                         staffAjax();
+                        echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
                     })
                 })
 
@@ -62,7 +64,6 @@ $(function() {
             }
         });
     }
-    var oDate = new Date();
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
 
     function echartFun(year, month) {

@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by FantasticPan on 2018/3/18.
@@ -20,17 +21,19 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String staffName;
-    private String inTime;
-    private String outTime;
-    private String attendance;
+    private Date inTime;
+    private Date outTime;
+    private Long totalMill;
 
-    public Attendance() {
-    }
-
-    public Attendance(String staffName, String inTime, String outTime, String attendance) {
+    // TODO: 2018/4/12 inTime时间代码优化
+    public Attendance(String staffName, Date inTime) {
         this.staffName = staffName;
         this.inTime = inTime;
-        this.outTime = outTime;
-        this.attendance = attendance;
+    }
+
+    public Attendance(String staffName, Date inTime, Long totalMill) {
+        this.staffName = staffName;
+        this.inTime = inTime;
+        this.totalMill = totalMill;
     }
 }

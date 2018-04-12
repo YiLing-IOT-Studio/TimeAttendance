@@ -9,7 +9,7 @@
         <result property="markTwo" column="mark_two"/>
     </resultMap>
 
-    <select id="getAllSignState" resultType="signState">
+    <select id="getAllSignState" resultMap="signState">
         SELECT
         id, name, mark_one, mark_two
         FROM
@@ -32,4 +32,22 @@
         WHERE
         name = #{name}
     </delete>
+
+    <update id="signIn" parameterType="String">
+        UPDATE
+        sign_state
+        SET
+        mark_one = "hidden",mark_two = "display"
+        WHERE
+        name = #{name}
+    </update>
+
+    <update id="signOut" parameterType="String">
+        UPDATE
+        sign_state
+        SET
+        mark_one = "display",mark_two = "hidden"
+        WHERE
+        name = #{name}
+    </update>
 </mapper>

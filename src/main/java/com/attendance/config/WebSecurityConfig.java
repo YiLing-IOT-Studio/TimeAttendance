@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/personal_center",true)
                 .failureUrl("/sign_in?error").permitAll()
-                .and().logout().logoutSuccessUrl("/").permitAll()
+                .and().logout().logoutSuccessUrl("/sign_in").permitAll()
                 .and().csrf().disable();
     }
 }

@@ -7,17 +7,40 @@
         <result property="staffName" column="staff_name"/>
         <result property="inTime" column="in_time"/>
         <result property="outTime" column="out_time"/>
-        <result property="attendance" column="attendance"/>
+        <result property="totalMill" column="total_mill"/>
     </resultMap>
 
-    <sql id="Base_Column_List" >
-        id, staff_name, come_time, leave_time, attendance
-    </sql>
-
-    <insert id="add" parameterType="Attendance">
+    <insert id="addAttendanceInTime" parameterType="Attendance">
         INSERT INTO
-        attendance_info(staff_name,come_time,leave_time,attendance)
+        attendance(staff_name,in_time)
         VALUES
-        (#{staffName},#{comeTime},#{leaveTime})
+        (#{staffName},#{inTime})
     </insert>
+
+    <update id="addAttendanceOutTime" parameterType="Attendance">
+        UPDATE
+        attendance
+        SET
+        out_time = #{inTime}
+        WHERE
+        staff_name = #{staffName} AND in_time IS NOT NULL AND out_time IS NULL
+    </update>
+
+    <select id="getAttendanceByName" resultMap="attendance">
+        SELECT
+        id, staff_name, in_time, out_time
+        FROM
+        attendance
+        WHERE
+        staff_name = #{arg0}
+    </select>
+
+    <select id="getAttendance" resultMap="attendance">
+        SELECT
+        id, staff_name, in_time, out_time, total_mill
+        FROM
+        attendance
+        WHERE
+        staff_name = #{arg0}
+    </select>
 </mapper>

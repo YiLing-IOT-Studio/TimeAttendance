@@ -27,4 +27,12 @@ public class SignStateService {
     public void delSignState(String name) {
         signStateMapper.delSignState(name);
     }
+
+    public void signIn(String name) {
+        signStateMapper.signIn(name);
+    }
+
+    public void signOut(String name) {
+        signStateMapper.signOut(name);
+    }
 }
