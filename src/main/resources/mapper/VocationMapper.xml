@@ -71,7 +71,7 @@
         FROM
         vocation
         WHERE
-        date &gt; #{arg0} AND date &lt; #{arg1} AND applicant = #{arg2} AND all_content IS NOT NULL
+        applicant = #{arg0} AND date &gt; #{arg1} AND date &lt; #{arg2} AND all_content IS NOT NULL
     </select>
 
     <select id="getVocationNameByDate" resultType="String">

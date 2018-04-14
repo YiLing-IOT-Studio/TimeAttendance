@@ -7,7 +7,7 @@
         <result property="staffName" column="staff_name"/>
         <result property="inTime" column="in_time"/>
         <result property="outTime" column="out_time"/>
-        <result property="totalMill" column="total_mill"/>
+        <result property="totalMilli" column="total_milli"/>
     </resultMap>
 
     <insert id="addAttendanceInTime" parameterType="Attendance">
@@ -26,21 +26,30 @@
         staff_name = #{staffName} AND in_time IS NOT NULL AND out_time IS NULL
     </update>
 
-    <select id="getAttendanceByName" resultMap="attendance">
+    <select id="getAttendanceByNameAndDate" resultMap="attendance">
         SELECT
-        id, staff_name, in_time, out_time
+        id, staff_name, in_time, out_time, total_milli
         FROM
         attendance
         WHERE
-        staff_name = #{arg0}
+        staff_name = #{arg0} AND out_time IS NOT NULL AND in_time &gt; #{arg1} AND out_time &lt; #{arg2}
     </select>
 
     <select id="getAttendance" resultMap="attendance">
         SELECT
-        id, staff_name, in_time, out_time, total_mill
+        id, staff_name, in_time, out_time, total_milli
         FROM
         attendance
         WHERE
-        staff_name = #{arg0}
+        staff_name = #{staffName} AND in_time IS NOT NULL AND out_time IS NULL
     </select>
+
+    <update id="updateAttendanceTotalMilli" parameterType="Attendance">
+        UPDATE
+        attendance
+        SET
+        total_milli = #{totalMilli}
+        WHERE
+        staff_name = #{staffName} AND in_time IS NOT NULL AND out_time IS NOT NULL AND total_milli IS NULL
+    </update>
 </mapper>

@@ -48,17 +48,19 @@ public class WorkInfoController {
         String date2 = year + "-" + month + "-" + calendar.get(Calendar.DAY_OF_MONTH);
         Date start = sdf.parse(date1);
         Date end = sdf.parse(date2);
+        String leaveDate;
         List<Staff> staffList = staffRepository.findAllStaff("ROLE_USER");
         for (Staff staff : staffList) {
-            Integer rest_day = vocationService.getWorkDayByDate(start, end, staff.getStaffName());
+            Integer rest_day = vocationService.getWorkDayByDate(staff.getStaffName(), start, end);
             if (rest_day == null) {
                 rest_day = 0;
             }
             List<String> leaveDateList = vocationService.getLeaveDateByName(staff.getStaffName());
             if (leaveDateList.size() == 0) {
-                String leaveDate = "";
+                leaveDate = "";
+            } else {
+                leaveDate = StringUtils.join(leaveDateList, ",");
             }
-            String leaveDate = StringUtils.join(leaveDateList, ",");
             String staffNum = String.format("%0" + 3 + "d", staff.getId());
             WorkInfo workInfo = new WorkInfo(staff.getStaffName(), staffNum,
                     calendar.get(Calendar.DAY_OF_MONTH) - rest_day, rest_day, start, leaveDate);

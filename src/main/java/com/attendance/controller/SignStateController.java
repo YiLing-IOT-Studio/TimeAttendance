@@ -4,6 +4,7 @@ import com.attendance.entity.Attendance;
 import com.attendance.entity.SignState;
 import com.attendance.service.AttendanceService;
 import com.attendance.service.SignStateService;
+import com.attendance.util.TimeUtil;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,6 @@ public class SignStateController {
         signStateService.signIn(staffName);
         Attendance attendance = new Attendance(staffName,new Date(System.currentTimeMillis()));
         attendanceService.addAttendanceInTime(attendance);
-        System.out.println(attendance.getId());
     }
 
     @ResponseBody
@@ -52,6 +52,10 @@ public class SignStateController {
         String staffName = request.getParameter("staffName");
         signStateService.signOut(staffName);
         Attendance attendance = new Attendance(staffName,new Date(System.currentTimeMillis()));
+        Attendance attendance_info = attendanceService.getAttendance(staffName);
         attendanceService.addAttendanceOutTime(attendance);
+        Attendance attendanceTotalMilli = new Attendance(staffName,
+                String.valueOf(TimeUtil.formatTime(attendance_info.getInTime(),attendance.getInTime())));
+        attendanceService.updateAttendanceTotalMilli(attendanceTotalMilli);
     }
 }

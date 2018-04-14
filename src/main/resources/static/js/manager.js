@@ -65,6 +65,19 @@ $(function() {
         });
     }
     echartFun(oDate.getFullYear(), oDate.getMonth() + 1);
+    $('.selectYear option').each(function(i, data) {
+        var _this = $(this);
+        if (_this.html() == oDate.getFullYear()) {
+            _this.attr('selected', 'true');
+        }
+    })
+    $('.selectMonth option').each(function(i, data) {
+        var _this = $(this);
+        if (_this.html() == (oDate.getMonth() + 1)) {
+            _this.attr('selected', 'selected');
+        }
+    })
+
 
     function echartFun(year, month) {
         $.post('/work_info', {

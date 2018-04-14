@@ -26,7 +26,7 @@ public interface VocationMapper {
 
     void deleteVocation(Integer id);
 
-    Integer getWorkDayByDate(Date start, Date end, String name);
+    Integer getWorkDayByDate(String name, Date start, Date end);
 
     List<String> getVocationNameByDate(Date start, Date end);
 

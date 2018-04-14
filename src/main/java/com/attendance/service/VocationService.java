@@ -41,8 +41,8 @@ public class VocationService {
         vocationMapper.handleVocation(id, result);
     }
 
-    public Integer getWorkDayByDate(Date start, Date end, String name) {
-        return vocationMapper.getWorkDayByDate(start, end, name);
+    public Integer getWorkDayByDate(String name, Date start, Date end) {
+        return vocationMapper.getWorkDayByDate(name, start, end);
     }
 
     public List<String> getVocationNameByDate(Date start, Date end) {

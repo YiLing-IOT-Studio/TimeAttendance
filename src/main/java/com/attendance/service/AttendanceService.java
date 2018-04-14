@@ -5,6 +5,7 @@ import com.attendance.mapper.AttendanceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +25,15 @@ public class AttendanceService {
         attendanceMapper.addAttendanceOutTime(attendanceInfo);
     }
 
-    public List<Attendance> getAttendanceByName(String name) {
-        return attendanceMapper.getAttendanceByName(name);
+    public List<Attendance> getAttendanceByNameAndDate(String name, Date date1, Date date2) {
+        return attendanceMapper.getAttendanceByNameAndDate(name, date1, date2);
+    }
+
+    public Attendance getAttendance(String name) {
+        return attendanceMapper.getAttendance(name);
+    }
+
+    public void updateAttendanceTotalMilli(Attendance attendance) {
+        attendanceMapper.updateAttendanceTotalMilli(attendance);
     }
 }

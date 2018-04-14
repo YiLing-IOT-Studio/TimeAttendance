@@ -21,20 +21,19 @@ $(function() {
     $(".chooseDate>input[type = 'button']").click(function() {
         $.ajax({
             type: "get",
-            url: "",
+            url: "/getAttendanceByNameAndDate",
             dataType: "json",
             data: {
                 "startDate": $("#ECalendar_date").val(),
                 "endDate": $("#ECalendar_date1").val()
             },
             success: function(data) {
-                console.log(data);
                 for (i in data) {
                     var dateList = $("<tr>" +
-                        "<td>" + data[i].num + "</td>" +
+                        "<td>" + data[i].id + "</td>" +
                         "<td>" + data[i].inTime + "</td>" +
                         "<td>" + data[i].outTime + "</td>" +
-                        "<td>" + data[i].dateNum + "</td>" +
+                        "<td>" + data[i].totalMilli + "</td>" +
                         +"</tr>");
                     $(".attendanceTable").append(dateList);
                 }

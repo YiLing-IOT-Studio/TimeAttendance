@@ -3,6 +3,7 @@ package com.attendance.mapper;
 import com.attendance.entity.Attendance;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,5 +16,9 @@ public interface AttendanceMapper {
 
     void addAttendanceOutTime(Attendance attendance);
 
-    List<Attendance> getAttendanceByName(String name);
+    void updateAttendanceTotalMilli(Attendance attendance);
+
+    List<Attendance> getAttendanceByNameAndDate(String name, Date date1, Date date2);
+
+    Attendance getAttendance(String name);
 }

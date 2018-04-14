@@ -23,7 +23,10 @@ public class Attendance {
     private String staffName;
     private Date inTime;
     private Date outTime;
-    private Long totalMill;
+    private String totalMilli;
+
+    public Attendance() {
+    }
 
     // TODO: 2018/4/12 inTime时间代码优化
     public Attendance(String staffName, Date inTime) {
@@ -31,9 +34,8 @@ public class Attendance {
         this.inTime = inTime;
     }
 
-    public Attendance(String staffName, Date inTime, Long totalMill) {
+    public Attendance(String staffName, String totalMilli) {
         this.staffName = staffName;
-        this.inTime = inTime;
-        this.totalMill = totalMill;
+        this.totalMilli = totalMilli;
     }
 }

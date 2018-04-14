@@ -5,6 +5,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://119.29.233.28:3306/attendance?useUnicode=true&useSSL=false&amp;characterEncoding=UTF-8
     url: jdbc:mysql://127.0.0.1:3306/attendance?useUnicode=true&useSSL=false&amp;characterEncoding=UTF-8
   jpa:
     hibernate:
