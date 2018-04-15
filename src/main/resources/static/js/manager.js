@@ -84,7 +84,6 @@ $(function() {
             year: year,
             month: month
         }, function(data) {
-            data = JSON.parse(data);
             var myChart = echarts.init(document.getElementById('timeAttendance'));
             var staffArr = [],
                 workDay = [],
@@ -186,7 +185,6 @@ $(function() {
                 searchName: $(this).prev().val()
             }, function(data) {
                 $(".leaves").empty();
-                data = JSON.parse(data);
                 if (data.length == 0) {
                     alert("未查询到结果，请输入完整姓名");
                     return false;
@@ -220,7 +218,6 @@ $(function() {
 
     function respond() {
         $.post('/vocations_admin', {}, function(data) {
-            data = JSON.parse(data);
             $(".emailCheck").empty();
             for (i in data) {
                 var respondEmail = $('<div class="emailList">' +

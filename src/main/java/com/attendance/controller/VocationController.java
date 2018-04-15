@@ -4,7 +4,6 @@ import com.attendance.entity.Vocation;
 import com.attendance.repository.StaffRepository;
 import com.attendance.service.VocationService;
 import com.attendance.util.SecurityUtil;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,40 +26,33 @@ public class VocationController {
     private VocationService vocationService;
     @Autowired
     private StaffRepository staffRepository;
-    @Autowired
-    private Gson gson;
 
     @PostMapping("/vocation")
-    public String leave(HttpServletRequest request) {
-        String applicant_name = request.getParameter("applicant");
-        String leave_days = request.getParameter("days");
-        String leave_date = request.getParameter("date");
-        String leave_reason = request.getParameter("why");
+    public String leave(Vocation vocation_local) {
         List<String> roleList = staffRepository.findByRole("ROLE_ADMIN");
         Random random = new Random();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        Vocation vocation =
-                new Vocation(applicant_name, roleList.get(random.nextInt(roleList.size())),
-                        new Date(System.currentTimeMillis()), sdf.format(new Date()),
-                        leave_days, leave_date, leave_reason);
-        vocationService.addVocation(vocation);
+        Vocation vocation_complete =
+                new Vocation(vocation_local.getApplicant(), roleList.get(random.nextInt(roleList.size())),
+                        new Date(System.currentTimeMillis()),
+                        sdf.format(new Date()), vocation_local.getLeave_days(),
+                        vocation_local.getLeave_date(), vocation_local.getLeave_reason());
+        vocationService.addVocation(vocation_complete);
         return "redirect:/personal_center";
     }
 
-    @GetMapping("/vocations")
     @ResponseBody
-    public String vocationList() {
+    @GetMapping("/vocations")
+    public List<Vocation> vocationList() {
         String applicant_name = SecurityUtil.getCurrentUsername();
-        List<Vocation> vocationList = vocationService.getAllVocationByApplicant(applicant_name);
-        return gson.toJson(vocationList);
+        return vocationService.getAllVocationByApplicant(applicant_name);
     }
 
-    @PostMapping("/vocations_admin")
     @ResponseBody
-    public String vocationListAdmin() {
+    @PostMapping("/vocations_admin")
+    public List<Vocation> vocationListAdmin() {
         String admin = SecurityUtil.getCurrentUsername();
-        List<Vocation> vocationList = vocationService.getAllVocationByAdmin(admin);
-        return gson.toJson(vocationList);
+        return vocationService.getAllVocationByAdmin(admin);
     }
 
     @ResponseBody
@@ -87,11 +79,10 @@ public class VocationController {
 
     @ResponseBody
     @PostMapping("/handle_vocation")
-    public String handleVocation(HttpServletRequest request) {
+    public void handleVocation(HttpServletRequest request) {
         String id = request.getParameter("id");
         Integer id1 = Integer.valueOf(id);
         String result = request.getParameter("result");
         vocationService.handleVocation(id1, result);
-        return gson.toJson(vocationService.getVocationByContent(id1));
     }
 }

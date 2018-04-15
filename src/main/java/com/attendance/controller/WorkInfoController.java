@@ -5,12 +5,10 @@ import com.attendance.entity.WorkInfo;
 import com.attendance.repository.StaffRepository;
 import com.attendance.service.VocationService;
 import com.attendance.service.WorkInfoService;
-import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -22,11 +20,9 @@ import java.util.List;
 /**
  * Created by FantasticPan on 2018/4/3.
  */
-@Controller
+@RestController
 public class WorkInfoController {
 
-    @Autowired
-    private Gson gson;
     @Autowired
     private StaffRepository staffRepository;
     @Autowired
@@ -34,9 +30,8 @@ public class WorkInfoController {
     @Autowired
     private WorkInfoService workInfoService;
 
-    @ResponseBody
     @PostMapping("/work_info")
-    public String work_info(HttpServletRequest request) throws ParseException {
+    public List<WorkInfo> work_info(HttpServletRequest request) throws ParseException {
         Calendar calendar = Calendar.getInstance();
         String month = request.getParameter("month");
         String year = request.getParameter("year");
@@ -66,14 +61,12 @@ public class WorkInfoController {
                     calendar.get(Calendar.DAY_OF_MONTH) - rest_day, rest_day, start, leaveDate);
             workInfoService.addOrUpdate(workInfo);
         }
-        List<WorkInfo> workInfoList = workInfoService.getAllWorkInfo(start);
-        return gson.toJson(workInfoList);
+        return workInfoService.getAllWorkInfo(start);
     }
 
-    @ResponseBody
     @PostMapping("/work_info_name")
-    public String getWorkInfoByName(HttpServletRequest request) {
+    public List<WorkInfo> getWorkInfoByName(HttpServletRequest request) {
         String name = request.getParameter("searchName");
-        return gson.toJson(workInfoService.findWorkInfoByName(name));
+        return workInfoService.findWorkInfoByName(name);
     }
 }

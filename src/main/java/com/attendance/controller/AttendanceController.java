@@ -5,11 +5,9 @@ import com.attendance.entity.AttendanceInfo;
 import com.attendance.service.AttendanceService;
 import com.attendance.util.DateUtil;
 import com.attendance.util.SecurityUtil;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -20,17 +18,14 @@ import java.util.List;
 /**
  * Created by FantasticPan on 2018/4/12.
  */
-@Controller
+@RestController
 public class AttendanceController {
 
     @Autowired
     private AttendanceService attendanceService;
-    @Autowired
-    private Gson gson;
 
-    @ResponseBody
     @GetMapping("/getAttendanceByNameAndDate")
-    public String getAttendanceByNameAndDate(HttpServletRequest request) throws ParseException {
+    public List<AttendanceInfo> getAttendanceByNameAndDate(HttpServletRequest request) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
@@ -43,6 +38,6 @@ public class AttendanceController {
                     sdf.format(attendance.getInTime()),
                     sdf.format(attendance.getOutTime()), attendance.getTotalMilli()));
         }
-        return gson.toJson(attendanceInfoList);
+        return attendanceInfoList;
     }
 }
