@@ -2,12 +2,12 @@ package com.attendance.mapper;
 
 import com.attendance.entity.Staff;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by FantasticPan on 2018/4/5.
  */
-@Service
+@Repository
 public interface StaffRoleMapper {
 
     @Insert("INSERT INTO staff(staff_name,staff_date) " +

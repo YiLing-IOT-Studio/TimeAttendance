@@ -1,59 +1,32 @@
 package com.attendance.service;
 
 import com.attendance.entity.Vocation;
-import com.attendance.mapper.VocationMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created by FantasticPan on 2018/3/26.
+ * Created by FantasticPan on 2018/4/27.
  */
-@Service
-public class VocationService {
+public interface VocationService {
 
-    @Autowired
-    private VocationMapper vocationMapper;
+    void addVocation(Vocation vocation);
 
-    public void addVocation(Vocation vocation) {
-        vocationMapper.addVocation(vocation);
-    }
+    List<Vocation> getAllVocationByApplicant(String applicant_name);
 
-    public List<Vocation> getAllVocationByApplicant(String applicant_name) {
-        return vocationMapper.getAllVocationByApplicant(applicant_name);
-    }
+    List<Vocation> getAllVocationByAdmin(String admin_name);
 
-    public List<Vocation> getAllVocationByAdmin(String admin_name) {
-        return vocationMapper.getAllVocationByAdmin(admin_name);
-    }
+    void vocationReadState(Integer id);
 
-    public void vocationReadState(Integer id) {
-        vocationMapper.vocationReadState(id);
-    }
+    void handleVocation(Integer id, String result);
 
-    public void deleteVocation(Integer id) {
-        vocationMapper.deleteVocation(id);
-    }
+    void deleteVocation(Integer id);
 
-    public void handleVocation(Integer id, String result) {
-        vocationMapper.handleVocation(id, result);
-    }
+    Integer getWorkDayByDate(String name, Date start, Date end);
 
-    public Integer getWorkDayByDate(String name, Date start, Date end) {
-        return vocationMapper.getWorkDayByDate(name, start, end);
-    }
+    List<String> getVocationNameByDate(Date start, Date end);
 
-    public List<String> getVocationNameByDate(Date start, Date end) {
-        return vocationMapper.getVocationNameByDate(start, end);
-    }
+    List<String> getLeaveDateByName(String name);
 
-    public List<String> getLeaveDateByName(String name) {
-        return vocationMapper.getLeaveDateByName(name);
-    }
-
-    public Vocation getVocationByContent(Integer id) {
-        return vocationMapper.getVocationByContent(id);
-    }
+    Vocation getVocationByContent(Integer id);
 }

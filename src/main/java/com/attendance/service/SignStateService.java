@@ -1,38 +1,21 @@
 package com.attendance.service;
 
 import com.attendance.entity.SignState;
-import com.attendance.mapper.SignStateMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by FantasticPan on 2018/3/29.
+ * Created by FantasticPan on 2018/4/26.
  */
-@Service
-public class SignStateService {
+public interface SignStateService {
 
-    @Autowired
-    private SignStateMapper signStateMapper;
+    List<SignState> getAllSignState();
 
-    public List<SignState> getAllSignState() {
-        return signStateMapper.getAllSignState();
-    }
+    void addSignState(String name);
 
-    public void addSignState(String name) {
-        signStateMapper.addSignState(name);
-    }
+    void delSignState(String name);
 
-    public void delSignState(String name) {
-        signStateMapper.delSignState(name);
-    }
+    void signIn(String name);
 
-    public void signIn(String name) {
-        signStateMapper.signIn(name);
-    }
-
-    public void signOut(String name) {
-        signStateMapper.signOut(name);
-    }
+    void signOut(String name);
 }

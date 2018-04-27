@@ -1,37 +1,19 @@
 package com.attendance.service;
 
 import com.attendance.entity.Staff;
-import com.attendance.mapper.StaffRoleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
- * Created by FantasticPan on 2018/4/5.
+ * Created by FantasticPan on 2018/4/27.
  */
-@Service
-public class StaffRoleService {
+public interface StaffRoleService {
 
-    @Autowired
-    private StaffRoleMapper staffRoleMapper;
+    void addStaff(Staff staff);
 
-    public void addStaff(Staff staff) {
-        staffRoleMapper.addStaff(staff);
-    }
+    int getRoleId(String role);
 
-    public int getRoleId(String role) {
-        return staffRoleMapper.getRoleId(role);
-    }
+    void addStaffWithRole(int staffId, int roleId);
 
-    public void addStaffWithRole(int staff_id,int role_id) {
-        staffRoleMapper.addStaffWithRole(staff_id,role_id);
-    }
+    void delStaffWithRole(int staffId);
 
-    public void delStaffWithRole(int staff_id) {
-        staffRoleMapper.delStaffWithRole(staff_id);
-        staffRoleMapper.delStaff(staff_id);
-    }
-
-    public void delStaff(int staff_id) {
-        staffRoleMapper.delStaff(staff_id);
-    }
+    void delStaff(int staffId);
 }

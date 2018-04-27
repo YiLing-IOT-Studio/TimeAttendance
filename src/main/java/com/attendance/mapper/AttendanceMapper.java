@@ -1,7 +1,7 @@
 package com.attendance.mapper;
 
 import com.attendance.entity.Attendance;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by FantasticPan on 2018/3/18.
  */
-@Service
+@Repository
 public interface AttendanceMapper {
 
     void addAttendanceInTime(Attendance attendance);

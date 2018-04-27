@@ -1,4 +1,4 @@
-package com.attendance.service;
+package com.attendance.service.impl;
 
 import com.attendance.entity.Staff;
 import com.attendance.repository.StaffRepository;
@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by FantasticPan on 2018/3/23.
  */
-public class SecurityService implements UserDetailsService {
+@Service
+public class SecurityServiceImpl implements UserDetailsService {
 
     @Autowired
     private StaffRepository staffRepository;

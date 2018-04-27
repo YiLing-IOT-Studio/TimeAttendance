@@ -1,6 +1,6 @@
 package com.attendance.config;
 
-import com.attendance.service.SecurityService;
+import com.attendance.service.impl.SecurityServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     UserDetailsService customUserService() {
-        return new SecurityService();
+        return new SecurityServiceImpl();
     }
 
     @Override

@@ -25,6 +25,7 @@ public class ProjectApplicationTests {
 
     @Test
     public void contextLoads() {
+        System.out.println(vocationService.getAllVocationByAdmin("宇智波攀"));
     }
 
 }
