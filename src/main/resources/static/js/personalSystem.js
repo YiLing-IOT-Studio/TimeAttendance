@@ -28,6 +28,7 @@ $(function() {
                 "endDate": $("#ECalendar_date1").val()
             },
             success: function(data) {
+                $("tbody").empty();
                 for (i in data) {
                     var dateList = $("<tr>" +
                         "<td>" + data[i].id + "</td>" +
@@ -35,7 +36,7 @@ $(function() {
                         "<td>" + data[i].outTime + "</td>" +
                         "<td>" + data[i].totalMilli + "</td>" +
                         +"</tr>");
-                    $(".attendanceTable").append(dateList);
+                    $("tbody").append(dateList);
                 }
             },
             error: function() {
