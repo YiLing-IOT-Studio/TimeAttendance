@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人管理中心</title>
-    <link rel="shortcut icon" href="/img/icon.png" />
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <script src="/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/personal.css">
+    <link rel="shortcut icon" href="../static/img/icon.png" />
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/personal.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <div class="topBar container">
             <div class="pull-left col-sm-5">
                 <h1>
-                    <img src="/img/team1.png" alt="">
+                    <img src="../static/img/team1.png" alt="">
                     <span>个人管理中心</span>
                 </h1>
             </div>
@@ -38,7 +38,28 @@
         <div class="bottom container-fuid">
             <div class="asideBar pull-left">
                 <div class="personalMsg text-center">
-                    <img class="center-block" src="/img/staff.png" alt="头像">
+                    <img class="center-block" src="../static/img/staff.png" alt="头像">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">上传头像</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p class="staffName" sec:authentication="name"></p>
                     <!-- <span>编号：</span>
                     <span class="staffId">001</span> -->
@@ -153,11 +174,11 @@
         </div>
     </div>
 </body>
-<link rel="stylesheet" href="/css/blue.css">
-<link rel="stylesheet" href="/css/style.css" />
-<script src="/js/Ecalendar.jquery.min.js"></script>
-<script src="/js/icheck.min.js"></script>
-<script src="/js/personalSystem.js"></script>
+<link rel="stylesheet" href="../static/css/blue.css">
+<link rel="stylesheet" href="../static/css/style.css" />
+<script src="../static/js/Ecalendar.jquery.min.js"></script>
+<script src="../static/js/icheck.min.js"></script>
+<script src="../static/js/personalSystem.js"></script>
 <script type="text/javascript">
     $(function() {
         // $('#emailCheck').icheck();
@@ -187,6 +208,29 @@
                     console.log(e);
                 } //回调函数
         });
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').focus()
+        })
+        document
+            .querySelector('#imgPicker')
+            .addEventListener('change', function() {
+                //当没选中图片时，清除预览
+                if (this.files.length === 0) {
+                    document.querySelector('#preview').src = '';
+                    return;
+                }
+
+                //实例化一个FileReader
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    //当reader加载时，把图片的内容赋值给
+                    document.querySelector('#preview').src = e.target.result;
+                };
+
+                //读取选中的图片，并转换成dataURL格式
+                reader.readAsDataURL(this.files[0]);
+            }, false);
     })
 </script>
 
