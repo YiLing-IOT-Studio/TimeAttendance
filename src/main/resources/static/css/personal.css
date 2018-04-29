@@ -222,3 +222,29 @@ textarea {
 .glyphicon-chevron-left {
     display: none;
 }
+
+
+/* 修改头像 */
+
+.modal {
+    text-align: left;
+}
+
+.comBtn {
+    margin-left: 10px;
+}
+
+.fileinput-button {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.fileinput-button input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 82px;
+    height: 34px;
+    opacity: 0;
+}

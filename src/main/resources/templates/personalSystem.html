@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人管理中心</title>
     <link rel="shortcut icon" href="../static/img/icon.png" />
+    <link rel="stylesheet" href="../static/css/bootstrap.css" />
     <script src="../static/js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../static/css/personal.css">
+    <link rel="stylesheet" href="../static/node_modules/cropper/dist/cropper.css">
+    <script src="../static/node_modules/cropper/dist/cropper.js"></script>
 </head>
 
 <body>
@@ -38,24 +40,30 @@
         <div class="bottom container-fuid">
             <div class="asideBar pull-left">
                 <div class="personalMsg text-center">
-                    <img class="center-block" src="../static/img/staff.png" alt="头像">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">上传头像</button>
-
-                    <!-- Modal -->
+                    <img class="center-block headImage" src="../static/img/staff.png" alt="头像">
+                    <button type="button" class="btn login btn-primary" data-toggle="modal" data-target="#myModal">修改头像</button>
+                    <!--login modal-->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                            <div class="modal-content clearfix">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    <h4 class="modal-title" id="myModalLabel">修改头像</h4>
                                 </div>
                                 <div class="modal-body">
-                                    ...
+                                    <span class="fileinput-button">
+                                        <span class="btn btn-primary selectImg">选择图片</span>
+                                    <input id="imgPicker" type="file" accept="image/" />
+                                    </span>
+                                    <div class="previewBox">
+                                        <img id="preview" />
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="comBtn btn btn-danger pull-right">确认修改</button>
+                                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">取消</button>
                                 </div>
                             </div>
                         </div>
@@ -173,6 +181,7 @@
             </div>
         </div>
     </div>
+
 </body>
 <link rel="stylesheet" href="../static/css/blue.css">
 <link rel="stylesheet" href="../static/css/style.css" />
@@ -208,9 +217,7 @@
                     console.log(e);
                 } //回调函数
         });
-        $('#myModal').on('shown.bs.modal', function() {
-            $('#myInput').focus()
-        })
+        var i = 0;
         document
             .querySelector('#imgPicker')
             .addEventListener('change', function() {
@@ -222,13 +229,53 @@
 
                 //实例化一个FileReader
                 var reader = new FileReader();
-
                 reader.onload = function(e) {
                     //当reader加载时，把图片的内容赋值给
                     document.querySelector('#preview').src = e.target.result;
+                    // console.log(document.querySelector('#preview').src);
+                    //读取选中的图片，并转换成dataURL格式
+                    var $image = $('#preview');
+                    console.log($image.attr("src"));
+                    $image.cropper({
+                        aspectRatio: 1 / 1,
+                        preview: "#preview" + Date.parse(new Date()),
+                        dragMode: "none",
+                        modal: true,
+                        guides: true,
+                        background: true,
+                        autoCrop: true,
+                        autoCropArea: 0.5,
+                        movable: true,
+                        scalable: true,
+                        zoomable: true,
+                        wheelZoomRatio: 0.1,
+                        cropBoxMovable: true,
+                        cropBoxResizable: false,
+                    })
+                    $image.cropper('replace', $image.attr("src"), false);
+                    $(".comBtn").on("click", function() {
+                        console.log($image.cropper('getCroppedCanvas'));;
+                        var cas = $image.cropper('getCroppedCanvas');
+                        cas.toBlob(function(e) {
+                            console.log(e); //生成Blob的图片格式
+                            var formData = new FormData();
+                            formData.append('croppedImage', e);
+                            $.ajax('/path/to/upload', {
+                                method: "POST",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function(data) {
+                                    console.log('Upload success');
+                                    $(".headImage").attr("src", data);
+                                },
+                                error: function() {
+                                    console.log('Upload error');
+                                }
+                            });
+                        })
+                    })
                 };
-
-                //读取选中的图片，并转换成dataURL格式
                 reader.readAsDataURL(this.files[0]);
             }, false);
     })

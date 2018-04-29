@@ -157,125 +157,125 @@ $(function() {
         function requestEmail() {
             $(".email").empty();
             //获取邮件
-            $.ajax({
-                type: "get",
-                url: "/vocations",
-                dataType: "json",
-                data: {
+            // $.ajax({
+            //     type: "get",
+            //     url: "/vocations",
+            //     dataType: "json",
+            //     data: {
 
-                },
-                success: function(data) {
-                    var noReadEmail = [];
-                    var allEmail = [];
-                    for (var i in data) {
-                        if (data[i].read_state == 'unRead') {
-                            noReadEmail.push(data[i]);
-                            allEmail.push(data[i]);
-                        }
-                    }
-                    for (var i in data) {
-                        if (data[i].read_state != 'unRead') {
-                            allEmail.push(data[i]);
-                        }
-                    }
-                    $(".mailNum").html(noReadEmail.length);
-                    if (data.length == 0) {
-                        $(".noEmail").css("display", "block");
-                    } else {
-                        page = Math.floor(data.length / onePage) + 1;
-                        if (page == 1) {
-                            $(".glyphicon-chevron-right").css("display", "none");
-                        }
-                        if (page == 1 || curPage == page) {
-                            endPage = data.length;
-                        } else {
-                            endPage = startPage + onePage;
-                        }
-                        for (var i = startPage; i < endPage; i++) {
-                            var oneEmail = $('<div class="one clearfix ' + allEmail[i].read_state + '">' +
-                                '<div class="col-sm-1 pull-left text-center">' +
-                                '<input type="checkbox" name="emailCheck" class="emailCheck" index = "' + allEmail[i].id + '">' +
-                                '</div>' +
-                                '<div class="col-sm-2 pull-left text-center">' +
-                                '<span>发件人：</span><strong>' + allEmail[i].admin + '</strong>' +
-                                '<div>' +
-                                '<p>' + allEmail[i].time + '</p>' +
-                                '<p>' + allEmail[i].date + '</p>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="col-sm-8 pull-left">' +
-                                '<div>' +
-                                '<span>请假日期：' + allEmail[i].leave_date + '</span>' +
-                                '<p>' + allEmail[i].all_content + '</p>' +
-                                '</div>' +
-                                '<span class="toggleMark glyphicon glyphicon-chevron-down"></span>' +
-                                '</div>' +
-                                '</div>');
-                            $(".email").append(oneEmail);
-                        }
-                        $(".glyphicon-chevron-down").prev().children('p').css("display", "none")
-                            .end().parent().prev().children('div').css("display", "none");
-                        $('.emailCheck').iCheck({
-                            checkboxClass: 'icheckbox_square-blue',
-                            radioClass: 'iradio_square-blue',
-                            increaseArea: '20%'
-                        });
-                        $(".toggleMark").click(function() {
-                            var $this = $(this);
-                            if ($this.hasClass("glyphicon-chevron-up")) {
-                                $this.prev().children('p').slideUp();
-                                $this.parent().prev().children('div').slideUp();
-                                $this.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-                            } else {
-                                $this.prev().children('p').slideDown();
-                                $this.parent().prev().children('div').slideDown();
-                                $this.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-                            }
-                        });
-                        // $(".toggleMark").trigger("click");
-                        var arrEyes = [];
-                        $(".markRead").addClass("disabled");
-                        $(".iCheck-helper").click(function() {
-                            var $thisPrev = $(this).prev();
-                            var thisPrev = $thisPrev[0];
-                            if (thisPrev.checked && $thisPrev.parent().parent().parent().hasClass("unRead")) {
-                                if ($.inArray($thisPrev.attr("index"), arrEyes) == -1) {
-                                    arrEyes.push($thisPrev.attr("index"));
-                                }
-                            } else {
-                                if ($.inArray($thisPrev.attr("index"), arrEyes) != -1) {
-                                    arrEyes.splice($.inArray($thisPrev.attr("index"), arrEyes), 1);
-                                }
-                            }
-                            if (arrEyes.length == 0) {
-                                $(".markRead").addClass("disabled");
-                            } else {
-                                $(".markRead").removeClass("disabled");
-                            }
-                        });
-                        $(".markRead").click(function() {
-                            $.ajax({
-                                type: "post",
-                                url: "/read_state",
-                                traditional: true,
-                                data: {
-                                    "markRead": arrEyes
-                                },
-                                success: function(data) {
-                                    requestEmail();
-                                },
-                                error: function(error) {
-                                    console.log(error);
-                                    // alert("操作失败，请重试");
-                                }
-                            })
-                        });
-                    }
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            })
+            //     },
+            //     success: function(data) {
+            //         var noReadEmail = [];
+            //         var allEmail = [];
+            //         for (var i in data) {
+            //             if (data[i].read_state == 'unRead') {
+            //                 noReadEmail.push(data[i]);
+            //                 allEmail.push(data[i]);
+            //             }
+            //         }
+            //         for (var i in data) {
+            //             if (data[i].read_state != 'unRead') {
+            //                 allEmail.push(data[i]);
+            //             }
+            //         }
+            //         $(".mailNum").html(noReadEmail.length);
+            //         if (data.length == 0) {
+            //             $(".noEmail").css("display", "block");
+            //         } else {
+            //             page = Math.floor(data.length / onePage) + 1;
+            //             if (page == 1) {
+            //                 $(".glyphicon-chevron-right").css("display", "none");
+            //             }
+            //             if (page == 1 || curPage == page) {
+            //                 endPage = data.length;
+            //             } else {
+            //                 endPage = startPage + onePage;
+            //             }
+            //             for (var i = startPage; i < endPage; i++) {
+            //                 var oneEmail = $('<div class="one clearfix ' + allEmail[i].read_state + '">' +
+            //                     '<div class="col-sm-1 pull-left text-center">' +
+            //                     '<input type="checkbox" name="emailCheck" class="emailCheck" index = "' + allEmail[i].id + '">' +
+            //                     '</div>' +
+            //                     '<div class="col-sm-2 pull-left text-center">' +
+            //                     '<span>发件人：</span><strong>' + allEmail[i].admin + '</strong>' +
+            //                     '<div>' +
+            //                     '<p>' + allEmail[i].time + '</p>' +
+            //                     '<p>' + allEmail[i].date + '</p>' +
+            //                     '</div>' +
+            //                     '</div>' +
+            //                     '<div class="col-sm-8 pull-left">' +
+            //                     '<div>' +
+            //                     '<span>请假日期：' + allEmail[i].leave_date + '</span>' +
+            //                     '<p>' + allEmail[i].all_content + '</p>' +
+            //                     '</div>' +
+            //                     '<span class="toggleMark glyphicon glyphicon-chevron-down"></span>' +
+            //                     '</div>' +
+            //                     '</div>');
+            //                 $(".email").append(oneEmail);
+            //             }
+            //             $(".glyphicon-chevron-down").prev().children('p').css("display", "none")
+            //                 .end().parent().prev().children('div').css("display", "none");
+            //             $('.emailCheck').iCheck({
+            //                 checkboxClass: 'icheckbox_square-blue',
+            //                 radioClass: 'iradio_square-blue',
+            //                 increaseArea: '20%'
+            //             });
+            //             $(".toggleMark").click(function() {
+            //                 var $this = $(this);
+            //                 if ($this.hasClass("glyphicon-chevron-up")) {
+            //                     $this.prev().children('p').slideUp();
+            //                     $this.parent().prev().children('div').slideUp();
+            //                     $this.removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+            //                 } else {
+            //                     $this.prev().children('p').slideDown();
+            //                     $this.parent().prev().children('div').slideDown();
+            //                     $this.removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+            //                 }
+            //             });
+            //             // $(".toggleMark").trigger("click");
+            //             var arrEyes = [];
+            //             $(".markRead").addClass("disabled");
+            //             $(".iCheck-helper").click(function() {
+            //                 var $thisPrev = $(this).prev();
+            //                 var thisPrev = $thisPrev[0];
+            //                 if (thisPrev.checked && $thisPrev.parent().parent().parent().hasClass("unRead")) {
+            //                     if ($.inArray($thisPrev.attr("index"), arrEyes) == -1) {
+            //                         arrEyes.push($thisPrev.attr("index"));
+            //                     }
+            //                 } else {
+            //                     if ($.inArray($thisPrev.attr("index"), arrEyes) != -1) {
+            //                         arrEyes.splice($.inArray($thisPrev.attr("index"), arrEyes), 1);
+            //                     }
+            //                 }
+            //                 if (arrEyes.length == 0) {
+            //                     $(".markRead").addClass("disabled");
+            //                 } else {
+            //                     $(".markRead").removeClass("disabled");
+            //                 }
+            //             });
+            //             $(".markRead").click(function() {
+            //                 $.ajax({
+            //                     type: "post",
+            //                     url: "/read_state",
+            //                     traditional: true,
+            //                     data: {
+            //                         "markRead": arrEyes
+            //                     },
+            //                     success: function(data) {
+            //                         requestEmail();
+            //                     },
+            //                     error: function(error) {
+            //                         console.log(error);
+            //                         // alert("操作失败，请重试");
+            //                     }
+            //                 })
+            //             });
+            //         }
+            //     },
+            //     error: function(error) {
+            //         console.log(error);
+            //     }
+            // })
         }
     })
 });
