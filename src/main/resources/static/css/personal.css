@@ -67,6 +67,7 @@ h1 img {
 .personalMsg img {
     width: 80%;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .asideBar ul {
