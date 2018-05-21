@@ -85,6 +85,7 @@ public class StaffController {
                     System.out.println("filename:"+fileName);
                     // 文件路径
                     String filePath = request.getSession().getServletContext().getRealPath("/")+"upload/";
+                    System.out.println(filePath);
                     File dest = new File(filePath + newFileName);
                     if (!dest.getParentFile().exists()) {
                         dest.getParentFile().mkdirs();
@@ -102,7 +103,7 @@ public class StaffController {
             }
         }
         flag = 1;
-        return "http://119.29.233.28:7070/upload/" + staff.getHeadPortrait();
+        return "http://localhost:7070/upload/" + staff.getHeadPortrait();
     }
 
     /**
@@ -115,11 +116,11 @@ public class StaffController {
         String username = auth.getName(); //主体名，即登录用户名
         System.out.println("username is:" + username);
 
-        Staff staff = staffService.viewImg(username);
+        String headPortrait = staffService.viewImg(username);
         if(flag == 0){
-            return "/img/initStaff.png";
+            return "http://localhost:7070/img/initStaff.png";
         }else {
-            return "http://119.29.233.28:7070/upload/" + staff.getHeadPortrait();
+            return "http://localhost:7070/upload/" + headPortrait;
         }
     }
 }

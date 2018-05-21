@@ -29,8 +29,8 @@ public interface StaffRoleMapper {
     void delStaff(@Param("staff_id") int staffId);
 
 
-    @Select("SELECT * FROM staff WHERE staff_name= #{name}")
-    Staff viewImg(@Param("name") String name);
+    @Select("SELECT head_portrait FROM staff WHERE staff_name= #{name}")
+    String viewImg(@Param("name") String name);
 
     @Update("UPDATE staff SET head_portrait = #{staff.headPortrait} WHERE staff_name = #{staff.staffName}")
     void uploadImgUrl(@Param("staff") Staff staff);

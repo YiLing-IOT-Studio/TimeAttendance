@@ -47,7 +47,7 @@ public class StaffRoleServiceImpl implements StaffRoleService {
     }
 
     @Override
-    public Staff viewImg(String name) {
+    public String viewImg(String name) {
         return staffRoleMapper.viewImg(name);
     }
 

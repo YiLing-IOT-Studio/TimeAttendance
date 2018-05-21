@@ -19,5 +19,5 @@ public interface StaffRoleService {
 
     void uploadImgUrl(Staff staff);
 
-    Staff viewImg(String name);
+    String viewImg(String name);
 }
