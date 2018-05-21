@@ -31,6 +31,8 @@ public class Staff implements UserDetails {
     private String staffDate;
     @Column(columnDefinition="VARCHAR(255) default '666'")
     private String password;
+    @Column(columnDefinition="VARCHAR(255) default '/img/initStaff.png'")
+    private String headPortrait;
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<Role> roles;

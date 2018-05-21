@@ -6,11 +6,14 @@ import com.attendance.service.SignStateService;
 import com.attendance.service.StaffRoleService;
 import com.attendance.service.WorkInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -29,6 +32,8 @@ public class StaffController {
     private WorkInfoService workInfoService;
     @Autowired
     private SignStateService signStateService;
+
+    private Integer flag = 0;
 
     @GetMapping("/getStaffByName")
     public Staff getStaffByName(String name) {
@@ -57,5 +62,64 @@ public class StaffController {
         staffRoleService.delStaffWithRole(staff_id);
         workInfoService.delAllWorkInfoByName(staffName);
         signStateService.delSignState(staffName);
+    }
+
+    /**
+     * 基于用户标识的头像上传
+     * @return*/
+    @ResponseBody
+    @RequestMapping(value = "/uploadImg")
+    public String uploadImg(HttpServletRequest request, @RequestParam("croppedImage") MultipartFile multipartFile) throws IOException {
+
+        //主体名，即登录用户名
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Staff staff = new Staff();
+        String fileName = multipartFile.getOriginalFilename();
+        // 新的图片文件名 = 获取时间戳+"."图片扩展名
+        String newFileName = username + ".png";
+        if (!multipartFile.isEmpty()) {
+            if (multipartFile.getContentType().contains("image")) {
+                try {
+                    // 获取图片的文件名
+                    System.out.println("filename:"+fileName);
+                    // 文件路径
+                    String filePath = request.getSession().getServletContext().getRealPath("/")+"upload/";
+                    File dest = new File(filePath + newFileName);
+                    if (!dest.getParentFile().exists()) {
+                        dest.getParentFile().mkdirs();
+                    }
+                    // 上传到指定目录
+                    multipartFile.transferTo(dest);
+
+                    staff.setStaffName(username);
+                    staff.setHeadPortrait(newFileName);
+                    staffService.uploadImgUrl(staff);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return "上传失败";
+                }
+            }
+        }
+        flag = 1;
+        return "http://119.29.233.28:7070/upload/" + staff.getHeadPortrait();
+    }
+
+    /**
+     * 回显头像
+     * @return*/
+    @ResponseBody
+    @RequestMapping(value = "/viewImg")
+    public String viewImg(HttpServletRequest request) throws IOException {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName(); //主体名，即登录用户名
+        System.out.println("username is:" + username);
+
+        Staff staff = staffService.viewImg(username);
+        if(flag == 0){
+            return "/img/initStaff.png";
+        }else {
+            return "http://119.29.233.28:7070/upload/" + staff.getHeadPortrait();
+        }
     }
 }

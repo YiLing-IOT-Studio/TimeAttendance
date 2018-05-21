@@ -40,4 +40,16 @@ public class StaffRoleServiceImpl implements StaffRoleService {
     public void delStaff(int staff_id) {
         staffRoleMapper.delStaff(staff_id);
     }
+
+    @Override
+    public void uploadImgUrl(Staff staff) {
+        staffRoleMapper.uploadImgUrl(staff);
+    }
+
+    @Override
+    public Staff viewImg(String name) {
+        return staffRoleMapper.viewImg(name);
+    }
+
+
 }

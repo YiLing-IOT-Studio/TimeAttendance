@@ -16,4 +16,8 @@ public interface StaffRoleService {
     void delStaffWithRole(int staffId);
 
     void delStaff(int staffId);
+
+    void uploadImgUrl(Staff staff);
+
+    Staff viewImg(String name);
 }

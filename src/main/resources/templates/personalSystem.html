@@ -6,189 +6,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>个人管理中心</title>
-    <link rel="shortcut icon" href="../static/img/icon.png" />
-    <link rel="stylesheet" href="../static/css/bootstrap.css" />
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../static/css/personal.css">
-    <link rel="stylesheet" href="../static/node_modules/cropper/dist/cropper.css">
-    <script src="../static/node_modules/cropper/dist/cropper.js"></script>
+    <link rel="shortcut icon" href="/img/icon.png" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/css/personal.css">
+    <link rel="stylesheet" href="/node_modules/cropper/dist/cropper.css">
+    <script src="/node_modules/cropper/dist/cropper.js"></script>
 </head>
 
 <body>
-    <div class="main container-fluid">
-        <div class="topBar container">
-            <div class="pull-left col-sm-5">
-                <h1>
-                    <img src="../static/img/team1.png" alt="">
-                    <span>个人管理中心</span>
-                </h1>
+<div class="main container-fluid">
+    <div class="topBar container">
+        <div class="pull-left col-sm-5">
+            <h1>
+                <img src="/img/team1.png" alt="">
+                <span>个人管理中心</span>
+            </h1>
+        </div>
+        <div class="pull-right col-sm-2">
+            <div class="headEmail">
+                <span class="glyphicon glyphicon-envelope envelope"></span>
+                <a href="javascript:;" class="lookMail"><span class="mailNum">1</span>条私信</a>
             </div>
-            <div class="pull-right col-sm-2">
-                <div class="headEmail">
-                    <span class="glyphicon glyphicon-envelope envelope"></span>
-                    <a href="javascript:;" class="lookMail"><span class="mailNum">1</span>条私信</a>
-                </div>
-                <div>
-                    <span>欢迎</span>
-                    <span class="owner" sec:authentication="name">tianyu</span>
-                    <span>|</span>
-                    <span><a href="/logout">注销</a></span>
-                </div>
+            <div>
+                <span>欢迎</span>
+                <span class="owner" sec:authentication="name">tianyu</span>
+                <span>|</span>
+                <span><a href="/logout">注销</a></span>
             </div>
         </div>
-        <div class="bottom container-fuid">
-            <div class="asideBar pull-left">
-                <div class="personalMsg text-center">
-                    <img class="center-block headImage" src="../static/img/staff.png" data-toggle="modal" data-target="#myModal" alt="头像" title="修改头像">
-                    <!--login modal-->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content clearfix">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    <h4 class="modal-title" id="myModalLabel">修改头像</h4>
-                                </div>
-                                <div class="modal-body">
+    </div>
+    <div class="bottom container-fuid">
+        <div class="asideBar pull-left">
+            <div class="personalMsg text-center">
+                <img class="center-block headImage" src="/img/staff.png" data-toggle="modal" data-target="#myModal" alt="头像" title="修改头像">
+                <!--login modal-->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content clearfix">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">修改头像</h4>
+                            </div>
+                            <div class="modal-body">
                                     <span class="fileinput-button">
                                         <span class="btn btn-primary selectImg">选择图片</span>
                                     <input id="imgPicker" type="file" accept="image/" />
                                     </span>
-                                    <div class="previewBox">
-                                        <img id="preview" />
-                                    </div>
+                                <div class="previewBox">
+                                    <img id="preview" />
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="comBtn btn btn-danger pull-right" data-dismiss="modal">确认修改</button>
-                                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">取消</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="comBtn btn btn-danger pull-right" data-dismiss="modal">确认修改</button>
+                                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">取消</button>
                             </div>
                         </div>
                     </div>
-                    <p class="staffName" sec:authentication="name"></p>
-                    <!-- <span>编号：</span>
-                    <span class="staffId">001</span> -->
                 </div>
-                <ul>
-                    <li class="focus"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>考勤情况</li>
-                    <li><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>请假申请</li>
-                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>请假回执<span class="badge mailNum"></span></li>
-                </ul>
+                <p class="staffName" sec:authentication="name"></p>
+                <!-- <span>编号：</span>
+                <span class="staffId">001</span> -->
             </div>
-            <div class="mainMsg pull-left col-sm-9">
-                <div class="chooseDate">
-                    <span>时间段：</span>
-                    <div class="calendarWarp">
-                        <input type="text" name="date" class="form-control ECalendar" id="ECalendar_date" />
-                    </div>
-                    <div class="calendarWarp">
-                        <input type="text" name="date" class="form-control ECalendar" id="ECalendar_date1" />
-                    </div>
-                    <input type="button" class="btn btn-primary" value="查看">
+            <ul>
+                <li class="focus"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>考勤情况</li>
+                <li><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>请假申请</li>
+                <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>请假回执<span class="badge mailNum"></span></li>
+            </ul>
+        </div>
+        <div class="mainMsg pull-left col-sm-9">
+            <div class="chooseDate">
+                <span>时间段：</span>
+                <div class="calendarWarp">
+                    <input type="text" name="date" class="form-control ECalendar" id="ECalendar_date" />
                 </div>
-                <table class="table table-striped attendanceTable">
-                    <thead>
-                        <tr>
-                            <th>序号</th>
-                            <th>日期</th>
-                            <th>签到</th>
-                            <th>签退</th>
-                            <th>出勤情况</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div class="calendarWarp">
+                    <input type="text" name="date" class="form-control ECalendar" id="ECalendar_date1" />
+                </div>
+                <input type="button" class="btn btn-primary" value="查看">
+            </div>
+            <table class="table table-striped attendanceTable">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>日期</th>
+                    <th>签到</th>
+                    <th>签退</th>
+                    <th>出勤情况</th>
+                </tr>
+                </thead>
+                <tbody>
 
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
+        </div>
+        <div class="mainMsg pull-left col-sm-9">
+            <div class="alert alert-danger" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a href="#" class="alert-link">请提前三天提交请假申请，并详细说明理由，待收到回复后， 此次请假申请才算完成。</a>
             </div>
-            <div class="mainMsg pull-left col-sm-9">
-                <div class="alert alert-danger" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <a href="#" class="alert-link">请提前三天提交请假申请，并详细说明理由，待收到回复后， 此次请假申请才算完成。</a>
+            <form action="/vocation" method="post" class="form-horizontal applyForm">
+                <div class="form-group has-feedback">
+                    <label class="control-label col-sm-3" for="applicant">申请人：</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="applicant" name="applicant" aria-describedby="inputSuccess1Status">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    </div>
                 </div>
-                <form action="/vocation" method="post" class="form-horizontal applyForm">
-                    <div class="form-group has-feedback">
-                        <label class="control-label col-sm-3" for="applicant">申请人：</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="applicant" name="applicant" aria-describedby="inputSuccess1Status">
-                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <div class="form-group has-feedback">
+                    <label class="control-label col-sm-3" for="days">申请总天数：</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="days" name="leave_days" aria-describedby="inputSuccess2Status">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                    <label class="control-label col-sm-2" for="days">请假日期：</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="date" name="leave_date" aria-describedby="inputSuccess3Status">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback">
+                    <label class="control-label col-sm-3" for="applicant">请假理由：</label>
+                    <div class="col-sm-7">
+                        <textarea rows="4" class="form-control" id="why" name="leave_reason" aria-describedby="inputSuccess4Status"></textarea>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-7">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">
+                                <h4 class="list-group-item-heading">示例：</h4>
+                                <p class="list-group-item-text">申请人：张三</p>
+                                <p class="list-group-item-text">申请总天数：3</p>
+                                <p class="list-group-item-text">请假日期：2018-03-10 2018-03-11 2018-03-12</p>
+                                <p class="list-group-item-text">请假理由：xxxx</p>
+                            </a>
                         </div>
+                        <button type="submit" class="btn btn-primary btn-block glyphicon glyphicon-arrow-right"></button>
                     </div>
-                    <div class="form-group has-feedback">
-                        <label class="control-label col-sm-3" for="days">申请总天数：</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="days" name="leave_days" aria-describedby="inputSuccess2Status">
-                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                        </div>
-                        <label class="control-label col-sm-2" for="days">请假日期：</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="date" name="leave_date" aria-describedby="inputSuccess3Status">
-                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                        </div>
+                </div>
+            </form>
+        </div>
+        <div class="mainMsg pull-left col-sm-9">
+            <div class="allEmail">
+                <div class="emailHead">
+                    <h3>请假回执</h3>
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <span class="notRead mailNum"></span><span>未读</span>
+                </div>
+                <div class="option clearfix">
+                    <div class="pull-left">
+                        <button class="refresh btn btn-default"><span class="glyphicon glyphicon-refresh"></span>刷新</button>
+                        <button class="markRead btn btn-default glyphicon glyphicon-eye-open" data-toggle="tooltip" data-placement="left " title="标为已读" aria-hidden="true"></button>
+                        <button class="delete btn btn-default glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="left " title="删除" aria-hidden="true"></button>
                     </div>
-                    <div class="form-group has-feedback">
-                        <label class="control-label col-sm-3" for="applicant">请假理由：</label>
-                        <div class="col-sm-7">
-                            <textarea rows="4" class="form-control" id="why" name="leave_reason" aria-describedby="inputSuccess4Status"></textarea>
-                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                        </div>
+                    <div class="pull-right">
+                        <span class="btn btn-default glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="btn btn-default glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-7">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <h4 class="list-group-item-heading">示例：</h4>
-                                    <p class="list-group-item-text">申请人：张三</p>
-                                    <p class="list-group-item-text">申请总天数：3</p>
-                                    <p class="list-group-item-text">请假日期：2018-03-10 2018-03-11 2018-03-12</p>
-                                    <p class="list-group-item-text">请假理由：xxxx</p>
-                                </a>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block glyphicon glyphicon-arrow-right"></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="mainMsg pull-left col-sm-9">
-                <div class="allEmail">
-                    <div class="emailHead">
-                        <h3>请假回执</h3>
-                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        <span class="notRead mailNum"></span><span>未读</span>
-                    </div>
-                    <div class="option clearfix">
-                        <div class="pull-left">
-                            <button class="refresh btn btn-default"><span class="glyphicon glyphicon-refresh"></span>刷新</button>
-                            <button class="markRead btn btn-default glyphicon glyphicon-eye-open" data-toggle="tooltip" data-placement="left " title="标为已读" aria-hidden="true"></button>
-                            <button class="delete btn btn-default glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="left " title="删除" aria-hidden="true"></button>
-                        </div>
-                        <div class="pull-right">
-                            <span class="btn btn-default glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="btn btn-default glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="alert alert-danger noEmail" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <a href="#" class="alert-link">信箱为空,可刷新再次获取</a>
-                    </div>
-                    <div class="email">
-                    </div>
+                </div>
+                <hr>
+                <div class="alert alert-danger noEmail" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <a href="#" class="alert-link">信箱为空,可刷新再次获取</a>
+                </div>
+                <div class="email">
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </body>
-<link rel="stylesheet" href="../static/css/blue.css">
-<link rel="stylesheet" href="../static/css/style.css" />
-<script src="../static/js/Ecalendar.jquery.min.js"></script>
-<script src="../static/js/icheck.min.js"></script>
-<script src="../static/js/personalSystem.js"></script>
+<link rel="stylesheet" href="/css/blue.css">
+<link rel="stylesheet" href="/css/style.css" />
+<script src="/js/Ecalendar.jquery.min.js"></script>
+<script src="/js/icheck.min.js"></script>
+<script src="/js/personalSystem.js"></script>
 <script type="text/javascript">
     $(function() {
+        $.get('/viewImg',function(data){
+            $('.headImage').attr('src',data)
+        })
         // $('#emailCheck').icheck();
         var oDate = new Date();
         $(".ECalendar").val(oDate.getFullYear() + '-' + (oDate.getMonth() + 1) + '-' + oDate.getDate());
@@ -200,9 +203,9 @@
             skin: 1, //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
             step: 10, //选择时间分钟的精确度;
             callback: function(v, e) {
-                    console.log(v);
-                    console.log(e);
-                } //回调函数
+                console.log(v);
+                console.log(e);
+            } //回调函数
         });
         $("#ECalendar_date1").ECalendar({
             type: "date", //模式，time: 带时间选择; date: 不带时间选择;
@@ -212,9 +215,9 @@
             skin: 1, //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
             step: 10, //选择时间分钟的精确度;
             callback: function(v, e) {
-                    console.log(v);
-                    console.log(e);
-                } //回调函数
+                console.log(v);
+                console.log(e);
+            } //回调函数
         });
         var i = 0;
         document
@@ -259,7 +262,7 @@
                             console.log(e); //生成Blob的图片格式
                             var formData = new FormData();
                             formData.append('croppedImage', e);
-                            $.ajax('/path/to/upload', {
+                            $.ajax('/uploadImg', {
                                 method: "POST",
                                 data: formData,
                                 processData: false,
