@@ -32,7 +32,7 @@
         FROM
         attendance
         WHERE
-        staff_name = #{arg0} AND out_time IS NOT NULL AND in_time &gt; #{arg1} AND out_time &lt; #{arg2}
+        staff_name = #{name} AND out_time IS NOT NULL AND in_time &gt; #{date1} AND out_time &lt; #{date2}
     </select>
 
     <select id="getAttendance" resultMap="attendance">

@@ -71,7 +71,7 @@
         FROM
         vocation
         WHERE
-        applicant = #{arg0} AND date &gt; #{arg1} AND date &lt; #{arg2} AND all_content IS NOT NULL
+        applicant = #{name} AND date &gt; #{start} AND date &lt; #{end} AND all_content IS NOT NULL
     </select>
 
     <select id="getVocationNameByDate" resultType="String">
@@ -80,7 +80,7 @@
         FROM
         vocation
         WHERE
-        date &gt; #{arg0} AND date &lt; #{arg1}
+        date &gt; #{start} AND date &lt; #{end}
     </select>
 
     <select id="getLeaveDateByName" resultType="String">
@@ -89,16 +89,16 @@
         FROM
         vocation
         WHERE
-        applicant = #{arg0} AND all_content IS NOT NULL
+        applicant = #{name} AND all_content IS NOT NULL
     </select>
 
     <update id="handleVocation">
         UPDATE
         vocation
         SET
-        all_content=#{arg1}
+        all_content=#{result}
         WHERE
-        id = #{arg0}
+        id = #{id}
     </update>
 
     <select id="getVocationByContent" resultMap="vocation">

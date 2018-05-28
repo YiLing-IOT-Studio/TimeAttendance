@@ -41,13 +41,13 @@
         FROM
         work_info
         WHERE
-        staff_name = #{arg0}
+        staff_name = #{name}
     </select>
 
     <delete id="delAllWorkInfoByName" parameterType="String">
         DELETE FROM
         work_info
         WHERE
-        staff_name = #{arg0}
+        staff_name = #{name}
     </delete>
 </mapper>
